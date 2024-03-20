@@ -5,7 +5,10 @@ description = "Add your description here"
 authors = [
     { name = "Milos Svana", email = "milos.svana@gmail.com" }
 ]
-dependencies = []
+dependencies = [
+    "playwright>=1.42.0",
+    "openai>=1.14.2",
+]
 readme = "README.md"
 requires-python = ">= 3.8"
 
@@ -13,9 +16,14 @@ requires-python = ">= 3.8"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[project.scripts]
+explore = "ai_web_explorer:main"
+
 [tool.rye]
 managed = true
-dev-dependencies = []
+dev-dependencies = [
+    "black>=24.3.0",
+]
 
 [tool.hatch.metadata]
 allow-direct-references = true
