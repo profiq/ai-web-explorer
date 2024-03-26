@@ -11,3 +11,6 @@ wheels/
 
 # vim config
 .vim
+
+# data
+data/*.jsonl

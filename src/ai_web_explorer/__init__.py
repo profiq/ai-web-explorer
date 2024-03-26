@@ -1,10 +1,10 @@
 import argparse
 import logging
-import time
 import openai
 import playwright.sync_api
 
 from . import cookies
+from . import title
 
 
 logging.basicConfig(level=logging.INFO)
@@ -29,5 +29,6 @@ def main():
 
     # Accept cookies if a cookie banner is present
     cookies.accept_cookies_if_present(openai_client, page)
+    page_title = title.get_title_for_webpage(page, openai_client)
 
     pw.stop()
