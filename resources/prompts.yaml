@@ -22,10 +22,10 @@ accept_cookies_selector:
     {html_part}
     ----- HTML END ----
 
-    Return a Playwright-compatible selector that, when clicked, accepts
-    all cookies. The selector should point out to a unique element so there is
-    no confusion. This usually means some type of a button.
+    Click on the element for accepting cookies. Use unique or very specific selectors so 
+    there is no confusion. This usually means some type of a button.
   temperature: 0.0
+  model: gpt-4-turbo-preview
   functions:
     - name: accept_cookies
       description: Accept cookies by clicking an element identified by a Playwright selector
@@ -34,5 +34,8 @@ accept_cookies_selector:
         properties:
           selector:
             type: string
-            description: The selector of an element for accepting cookies when clicked
+            description: A playwright-compatible CSS selector of an element for accepting cookies when clicked
+          reasoning:
+            type: string
+            description: Why was a given selector chosen
 

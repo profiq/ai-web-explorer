@@ -1,6 +1,6 @@
 import argparse
 import logging
-
+import time
 import openai
 import playwright.sync_api
 
@@ -23,7 +23,7 @@ def main():
 
     # Launch the browser and navigate to the URL
     pw = playwright.sync_api.sync_playwright().start()
-    browser = pw.chromium.launch()
+    browser = pw.chromium.launch(headless=False)
     page = browser.new_page()
     page.goto(url)
 

@@ -12,6 +12,7 @@ class Prompt:
     prompt_text: str
     functions: list[shared_params.FunctionDefinition]
     temperature: float
+    model: str
 
     def prompt_with_data(self, **data) -> str:
         return self.prompt_text.format(**data)
@@ -36,7 +37,7 @@ class Prompt:
             else openai.NOT_GIVEN
         )
         completion = client.chat.completions.create(
-            model=config.MODEL_DEFAULT,
+            model=self.model,
             messages=[message],
             temperature=self.temperature,
             tools=tools,
@@ -57,6 +58,7 @@ def get_prompt(name: str) -> Prompt:
     prompt = Prompt(
         prompt_raw["prompt"],
         prompt_raw.get("functions", []),
-        prompt_raw.get("temperature", 0.1),
+        prompt_raw.get("temperature", config.TEMPERATURE_DEFAULT),
+        prompt_raw.get("model", config.MODEL_DEFAULT),
     )
     return prompt
