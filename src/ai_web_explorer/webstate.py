@@ -1,6 +1,6 @@
 import dataclasses
-import typing
 import random
+import typing
 
 
 @dataclasses.dataclass

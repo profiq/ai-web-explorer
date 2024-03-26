@@ -1,0 +1,38 @@
+search_cookies:
+  prompt: |
+    You are an expert on HTML. You are given a part of website HTML and you are
+    asked to check if the website shows a cookie consent banner.
+
+    Here is the current HTML.
+
+    ----- HTML START -----
+    {html_part}
+    ----- HTML END -----
+
+    Does the website show a cookie consent banner? Answer with 'yes' or 'no'
+
+accept_cookies_selector:
+  prompt: |
+    You are an expert on finding elements in HTML that, when clicked, accepts all
+    cookies.
+
+    Here is the current HTML.
+
+    ----- HTML START -----
+    {html_part}
+    ----- HTML END ----
+
+    Return a Playwright-compatible selector that, when clicked, accepts
+    all cookies. The selector should point out to a unique element so there is
+    no confusion. This usually means some type of a button.
+  temperature: 0.0
+  functions:
+    - name: accept_cookies
+      description: Accept cookies by clicking an element identified by a Playwright selector
+      parameters:
+        type: object
+        properties:
+          selector:
+            type: string
+            description: The selector of an element for accepting cookies when clicked
+
