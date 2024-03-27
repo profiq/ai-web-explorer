@@ -31,6 +31,8 @@ httpx==0.27.0
 idna==3.6
     # via anyio
     # via httpx
+numpy==1.26.4
+    # via ai-web-explorer
 openai==1.14.2
     # via ai-web-explorer
 playwright==1.42.0

@@ -10,6 +10,7 @@ dependencies = [
     "openai>=1.14.2",
     "pyyaml>=6.0.1",
     "beautifulsoup4>=4.12.3",
+    "numpy>=1.26.4",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"

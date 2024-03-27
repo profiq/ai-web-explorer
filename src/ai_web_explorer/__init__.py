@@ -4,7 +4,7 @@ import openai
 import playwright.sync_api
 
 from . import cookies
-from . import title
+from . import loop
 
 
 logging.basicConfig(level=logging.INFO)
@@ -29,6 +29,8 @@ def main():
 
     # Accept cookies if a cookie banner is present
     cookies.accept_cookies_if_present(openai_client, page)
-    page_title = title.get_title_for_webpage(page, openai_client)
+
+    explore_loop = loop.ExploreLoop(domain, url, page, openai_client)
+    explore_loop.start()
 
     pw.stop()

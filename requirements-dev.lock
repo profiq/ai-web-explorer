@@ -36,6 +36,8 @@ idna==3.6
     # via httpx
 mypy-extensions==1.0.0
     # via black
+numpy==1.26.4
+    # via ai-web-explorer
 openai==1.14.2
     # via ai-web-explorer
 packaging==24.0

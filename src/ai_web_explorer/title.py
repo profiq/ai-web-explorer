@@ -10,7 +10,7 @@ from . import config
 
 def get_title_for_webpage(
     page: playwright.sync_api.Page,
-    client: openai.Client,
+    client: openai.OpenAI,
     confirm: bool = True,
     store_title: bool = True,
 ) -> str:
@@ -37,7 +37,15 @@ def get_title_for_webpage(
 
     if store_title:
         with open(config.TITLES_PATH, "a") as f:
-            f.write(json.dumps({"url": page.url, "html": page_html, "title": title}) + "\n")
+            f.write(
+                json.dumps({"url": page.url, "html": page_html, "title": title}) + "\n"
+            )
 
     logging.info(f"Title for webpage: {title}")
     return title
+
+
+def get_title_embedding(title: str, client: openai.OpenAI) -> list[float]:
+    logging.info(f"Getting embedding for title: {title}")
+    response = client.embeddings.create(model="text-embedding-3-small", input=[title])
+    return response.data[0].embedding

@@ -2,6 +2,8 @@ import dataclasses
 import random
 import typing
 
+import numpy as np
+
 
 @dataclasses.dataclass
 class Action:
@@ -18,6 +20,7 @@ class StateTransition:
 @dataclasses.dataclass
 class WebState:
     title: str
+    title_embedding: list[float]
     urls: list[str]
     description: str
     actions: list[Action]
@@ -29,3 +32,8 @@ class WebState:
         if candidates:
             return random.choice(candidates)
         return None
+
+    def cosine_distance(self, embedding: list[float]):
+        return np.dot(self.title_embedding, embedding) / (
+            np.linalg.norm(self.title_embedding) * np.linalg.norm(embedding)
+        )
