@@ -11,6 +11,20 @@ logging.basicConfig(level=logging.INFO)
 
 parser = argparse.ArgumentParser(description="Explore a website")
 parser.add_argument("domain", help="The domain to start the exploration from")
+parser.add_argument(
+    "--iterations",
+    "-i",
+    type=int,
+    help="The number of iterations to explore",
+    default=None,
+)
+parser.add_argument(
+    "--store-titles",
+    "-t",
+    action="store_true",
+    help="Store the titles of the webpages",
+    default=False,
+)
 
 
 def main():
@@ -30,7 +44,11 @@ def main():
     # Accept cookies if a cookie banner is present
     cookies.accept_cookies_if_present(openai_client, page)
 
-    explore_loop = loop.ExploreLoop(domain, url, page, openai_client)
+    loop_config = loop.LoopConfig(
+        iterations=args.iterations, store_titles=args.store_titles
+    )
+
+    explore_loop = loop.ExploreLoop(domain, url, page, openai_client, loop_config)
     explore_loop.start()
 
     pw.stop()

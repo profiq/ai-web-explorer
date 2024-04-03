@@ -8,7 +8,10 @@ import numpy as np
 @dataclasses.dataclass
 class Action:
     description: str
-    status: typing.Literal["none", "success", "failure"]
+    part: int
+    status: typing.Literal["none", "success", "failure"] = dataclasses.field(
+        default="none"
+    )
 
 
 @dataclasses.dataclass
@@ -22,7 +25,7 @@ class WebState:
     title: str
     title_embedding: list[float]
     urls: list[str]
-    description: str
+    description: list[dict]
     actions: list[Action]
     transitions: list[StateTransition]
 
