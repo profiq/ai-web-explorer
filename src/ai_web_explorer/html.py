@@ -1,13 +1,26 @@
 import re
 import typing
+
 import bs4
 import playwright.sync_api
+
 from . import config
 
 
 class PageNotLoadedException(Exception):
     pass
 
+
+JS_FUNCTIONS = """
+    function setValueAsDataAttribute() {
+      const inputs = document.querySelectorAll('input, textarea, select');
+      inputs.forEach(input => {
+        const value = input.value;
+        input.setAttribute('data-current-value', value);
+      });
+    }
+    window.setValueAsDataAttribute = setValueAsDataAttribute;
+"""
 
 def iterate_html(page: playwright.sync_api.Page) -> typing.Iterable[str]:
     html = get_full_html(page)
@@ -27,6 +40,7 @@ def iterate_html(page: playwright.sync_api.Page) -> typing.Iterable[str]:
 
 
 def get_full_html(page: playwright.sync_api.Page) -> str:
+    page.evaluate("setValueAsDataAttribute()")
     if page.url == "about:blank":
         raise PageNotLoadedException("No page loaded yet")
     html = page.content()
@@ -60,7 +74,7 @@ def _clean_attributes(soup: bs4.BeautifulSoup, classes: bool = True):
         "data-test-id",
         "data-testid",
         "data-playwright-scrollable",
-        "data-playwright-value",
+        "data-current-value",
         "href",
     ]
 

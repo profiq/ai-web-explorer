@@ -1,11 +1,12 @@
 import argparse
 import logging
+
 import openai
 import playwright.sync_api
 
 from . import cookies
 from . import loop
-
+from . import html
 
 logging.basicConfig(level=logging.INFO)
 
@@ -39,16 +40,20 @@ def main():
     pw = playwright.sync_api.sync_playwright().start()
     browser = pw.chromium.launch(headless=False)
     page = browser.new_page()
+    page.add_init_script(html.JS_FUNCTIONS)
     page.goto(url)
 
     # Accept cookies if a cookie banner is present
     cookies.accept_cookies_if_present(openai_client, page)
 
     loop_config = loop.LoopConfig(
-        iterations=args.iterations, store_titles=args.store_titles
+        iterations=args.iterations,
+        store_titles=args.store_titles,
+        confirm_titles=args.store_titles,
     )
 
     explore_loop = loop.ExploreLoop(domain, url, page, openai_client, loop_config)
     explore_loop.start()
+    explore_loop.print_graph()
 
     pw.stop()

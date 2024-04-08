@@ -98,6 +98,8 @@ describe_html:
     elements, such as links, buttons or forms, as well as important status or error messages.
     It should also explain the specific purpose of the page and its content. When describing 
     the content, think about the specific subpage you are visiting instead the whole web portal.
+    Finally, it should also include most important pieces of information such as
+    instructions or warnings.
           
     Each element should be represented by a separate record:
 
@@ -160,6 +162,11 @@ describe_html:
                       - type
                       - description
                   description: List of interactive elements on the page. E.g. 'A link to the homepage'
+                important_information:
+                  type: array
+                  items:
+                    type: string
+                  description: List of important pieces of information. E.g. 'Instructions for filling the form'
         required:
           - basic_purpose
           - sections
@@ -170,7 +177,8 @@ suggest_actions:
 
     Your goal is to analyze a YAML description of the webpage and recommend about 10
     possible actions or atomic sequences of actions the user can perform.
-    Choose actions that maximize learning new things about the website.
+    Choose actions that maximize learning new things about the website. Actions
+    should be clear. The should be no ambiguity about what the user should do next.
 
     Here are some examples of good recommendation:
      - Login with username and password
@@ -180,17 +188,18 @@ suggest_actions:
      - Add the item to the cart
      - Send a contact form with a sample question
 
-    The user can perform only the following actions:
+    The user can perform only the following types action:
      - Click on a link or button
+     - Fill and input field
      - Login with username and password
-     - Fill and submit a whole form at once
+     - Fill and submit a form
 
     Only consider elements listed in the description of the current page.
 
     Here is the description of the current page:
 
     URL: {url}
-    Title: {title}
+    Title of the current state: {title}
 
     ----- DESCRIPTION START -----
     {description}
@@ -238,6 +247,7 @@ execute_action:
     {html}
     ----- HTML END -----
   temperature: 0.0
+  model: gpt-4-turbo-preview
   functions:
     - name: click_element
       description: Click on an element identified by a Playwright selector

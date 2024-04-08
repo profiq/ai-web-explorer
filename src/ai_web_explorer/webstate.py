@@ -1,6 +1,7 @@
 import dataclasses
 import random
 import typing
+import uuid
 
 import numpy as np
 
@@ -28,6 +29,7 @@ class WebState:
     description: list[dict]
     actions: list[Action]
     transitions: list[StateTransition]
+    ws_id: uuid.UUID = dataclasses.field(default_factory=uuid.uuid4)
 
     @property
     def random_action(self) -> None | Action:

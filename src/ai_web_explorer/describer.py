@@ -75,7 +75,7 @@ class Describer:
 
         return description
 
-    def get_actions(self, description: list[dict]) -> list[webstate.Action]:
+    def get_actions(self, title: str, description: list[dict]) -> list[webstate.Action]:
         description_str = "\n\n".join(
             [
                 "PART " + str(i) + ":\n" + yaml.dump(part)
@@ -90,7 +90,7 @@ class Describer:
             self._client,
             description=description_str,
             url=self._page.url,
-            title=self._page.title,
+            title=title,
         )
 
         if not response.message.tool_calls or len(response.message.tool_calls) == 0:
@@ -104,4 +104,3 @@ class Describer:
 
         actions = [webstate.Action(**action) for action in args["actions"]]
         return actions
-
