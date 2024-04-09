@@ -7,6 +7,7 @@ import playwright.sync_api
 from . import webstate
 from . import describer
 from . import executor
+from . import config
 
 
 @dataclasses.dataclass
@@ -98,7 +99,7 @@ class ExploreLoop:
 
         for ws in self._webstates:
             distance = ws.cosine_distance(embedding)
-            if distance > 0.95:
+            if distance > config.TITLE_SIMILARITY_THRESHOLD:
                 logging.info(f"Found similar state: {ws.title}")
                 if self._url not in ws.urls:
                     ws.urls.append(self._url)

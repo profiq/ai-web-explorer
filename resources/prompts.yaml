@@ -1,277 +1,287 @@
 search_cookies:
-  prompt: |
-    You are an expert on HTML. You are given a part of website HTML and you are
-    asked to check if the website shows a cookie consent banner.
+    prompt: |
+        You are an expert on HTML. You are given a part of website HTML and you are
+        asked to check if the website shows a cookie consent banner.
 
-    Here is the current HTML.
+        Here is the current HTML.
 
-    ----- HTML START -----
-    {html_part}
-    ----- HTML END -----
+        ----- HTML START -----
+        {html_part}
+        ----- HTML END -----
 
-    Does the website show a cookie consent banner? Answer with 'yes' or 'no'
+        Does the website show a cookie consent banner? Answer with 'yes' or 'no'
 
 accept_cookies_selector:
-  prompt: |
-    You are an expert on finding elements in HTML that, when clicked, accepts all
-    cookies.
+    prompt: |
+        You are an expert on finding elements in HTML that, when clicked, accepts all
+        cookies.
 
-    Here is the current HTML.
+        Here is the current HTML.
 
-    ----- HTML START -----
-    {html_part}
-    ----- HTML END ----
+        ----- HTML START -----
+        {html_part}
+        ----- HTML END ----
 
-    Click on the element for accepting cookies. Use unique or very specific selectors so 
-    there is no confusion. This usually means some type of a button.
-  temperature: 0.0
-  model: gpt-4-turbo-preview
-  functions:
-    - name: accept_cookies
-      description: Accept cookies by clicking an element identified by a Playwright selector
-      parameters:
-        type: object
-        properties:
-          selector:
-            type: string
-            description: |
-              A playwright-compatible CSS selector of an element for accepting cookies
-              when clicked
-          reasoning:
-            type: string
-            description: Why was a given selector chosen
+        Click on the element for accepting cookies. Use unique or very specific selectors so 
+        there is no confusion. This usually means some type of a button.
+    temperature: 0.0
+    model: gpt-4-turbo-preview
+    functions:
+        - name: accept_cookies
+          description: Accept cookies by clicking an element identified by a Playwright selector
+          parameters:
+              type: object
+              properties:
+                  selector:
+                      type: string
+                      description: |
+                          A playwright-compatible CSS selector of an element for accepting cookies
+                          when clicked
+                  reasoning:
+                      type: string
+                      description: Why was a given selector chosen
 
 page_title:
-  prompt: |
-    You are an expert on giving titles to web pages from parts of their HTML. 
-    You can create titles that capture what type of page the HTML represents and its state.
+    prompt: |
+        You are an expert on giving titles to web pages from parts of their HTML. 
+        You can create titles that capture what type of page the HTML represents and its state.
 
-    You figured out that by creating titles this way you can model any website as a graph. 
-    Each node represents one state and each edge represents a possible transition by performing 
-    an action like submitting a form or clicking a button.
+        You figured out that by creating titles this way you can model any website as a graph. 
+        Each node represents one state and each edge represents a possible transition by performing 
+        an action like submitting a form or clicking a button.
 
-    The titles you generate should provide a unique description of a given state, so it's easy 
-    to determine where in the graph the user currently is. The title always has two parts: page
-    name and state descriptors such as 'Wrong password', 'Empty'
+        The titles you generate should provide a unique description of a given state, so it's easy 
+        to determine where in the graph the user currently is. The title always has two parts: page
+        name and state descriptors such as 'Wrong password', 'Empty'
 
-    Here are some examples of possible state titles you can generate:
+        Here are some examples of possible state titles you can generate:
 
-    Login page - Empty form
-    Login page - Wrong username or password
-    Category page - First page, pagination
-    Search results - No matches found
-    Shopping cart - Empty
-    Todo List - Today, Empty
-    Todo List - Week, With items
-    Privacy settings - New settings saved
+        Login page - Empty form
+        Login page - Wrong username or password
+        Category page - First page, pagination
+        Search results - No matches found
+        Shopping cart - Empty
+        Todo List - Today, Empty
+        Todo List - Week, With items
+        Privacy settings - New settings saved
 
-    The user will give you a part of HTML. You will return a title and reasoning behind it.
+        The user will give you a part of HTML. You will return a title and reasoning behind it.
 
-    HTML from the user:
+        HTML from the user:
 
-    ----- HTML START -----
-    {html}
-    ----- HTML END -----
-  temperature: 0.0
-  model: gpt-4-turbo-preview
-  functions:
-    - name: display_page_title
-      description: Display a title for a web page based on its HTML content
-      parameters:
-        type: object
-        properties:
-          title:
-            type: string
-            description: A title for the web page
-          reasoning:
-            type: string
-            description: Why was a given title chosen
+        ----- HTML START -----
+        {html}
+        ----- HTML END -----
+    temperature: 0.0
+    model: gpt-4-turbo-preview
+    functions:
+        - name: display_page_title
+          description: Display a title for a web page based on its HTML content
+          parameters:
+              type: object
+              properties:
+                  title:
+                      type: string
+                      description: A title for the web page
+                  reasoning:
+                      type: string
+                      description: Why was a given title chosen
 
 describe_html:
-  prompt: |
-    Analyze the following HTML and provide a specific and extensive 
-    description of its contents. Imagine you are describing the page
-    to a friend over phone.
+    prompt: |
+        Analyze the following HTML and provide a specific and extensive 
+        description of its contents. Imagine you are describing the page
+        to a friend over phone.
 
-    Describe each main section (for example main menu, search, footer, filters) 
-    of the subpage. The description of each section should list interactive 
-    elements, such as links, buttons or forms, as well as important status or error messages.
-    It should also explain the specific purpose of the page and its content. When describing 
-    the content, think about the specific subpage you are visiting instead the whole web portal.
-    Finally, it should also include most important pieces of information such as
-    instructions or warnings.
-          
-    Each element should be represented by a separate record:
+        Describe each main section (for example main menu, search, footer, filters) 
+        of the subpage. The description of each section should list interactive 
+        elements, such as links, buttons or forms, as well as important status or error messages.
+        It should also explain the specific purpose of the page and its content. When describing 
+        the content, think about the specific subpage you are visiting instead the whole web portal.
+        Finally, it should also include most important pieces of information such as
+        instructions or warnings.
+              
+        Each element should be represented by a separate record:
 
-    INCORRECT EXAMPLE:
-    Links to specific categories like 'Oblíbené inzeráty', 'Moje inzeráty', and 'Přidat inzerát'
+        INCORRECT EXAMPLE:
+        Links to specific categories like 'Oblíbené inzeráty', 'Moje inzeráty', and 'Přidat inzerát'
 
-    CORRECT EXAMPLES:
-    A link to the user's favorite ads
-    A link to the user's ads
-    A link to the form for adding a new ad
-    A status message saying 'No ads found'
+        CORRECT EXAMPLES:
+        A link to the user's favorite ads
+        A link to the user's ads
+        A link to the form for adding a new ad
+        A status message saying 'No ads found'
 
-    On the other hand, avoid being too specific, describe the purpose of the element 
-    instead of its specific content.
+        On the other hand, avoid being too specific, describe the purpose of the element 
+        instead of its specific content.
 
-    CORRECT EXAMPLES:
-    Link to an external article
-    Link to a login form
-    Link to FAQ
-    Link to a category
-    Link to a product page
-    Link to shopping cart
-    Location input
-    Language switcher
+        CORRECT EXAMPLES:
+        Link to an external article
+        Link to a login form
+        Link to FAQ
+        Link to a category
+        Link to a product page
+        Link to shopping cart
+        Location input
+        Language switcher
 
-    ----- HTML START -----
-    {html_part}
-    ----- HTML END -----
-  temperature: 0.05
-  functions:
-    - name: describe_html
-      description: Describe the subpage from its HTML
-      parameters:
-        type: object
-        properties:
-          basic_purpose:
-            type: string
-            description: Top level description of the subpage's purpose. E.g. 'This is a form for adding a new user'
-          sections:
-            type: array
-            description: List of sections on the page. E.g. 'A list of products', 'A form for adding a new user'
-            items:
+        ----- HTML START -----
+        {html_part}
+        ----- HTML END -----
+    temperature: 0.05
+    functions:
+        - name: describe_html
+          description: Describe the subpage from its HTML
+          parameters:
               type: object
               properties:
-                description:
-                  type: string
-                  description: Description of the section. E.g. 'A list of products'
-                interactive_elements:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      type:
-                        type: string
-                        description: Type of the interactive element. E.g. 'link', 'button', 'status message'
-                      description:
-                        type: string
-                        description: Description of the interactive element. E.g. 'A link to the homepage'
-                    required:
-                      - type
-                      - description
-                  description: List of interactive elements on the page. E.g. 'A link to the homepage'
-                important_information:
-                  type: array
-                  items:
-                    type: string
-                  description: List of important pieces of information. E.g. 'Instructions for filling the form'
-        required:
-          - basic_purpose
-          - sections
+                  basic_purpose:
+                      type: string
+                      description: Top level description of the subpage's purpose. E.g. 'This is a form for adding a new user'
+                  sections:
+                      type: array
+                      description: List of sections on the page. E.g. 'A list of products', 'A form for adding a new user'
+                      items:
+                          type: object
+                          properties:
+                              description:
+                                  type: string
+                                  description: Description of the section. E.g. 'A list of products'
+                              interactive_elements:
+                                  type: array
+                                  items:
+                                      type: object
+                                      properties:
+                                          type:
+                                              type: string
+                                              description: Type of the interactive element. E.g. 'link', 'button', 'status message'
+                                          description:
+                                              type: string
+                                              description: Description of the interactive element. E.g. 'A link to the homepage'
+                                      required:
+                                          - type
+                                          - description
+                                  description: List of interactive elements on the page. E.g. 'A link to the homepage'
+                              important_information:
+                                  type: array
+                                  items:
+                                      type: string
+                                  description: List of important pieces of information. E.g. 'Instructions for filling the form'
+              required:
+                  - basic_purpose
+                  - sections
 
 suggest_actions:
-  prompt: |
-    You are an expert on detecting actions a user can perform on a webpage. 
+    prompt: |
+        You are an expert on detecting actions a user can perform on a webpage. 
 
-    Your goal is to analyze a YAML description of the webpage and recommend about 10
-    possible actions or atomic sequences of actions the user can perform.
-    Choose actions that maximize learning new things about the website. Actions
-    should be clear. The should be no ambiguity about what the user should do next.
+        Your goal is to analyze a YAML description of the webpage and recommend about 10
+        possible actions or atomic sequences of actions the user can perform.
+        Choose actions that maximize learning new things about the website. Actions
+        should be clear. The should be no ambiguity about what the user should do next. For example,
+        if you suggest to click on a link, only one link should be suggested.
+        Suggest only actions with a high probability of staying on the current domain.
 
-    Here are some examples of good recommendation:
-     - Login with username and password
-     - Search for a MacBook
-     - Switch to a different city
-     - Visit a 'PC' category
-     - Add the item to the cart
-     - Send a contact form with a sample question
+        Here are some examples of good recommendation:
+         - Login with username and password
+         - Search for a MacBook
+         - Switch to a different city
+         - Visit a 'PC' category
+         - Add the item to the cart
+         - Send a contact form with a sample question
 
-    The user can perform only the following types action:
-     - Click on a link or button
-     - Fill and input field
-     - Login with username and password
-     - Fill and submit a form
+        The user can perform only the following types action:
+         - Click on a link or button
+         - Fill and input field
+         - Login with username and password
+         - Fill and submit a form
 
-    Only consider elements listed in the description of the current page.
+        Only consider elements listed in the description of the current page.
 
-    Here is the description of the current page:
+        Here is the description of the current page:
 
-    URL: {url}
-    Title of the current state: {title}
+        URL: {url}
+        Title of the current state: {title}
 
-    ----- DESCRIPTION START -----
-    {description}
-    ----- DESCRIPTION END -----
-  temperature: 0.05
-  model: gpt-4-turbo-preview
-  functions:
-    - name: suggest_actions
-      description: Recommend actions to perform next
-      parameters:
-        type: object
-        properties:
-          actions:
-            type: array
-            items:
+        ----- DESCRIPTION START -----
+        {description}
+        ----- DESCRIPTION END -----
+    temperature: 0.05
+    model: gpt-4-turbo-preview
+    functions:
+        - name: suggest_actions
+          description: Recommend actions to perform next
+          parameters:
               type: object
               properties:
-                description:
-                  type: string
-                  description: Recommended action or sequence of actions to perform next
-                part:
-                  type: number
-                  description: Part of the description to which the action is related
-              required:
-                - description
-                - part
+                  actions:
+                      type: array
+                      items:
+                          type: object
+                          properties:
+                              description:
+                                  type: string
+                                  description: Recommended action or sequence of actions to perform next
+                              part:
+                                  type: number
+                                  description: Part of the description to which the action is related
+                          required:
+                              - description
+                              - part
 
 execute_action:
-  prompt: |
-    You are an expert on executing action on the web. You are given
-    a website HTML, it's short text description and an action to perform.
-    You can execute a sequence of multiple actions if needed.
+    prompt: |
+        You are an expert on executing action on the web. You are given
+        a website HTML, it's short text description and an action to perform.
+        You can execute a sequence of multiple actions if needed.
 
-    If a tool requires a selector, the selector has to be
-    compatible with Playwright and the element should be present
-    in HTML.
+        If a tool requires a selector, the selector has to be
+        compatible with Playwright and the element should be present
+        in HTML.
 
-    The recommended action is:
+        When using the tool for filling text inputs, be very careful about
+        selecting elements that can acually be filled.
 
-    {action}
+        The recommended action is:
 
-    Here is the current HTML:
+        {action}
 
-    ----- HTML START -----
-    {html}
-    ----- HTML END -----
-  temperature: 0.0
-  model: gpt-4-turbo-preview
-  functions:
-    - name: click_element
-      description: Click on an element identified by a Playwright selector
-      parameters:
-        type: object
-        properties:
-          selector:
-            type: string
-            description: A playwright-compatible CSS selector of an element to click
-          reasoning:
-            type: string
-            description: Why was a given selector chosen
-    - name: fill_text_input
-      description: Fill a text input identified by a Playwright selector
-      parameters:
-        type: object
-        properties:
-          selector:
-            type: string
-            description: A playwright-compatible CSS selector of a text input to fill
-          text:
-            type: string
-            description: Text to fill the input with
-          reasoning:
-            type: string
-            description: Why was a given text chosen
+        Here is the current HTML:
 
+        ----- HTML START -----
+        {html}
+        ----- HTML END -----
+    temperature: 0.0
+    model: gpt-4-turbo-preview
+    functions:
+        - name: click_element
+          description: Click on an element identified by a Playwright selector
+          parameters:
+              type: object
+              properties:
+                  selector:
+                      type: string
+                      description: A playwright-compatible CSS selector of an element to click
+                  reasoning:
+                      type: string
+                      description: Why was a given selector chosen
+        - name: fill_text_input
+          description: Fill a text input identified by a Playwright selector
+          parameters:
+              type: object
+              properties:
+                  selector:
+                      type: string
+                      description: A playwright-compatible CSS selector of a text input to fill
+                  text:
+                      type: string
+                      description: Text to fill the input with
+                  reasoning:
+                      type: string
+                      description: Why was a given text chosen
+
+verify_action:
+    prompt: |
+        If the action is not finished or you registered failure, continue calling more tools.
+        If the action is finished successfully, simply say 'success'
+        If the action is failing and you cannot continue, say 'failure'

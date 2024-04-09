@@ -14,6 +14,10 @@ class Prompt:
     temperature: float
     model: str
 
+    @property
+    def tools(self) -> list[chat.ChatCompletionToolParam]:
+        return [{"type": "function", "function": f} for f in self.functions]
+
     def prompt_with_data(self, **data) -> str:
         return self.prompt_text.format(**data)
 
