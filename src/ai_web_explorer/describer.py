@@ -103,4 +103,4 @@ class Describer:
             raise ValueError("No actions in response when getting actions")
 
         actions = [webstate.Action(**action) for action in args["actions"]]
-        return actions
+        return actions[:3]

@@ -5,14 +5,15 @@ import uuid
 
 import numpy as np
 
+ActionStatus = typing.Literal["none", "success", "failure"]
+
 
 @dataclasses.dataclass
 class Action:
     description: str
     part: int
-    status: typing.Literal["none", "success", "failure"] = dataclasses.field(
-        default="none"
-    )
+    status: ActionStatus = dataclasses.field(default="none")
+    function_calls: list[dict] = dataclasses.field(default_factory=list)
 
 
 @dataclasses.dataclass

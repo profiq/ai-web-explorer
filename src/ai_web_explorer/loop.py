@@ -8,6 +8,8 @@ from . import webstate
 from . import describer
 from . import executor
 from . import config
+from . import cookies
+from . import html
 
 
 @dataclasses.dataclass
@@ -28,11 +30,9 @@ class ExploreLoop:
         self,
         domain: str,
         url: str,
-        page: playwright.sync_api.Page,
         openai_client: openai.OpenAI,
         config: LoopConfig,
     ):
-        self._page = page
         self._domain = domain
         self._url = url
         self._openai_client = openai_client
@@ -41,8 +41,9 @@ class ExploreLoop:
         self._webstates: list[webstate.WebState] = []
         self._webstate_current: webstate.WebState | None = None
         self._action_current: webstate.Action | None = None
-        self._describer = describer.Describer(page, openai_client)
-        self._executor = executor.Executor(page, openai_client)
+        self._pw, self._page = self._init_browser(self._url)
+        self._describer = describer.Describer(self._page, openai_client)
+        self._executor = executor.Executor(self._page, openai_client)
 
     def start(self):
         i = 0
@@ -81,7 +82,8 @@ class ExploreLoop:
                 return
 
         logging.info(f"Randomly selected action: {self._action_current.description}")
-        action_result = self._executor.execute(self._action_current)
+        action_result, tool_calls = self._executor.execute(self._action_current)
+        self._action_current.function_calls = tool_calls
 
         if self._domain not in self._page.url:
             self._back_to_domain()
@@ -137,6 +139,21 @@ class ExploreLoop:
 
         print("}")
 
+    def stop(self):
+        self._pw.stop()
+
+    def _init_browser(
+        self, url: str
+    ) -> tuple[playwright.sync_api.Playwright, playwright.sync_api.Page]:
+        pw = playwright.sync_api.sync_playwright().start()
+        browser = pw.chromium.launch(headless=False)
+        context = browser.new_context()
+        page = context.new_page()
+        page.add_init_script(html.JS_FUNCTIONS)
+        page.goto(url)
+        cookies.accept_cookies_if_present(self._openai_client, page)
+        return pw, page
+
     def _back_to_domain(self):
         logging.info("Navigated away from domain, going back to domain")
         while self._domain not in self._page.url:
@@ -176,7 +193,11 @@ class ExploreLoop:
         return None
 
     def _perform_transitions(self, transitions: list[webstate.StateTransition]):
+        self.stop()
+        self._pw, self._page = self._init_browser(self._url)
+        self._executor = executor.Executor(self._page, self._openai_client)
+        self._describer = describer.Describer(self._page, self._openai_client)
         self._page.goto(self._url)
         for transition in transitions:
-            self._executor.execute(transition.action)
+            self._executor.replicate_tool_calls(transition.action.function_calls)
             self._webstate_current = transition.state_new

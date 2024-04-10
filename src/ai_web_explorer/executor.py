@@ -1,5 +1,6 @@
 import json
 import logging
+import time
 
 import openai
 from openai.types import chat
@@ -17,13 +18,14 @@ class Executor:
         self._page = page
         self._client = client
 
-    def execute(self, action: webstate.Action) -> bool:
+    def execute(self, action: webstate.Action) -> tuple[bool, list]:
         prompt = promptrepo.get_prompt("execute_action")
         prompt_verify = promptrepo.get_prompt("verify_action")
 
         logging.info(f"Executing action: {action.description}")
         html_full = html.get_full_html(self._page)
         messages: list[chat.ChatCompletionMessageParam] = []
+        tool_calls_all = []
 
         for i, html_part in enumerate(html.iterate_html(self._page)):
             if i != action.part:
@@ -40,7 +42,7 @@ class Executor:
 
         if len(messages) == 0:
             logging.error("No messages to send in response")
-            return False
+            return False, []
 
         for _ in range(config.ACTION_MAX_TRIES):
             response = self._client.chat.completions.create(
@@ -51,7 +53,7 @@ class Executor:
             ).choices[0]
 
             messages.append(response.message)  # type: ignore
-            
+
             if not response.message.tool_calls or len(response.message.tool_calls) == 0:
                 if (
                     response.message.content
@@ -72,6 +74,7 @@ class Executor:
             for tool_call in tool_calls:
                 try:
                     response_message = self._execute_tool_call(tool_call)
+                    tool_calls_all.append(tool_call)
                 except playwright.sync_api.TimeoutError:
                     logging.error("Timeout error when executing action")
                     logging.error(f"Tool call: {tool_call}")
@@ -92,19 +95,28 @@ class Executor:
                 messages.append(response_message)  # type: ignore
             messages.append({"role": "user", "content": prompt_verify.prompt_text})
 
-        return html.get_full_html(self._page) != html_full
+        return html.get_full_html(self._page) != html_full, tool_calls_all
+
+    def replicate_tool_calls(self, tool_calls: list):
+        for tool_call in tool_calls:
+            time.sleep(1)
+            self._execute_tool_call(tool_call)
 
     def _execute_tool_call(self, tool_call):
         args = json.loads(tool_call.function.arguments)
         selector = args["selector"]
-        self._page.locator(selector).scroll_into_view_if_needed(timeout=config.PLAYWRIGHT_TIMEOUT)
+        self._page.locator(selector).first.scroll_into_view_if_needed(
+            timeout=config.PLAYWRIGHT_TIMEOUT
+        )
         logging.info(f"Executing tool call: {tool_call.function.name}")
         logging.info(f"Arguments: {args}")
         if tool_call.function.name == "click_element":
-            self._page.click(selector, timeout=config.PLAYWRIGHT_TIMEOUT)
+            self._page.locator(selector).first.click(timeout=config.PLAYWRIGHT_TIMEOUT)
         elif tool_call.function.name == "fill_text_input":
             text = args["text"]
-            self._page.fill(selector, text, timeout=config.PLAYWRIGHT_TIMEOUT)
+            self._page.locator(selector).first.fill(
+                text, timeout=config.PLAYWRIGHT_TIMEOUT
+            )
         else:
             raise ValueError(f"Unknown function {tool_call.function.name}")
         return {"role": "tool", "content": "OK", "tool_call_id": tool_call.id}
