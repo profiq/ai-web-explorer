@@ -17,6 +17,8 @@ class LoopConfig:
     iterations: int | None = dataclasses.field(default=None)
     confirm_titles: bool = dataclasses.field(default=False)
     store_titles: bool = dataclasses.field(default=False)
+    username: str | None = dataclasses.field(default=None)
+    password: str | None = dataclasses.field(default=None)
 
 
 WebStateBacktrack = tuple[
@@ -43,7 +45,9 @@ class ExploreLoop:
         self._action_current: webstate.Action | None = None
         self._pw, self._page = self._init_browser(self._url)
         self._describer = describer.Describer(self._page, openai_client)
-        self._executor = executor.Executor(self._page, openai_client)
+        self._executor = executor.Executor(
+            self._page, openai_client, config.username, config.password
+        )
 
     def start(self):
         i = 0

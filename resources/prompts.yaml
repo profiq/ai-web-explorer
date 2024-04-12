@@ -243,6 +243,8 @@ execute_action:
         When using the tool for filling text inputs, be very careful about
         selecting elements that can acually be filled.
 
+        {login_prompt}
+
         The recommended action is:
 
         {action}
@@ -279,6 +281,13 @@ execute_action:
                   reasoning:
                       type: string
                       description: Why was a given text chosen
+
+login:
+    prompt: |
+        If the action requires logging in, use the following username and password:
+
+        Username: {username}
+        Password: {password}
 
 verify_action:
     prompt: |

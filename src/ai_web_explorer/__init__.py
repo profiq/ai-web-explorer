@@ -27,6 +27,14 @@ parser.add_argument(
     default=False,
 )
 
+parser.add_argument(
+    "--login",
+    "-l",
+    type=str,
+    help="The username and password to use for login on the website separated by a colon",
+    default=None,
+)
+
 
 def main():
     args = parser.parse_args()
@@ -36,13 +44,14 @@ def main():
 
     logging.info(f"Exploring {domain}")
 
-
-    # Accept cookies if a cookie banner is present
+    credentials = args.login.split(":") if args.login else [None, None]
 
     loop_config = loop.LoopConfig(
         iterations=args.iterations,
         store_titles=args.store_titles,
         confirm_titles=args.store_titles,
+        username=credentials[0],
+        password=credentials[1],
     )
 
     explore_loop = loop.ExploreLoop(domain, url, openai_client, loop_config)

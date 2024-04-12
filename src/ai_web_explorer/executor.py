@@ -14,16 +14,28 @@ from . import config
 
 class Executor:
 
-    def __init__(self, page: playwright.sync_api.Page, client: openai.OpenAI):
+    def __init__(
+        self,
+        page: playwright.sync_api.Page,
+        client: openai.OpenAI,
+        username: str | None,
+        password: str | None,
+    ) -> None:
         self._page = page
         self._client = client
+
+        if username and password:
+            self._login_prompt = promptrepo.get_prompt("login").prompt_with_data(
+                username=username, password=password
+            )
+        else:
+            self._login_prompt = ""
 
     def execute(self, action: webstate.Action) -> tuple[bool, list]:
         prompt = promptrepo.get_prompt("execute_action")
         prompt_verify = promptrepo.get_prompt("verify_action")
 
         logging.info(f"Executing action: {action.description}")
-        html_full = html.get_full_html(self._page)
         messages: list[chat.ChatCompletionMessageParam] = []
         tool_calls_all = []
 
@@ -35,7 +47,9 @@ class Executor:
                 {
                     "role": "user",
                     "content": prompt.prompt_with_data(
-                        action=action.description, html=html_part
+                        action=action.description,
+                        html=html_part,
+                        login_prompt=self._login_prompt,
                     ),
                 }
             )
