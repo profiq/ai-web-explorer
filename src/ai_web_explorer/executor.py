@@ -95,7 +95,7 @@ class Executor:
                 messages.append(response_message)  # type: ignore
             messages.append({"role": "user", "content": prompt_verify.prompt_text})
 
-        return html.get_full_html(self._page) != html_full, tool_calls_all
+        return True, tool_calls_all
 
     def replicate_tool_calls(self, tool_calls: list):
         for tool_call in tool_calls:

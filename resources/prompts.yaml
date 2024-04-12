@@ -180,7 +180,8 @@ suggest_actions:
         Choose actions that maximize learning new things about the website. Actions
         should be clear. The should be no ambiguity about what the user should do next. For example,
         if you suggest to click on a link, only one link should be suggested.
-        Suggest only actions with a high probability of staying on the current domain.
+        Suggest only actions with a high probability of staying on the current domain. Avoid actions that
+        could lead to a different website.
 
         Here are some examples of good recommendation:
          - Login with username and password
