@@ -99,7 +99,7 @@ describe_html:
         It should also explain the specific purpose of the page and its content. When describing 
         the content, think about the specific subpage you are visiting instead the whole web portal.
         Finally, it should also include most important pieces of information such as
-        instructions or warnings.
+        instructions or warnings. Assume that all elements are visible.
               
         Each element should be represented by a separate record:
 
@@ -181,7 +181,7 @@ suggest_actions:
         should be clear. The should be no ambiguity about what the user should do next. For example,
         if you suggest to click on a link, only one link should be suggested.
         Suggest only actions with a high probability of staying on the current domain. Avoid actions that
-        could lead to a different website.
+        could lead to a different website. Assume that all parts of the wepage are visible.
 
         Here are some examples of good recommendation:
          - Login with username and password

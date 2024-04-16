@@ -22,6 +22,7 @@ JS_FUNCTIONS = """
     window.setValueAsDataAttribute = setValueAsDataAttribute;
 """
 
+
 def iterate_html(page: playwright.sync_api.Page) -> typing.Iterable[str]:
     html = get_full_html(page)
     html_tokens = html.split("<")
@@ -41,10 +42,18 @@ def iterate_html(page: playwright.sync_api.Page) -> typing.Iterable[str]:
 
 def get_full_html(page: playwright.sync_api.Page) -> str:
     page.evaluate("setValueAsDataAttribute()")
+
+    for el in page.locator(":visible").all():
+        el.evaluate(
+            "el => el.setAttribute('data-playwright-visible', true)",
+            timeout=config.PLAYWRIGHT_TIMEOUT,
+        )
+
     if page.url == "about:blank":
         raise PageNotLoadedException("No page loaded yet")
     html = page.content()
     soup = bs4.BeautifulSoup(html, "html.parser")
+    _remove_invisible(soup)
     _remove_useless_tags(soup)
     _clean_attributes(soup)
     html_clean = soup.prettify()
@@ -89,3 +98,19 @@ def _clean_attributes(soup: bs4.BeautifulSoup, classes: bool = True):
 
 def _remove_comments(html: str):
     return re.sub(r"[\s]*<!--[\s\S]*?-->[\s]*?", "", html)
+
+
+def _remove_invisible(soup: bs4.BeautifulSoup):
+    to_keep = set()
+    visible_elements = soup.find_all(attrs={"data-playwright-visible": True})
+    for element in visible_elements:
+        current = element
+        while current is not None:
+            if current in to_keep:
+                break
+            to_keep.add(current)
+            current = current.parent
+
+    for element in soup.find_all(True):
+        if element.name and element not in to_keep:
+            element.decompose()
