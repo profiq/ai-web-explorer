@@ -88,3 +88,5 @@ The web explorer is an ongoing research project. There are many things we would 
 - Integrating it with other tools such as test case generators.
 - Use collected titles to fine-tune an LLM to generate better titles in the future.
 
+Feel free to contribute by reporting bugs or suggesting new features by creating an issue!
+
