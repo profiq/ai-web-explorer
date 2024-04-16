@@ -281,6 +281,20 @@ execute_action:
                   reasoning:
                       type: string
                       description: Why was a given text chosen
+        - name: select_option
+          description: Select an option in a <select> element identified by a Playwright selector
+          parameters:
+              type: object
+              properties:
+                  selector:
+                      type: string
+                      description: A playwright-compatible CSS selector of a dropdown to select an option in
+                  value:
+                      type: string
+                      description: Value of the option to select
+                  reasoning:
+                      type: string
+                      description: Why was a given option chosen
 
 login:
     prompt: |

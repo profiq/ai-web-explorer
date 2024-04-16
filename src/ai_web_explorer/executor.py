@@ -131,6 +131,11 @@ class Executor:
             self._page.locator(selector).first.fill(
                 text, timeout=config.PLAYWRIGHT_TIMEOUT
             )
+        elif tool_call.function.name == "select_option":
+            value = args["value"]
+            self._page.locator(selector).first.select_option(
+                value, timeout=config.PLAYWRIGHT_TIMEOUT
+            )
         else:
             raise ValueError(f"Unknown function {tool_call.function.name}")
         return {"role": "tool", "content": "OK", "tool_call_id": tool_call.id}
