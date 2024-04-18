@@ -20,9 +20,11 @@ class Executor:
         client: openai.OpenAI,
         username: str | None,
         password: str | None,
+        additional_info: str | None = None,
     ) -> None:
         self._page = page
         self._client = client
+        self._additional_info = additional_info
 
         if username and password:
             self._login_prompt = promptrepo.get_prompt("login").prompt_with_data(
@@ -50,6 +52,7 @@ class Executor:
                         action=action.description,
                         html=html_part,
                         login_prompt=self._login_prompt,
+                        additional_info=self._additional_info,
                     ),
                 }
             )

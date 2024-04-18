@@ -1,3 +1,4 @@
+import logging
 import re
 import typing
 
@@ -44,10 +45,13 @@ def get_full_html(page: playwright.sync_api.Page) -> str:
     page.evaluate("setValueAsDataAttribute()")
 
     for el in page.locator(":visible").all():
-        el.evaluate(
-            "el => el.setAttribute('data-playwright-visible', true)",
-            timeout=config.PLAYWRIGHT_TIMEOUT,
-        )
+        try:
+            el.evaluate(
+                "el => el.setAttribute('data-playwright-visible', true)",
+                timeout=config.PLAYWRIGHT_TIMEOUT,
+            )
+        except playwright.sync_api.TimeoutError:
+            logging.warning("Timeout error while setting visible attribute")
 
     if page.url == "about:blank":
         raise PageNotLoadedException("No page loaded yet")

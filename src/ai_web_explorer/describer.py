@@ -13,9 +13,15 @@ from . import webstate
 
 class Describer:
 
-    def __init__(self, page: playwright.sync_api.Page, client: openai.OpenAI):
+    def __init__(
+        self,
+        page: playwright.sync_api.Page,
+        client: openai.OpenAI,
+        additional_info: str | None = None,
+    ):
         self._page = page
         self._client = client
+        self._additional_info = additional_info
 
     def get_title(self, confirm: bool = True, store_title: bool = True) -> str:
         page_html = html.get_full_html(self._page)[: config.HTML_PART_LENGTH * 2]
@@ -91,6 +97,7 @@ class Describer:
             description=description_str,
             url=self._page.url,
             title=title,
+            additional_info=self._additional_info,
         )
 
         if not response.message.tool_calls or len(response.message.tool_calls) == 0:

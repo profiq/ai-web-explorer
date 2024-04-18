@@ -35,6 +35,14 @@ parser.add_argument(
     default=None,
 )
 
+parser.add_argument(
+    "--additional-info",
+    "-a",
+    type=str,
+    help="Additional information to be used for exploration",
+    default="----- No additional information was provided -----",
+)
+
 
 def main():
     args = parser.parse_args()
@@ -52,6 +60,7 @@ def main():
         confirm_titles=args.store_titles,
         username=credentials[0],
         password=credentials[1],
+        additional_info=args.additional_info,
     )
 
     explore_loop = loop.ExploreLoop(domain, url, openai_client, loop_config)

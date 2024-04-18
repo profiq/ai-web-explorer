@@ -183,6 +183,9 @@ suggest_actions:
         Suggest only actions with a high probability of staying on the current domain. Avoid actions that
         could lead to a different website. Assume that all parts of the wepage are visible.
 
+        The user provided the following additional information about the page:
+        {additional_info}
+
         Here are some examples of good recommendation:
          - Login with username and password
          - Search for a MacBook
@@ -254,6 +257,10 @@ execute_action:
         ----- HTML START -----
         {html}
         ----- HTML END -----
+
+        Here is some additional information provided by the user that
+        might help with the action:
+        {additional_info}
     temperature: 0.0
     functions:
         - name: click_element

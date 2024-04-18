@@ -1,5 +1,6 @@
 import dataclasses
 import logging
+import time
 
 import openai
 import playwright.sync_api
@@ -19,6 +20,7 @@ class LoopConfig:
     store_titles: bool = dataclasses.field(default=False)
     username: str | None = dataclasses.field(default=None)
     password: str | None = dataclasses.field(default=None)
+    additional_info: str | None = dataclasses.field(default=None)
 
 
 WebStateBacktrack = tuple[
@@ -44,9 +46,15 @@ class ExploreLoop:
         self._webstate_current: webstate.WebState | None = None
         self._action_current: webstate.Action | None = None
         self._pw, self._page = self._init_browser(self._url)
-        self._describer = describer.Describer(self._page, openai_client)
+        self._describer = describer.Describer(
+            self._page, openai_client, config.additional_info
+        )
         self._executor = executor.Executor(
-            self._page, openai_client, config.username, config.password
+            self._page,
+            openai_client,
+            config.username,
+            config.password,
+            config.additional_info,
         )
 
     def start(self):
@@ -155,6 +163,7 @@ class ExploreLoop:
         page = context.new_page()
         page.add_init_script(html.JS_FUNCTIONS)
         page.goto(url)
+        time.sleep(5)
         cookies.accept_cookies_if_present(self._openai_client, page)
         return pw, page
 
@@ -199,8 +208,16 @@ class ExploreLoop:
     def _perform_transitions(self, transitions: list[webstate.StateTransition]):
         self.stop()
         self._pw, self._page = self._init_browser(self._url)
-        self._executor = executor.Executor(self._page, self._openai_client)
-        self._describer = describer.Describer(self._page, self._openai_client)
+        self._executor = executor.Executor(
+            self._page,
+            self._openai_client,
+            self._config.username,
+            self._config.password,
+            self._config.additional_info,
+        )
+        self._describer = describer.Describer(
+            self._page, self._openai_client, self._config.additional_info
+        )
         self._page.goto(self._url)
         for transition in transitions:
             self._executor.replicate_tool_calls(transition.action.function_calls)
