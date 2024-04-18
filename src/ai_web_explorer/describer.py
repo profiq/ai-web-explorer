@@ -1,6 +1,7 @@
 import json
 import logging
 
+import anthropic
 import openai
 import playwright.sync_api
 import yaml
@@ -18,9 +19,19 @@ class Describer:
         self._client = client
 
     def get_title(self, confirm: bool = True, store_title: bool = True) -> str:
-        page_html = html.get_full_html(self._page)[: config.HTML_PART_LENGTH * 2]
+        page_html = html.get_full_html(self._page)[: config.HTML_PART_LENGTH * 4]
         prompt = promptrepo.get_prompt("page_title")
         logging.info(f"Getting title for webpage")
+        client = anthropic.Anthropic()
+        response = prompt.execute_prompt_claude(client, html=page_html)
+
+        for m in response.content:
+            if m.type == "tool_use":
+                title = m.input["title"]  # type: ignore
+                break
+        else:
+            raise ValueError("No tool calls in response when getting page title")
+
         response = prompt.execute_prompt(self._client, html=page_html)
 
         if not response.message.tool_calls or len(response.message.tool_calls) == 0:
@@ -28,7 +39,8 @@ class Describer:
 
         args_str = response.message.tool_calls[0].function.arguments
         args = json.loads(args_str)
-        title = args["title"]
+        title_gpt = args["title"]
+        logging.info(f"Title from GPT: {title_gpt}")
 
         while confirm:
             print("The page will have the following title:")

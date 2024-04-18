@@ -23,7 +23,9 @@ JS_FUNCTIONS = """
 """
 
 
-def iterate_html(page: playwright.sync_api.Page) -> typing.Iterable[str]:
+def iterate_html(
+    page: playwright.sync_api.Page, part_length: int = config.HTML_PART_LENGTH
+) -> typing.Iterable[str]:
     html = get_full_html(page)
     html_tokens = html.split("<")
 
@@ -31,10 +33,7 @@ def iterate_html(page: playwright.sync_api.Page) -> typing.Iterable[str]:
 
     while i < len(html_tokens):
         part = ""
-        while (
-            i < len(html_tokens)
-            and len(part) + len(html_tokens[i]) < config.HTML_PART_LENGTH
-        ):
+        while i < len(html_tokens) and len(part) + len(html_tokens[i]) < part_length:
             part += ("<" if i > 0 else "") + html_tokens[i]
             i += 1
         yield part

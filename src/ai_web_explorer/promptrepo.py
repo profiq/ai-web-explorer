@@ -1,4 +1,5 @@
 import dataclasses
+import anthropic
 
 import openai
 from openai.types import chat, shared_params
@@ -48,6 +49,29 @@ class Prompt:
             tool_choice=tool_choice,
         )
         response = completion.choices[0]
+        return response
+
+    def execute_prompt_claude(self, client: anthropic.Anthropic, **data):
+        prompt_text = self.prompt_with_data(**data)
+        message = {
+            "role": "user",
+            "content": prompt_text,
+        }
+        tools = []
+        for f in self.functions:
+            tool = dict(f.copy())
+            tool["input_schema"] = tool["parameters"]
+            del tool["parameters"]
+            tools.append(tool)
+
+        response = client.beta.tools.messages.create(
+            max_tokens=768,
+            model="claude-3-sonnet-20240229",
+            messages=[message],
+            tools=tools,
+            temperature=self.temperature,
+        )
+
         return response
 
 
