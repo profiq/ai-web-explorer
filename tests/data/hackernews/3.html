@@ -1,0 +1,872 @@
+<html lang="en" op="item"><head><meta name="referrer" content="origin"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" type="text/css" href="news.css?j4HvSflhjAzyTqHPFG5X">
+        <link rel="icon" href="y18.svg">
+    <link rel="canonical" href="https://news.ycombinator.com/item?id=40127806"/>            <title>Phi-3 Technical Report | Hacker News</title></head><body><center><table id="hnmain" border="0" cellpadding="0" cellspacing="0" width="85%" bgcolor="#f6f6ef">
+        <tr><td bgcolor="#ff6600"><table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding:2px"><tr><td style="width:18px;padding-right:4px"><a href="https://news.ycombinator.com"><img src="y18.svg" width="18" height="18" style="border:1px white solid; display:block"></a></td>
+                  <td style="line-height:12pt; height:10px;"><span class="pagetop"><b class="hnname"><a href="news">Hacker News</a></b>
+                            <a href="newest">new</a> | <a href="threads?id=msvana">threads</a> | <a href="front">past</a> | <a href="newcomments">comments</a> | <a href="ask">ask</a> | <a href="show">show</a> | <a href="jobs">jobs</a> | <a href="submit" rel="nofollow">submit</a>            </span></td><td style="text-align:right;padding-right:4px;"><span class="pagetop">
+                              <a id='me' href="user?id=msvana">msvana</a> (<span id='karma'>7</span>) | <a id='logout' rel='nofollow' href="logout?auth=73aea22c58c6d4efee55c107d4443d62a0c8ebf6&amp;goto=item%3Fid%3D40127806">logout</a>                          </span></td>
+              </tr></table></td></tr>
+<tr id="pagespace" title="Phi-3 Technical Report" style="height:10px"></tr><tr><td><table class="fatitem" border="0">
+        <tr class='athing' id='40127806'>
+      <td align="right" valign="top" class="title"><span class="rank"></span></td>      <td valign="top" class="votelinks"><center><a id='up_40127806' class='clicky' href='vote?id=40127806&amp;how=up&amp;auth=fa66c1b2529991536bd0a47f937b4493e0c74e42&amp;goto=item%3Fid%3D40127806'><div class='votearrow' title='upvote'></div></a></center></td><td class="title"><span class="titleline"><a href="https://arxiv.org/abs/2404.14219">Phi-3 Technical Report</a><span class="sitebit comhead"> (<a href="from?site=arxiv.org"><span class="sitestr">arxiv.org</span></a>)</span></span></td></tr><tr><td colspan="2"></td><td class="subtext"><span class="subline">
+          <span class="score" id="score_40127806">246 points</span> by <a href="user?id=varunvummadi" class="hnuser">varunvummadi</a> <span class="age" title="2024-04-23T02:21:52"><a href="item?id=40127806">6 hours ago</a></span> <span id="unv_40127806"></span> | <a href="hide?id=40127806&amp;auth=fa66c1b2529991536bd0a47f937b4493e0c74e42&amp;goto=item%3Fid%3D40127806">hide</a> | <a href="https://hn.algolia.com/?query=Phi-3%20Technical%20Report&type=story&dateRange=all&sort=byDate&storyText=false&prefix&page=0" class="hnpast">past</a> | <a href="fave?id=40127806&amp;auth=fa66c1b2529991536bd0a47f937b4493e0c74e42">favorite</a> | <a href="item?id=40127806">77&nbsp;comments</a>        </span>
+              </td></tr>
+            <tr style="height:10px"></tr><tr><td colspan="2"></td><td><form action="comment" method="post"><input type="hidden" name="parent" value="40127806"><input type="hidden" name="goto" value="item?id=40127806"><input type="hidden" name="hmac" value="62a6923bcde2ab4e8c1eee99aae348311a5268b4"><textarea name="text" rows="8" cols="80" wrap="virtual"></textarea><br><br>
+<input type="submit" value="add comment"></form></td></tr>  </table><br><br><table border="0" class='comment-tree'>
+            <tr class='athing comtr' id='40128351'><td><table border='0'>  <tr>    <td class='ind' indent='0'><img src="s.gif" height="1" width="0"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128351' class='clicky' href='vote?id=40128351&amp;how=up&amp;auth=6ba0cf23d3f188d70d4a1ed02483db422c4af673&amp;goto=item%3Fid%3D40127806#40128351'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=modeless" class="hnuser">modeless</a> <span class="age" title="2024-04-23T04:01:36"><a href="item?id=40128351">4 hours ago</a></span> <span id="unv_40128351"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128351" n="10" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Everyone needs to take these benchmark numbers with a big grain of salt. According to what I&#x27;ve read, Phi-2 was much worse than its benchmark numbers suggested. This model follows the same training strategy. Nobody should be assuming these numbers will translate directly into a high ranking on the LMSYS leaderboard, or usefulness in everyday tasks. Let&#x27;s not dethrone Llama 3 until some real world testing can be done.<p>That said, I don&#x27;t think it&#x27;s impossible for a small model to be very good. I see their &quot;synthetic data&quot; as essentially a way of distilling GPT-4 into smaller models. It would be exciting if a large fraction of the performance of huge models could be transferred to small ones! If true, then Chinchilla-optimal training could make sense again, as you could optimally train a ginormous model and then distill it afterward for efficient inference.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128351&amp;goto=item%3Fid%3D40127806%2340128351" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128483'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128483' class='clicky' href='vote?id=40128483&amp;how=up&amp;auth=87bbeb3eeda26d7fa718fb0a7f9a73686ff9579e&amp;goto=item%3Fid%3D40127806#40128483'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=bt1a" class="hnuser">bt1a</a> <span class="age" title="2024-04-23T04:22:56"><a href="item?id=40128483">4 hours ago</a></span> <span id="unv_40128483"></span>          <span class='navs'>
+             | <a href="#40128351" class="clicky" aria-hidden="true">parent</a> | <a href="#40128438" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128483" n="4" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">This won&#x27;t dethrone Llama 3, but it&#x27;s equally impressive.<p>They mention this model&#x27;s relative weakness in the TruthfulQA eval, since it&#x27;s more lossy trying to pack &#x27;knowledge&#x27; into a small model relative to problem-solving skills (which shine on MMLU)<p>Regardless - still a very useful thing to have offline and on the fly. Those scores are nothing to scoff at.<p>Given that these pipelines are likely harder harder to imitate than new architectures like Transformers, I assume there has been and will be an intense focus on synthetic data generation and cleansing. Llama 3 used 15T of tokens in its training corpus vs 4.8T in the &quot;scaled-up&quot; version of phi-3. If you made it to the end of this disjointed ramble I&#x27;m sorry</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128483&amp;goto=item%3Fid%3D40127806%2340128483" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128980'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128980' class='clicky' href='vote?id=40128980&amp;how=up&amp;auth=be93e8f1e9c577bad0981bbcfb9e9fe02603b67c&amp;goto=item%3Fid%3D40127806#40128980'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=IvanAchlaqullah" class="hnuser">IvanAchlaqullah</a> <span class="age" title="2024-04-23T06:05:22"><a href="item?id=40128980">2 hours ago</a></span> <span id="unv_40128980"></span>          <span class='navs'>
+             | <a href="#40128351" class="clicky" aria-hidden="true">root</a> | <a href="#40128483" class="clicky" aria-hidden="true">parent</a> | <a href="#40128438" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128980" n="3" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">&gt; TruthfulQA<p>Wait, people still use this benchmark? I hear there&#x27;s a huge flaw on it.<p>For examples, fine-tuning the model on 4chan make it scores better on TruthfulQA. It becomes very offensive afterwards though, for obvious reasons. See GPT-4chan [1]<p>[1] <a href="https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=efPrtcLdcdM" rel="nofollow">https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=efPrtcLdcdM</a></span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128980&amp;goto=item%3Fid%3D40127806%2340128980" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40129693'><td><table border='0'>  <tr>    <td class='ind' indent='3'><img src="s.gif" height="1" width="120"></td><td valign="top" class="votelinks">
+      <center><a id='up_40129693' class='clicky' href='vote?id=40129693&amp;how=up&amp;auth=f10b7cbeab65b1da76b468424da6971adebabf8d&amp;goto=item%3Fid%3D40127806#40129693'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=thomashop" class="hnuser">thomashop</a> <span class="age" title="2024-04-23T08:17:08"><a href="item?id=40129693">21 minutes ago</a></span> <span id="unv_40129693"></span>          <span class='navs'>
+             | <a href="#40128351" class="clicky" aria-hidden="true">root</a> | <a href="#40128980" class="clicky" aria-hidden="true">parent</a> | <a href="#40129233" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40129693" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Couldn&#x27;t it be that training it on 4chan makes it more truthful for some reason?</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40129693&amp;goto=item%3Fid%3D40127806%2340129693" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40129233'><td><table border='0'>  <tr>    <td class='ind' indent='3'><img src="s.gif" height="1" width="120"></td><td valign="top" class="votelinks">
+      <center><a id='up_40129233' class='clicky' href='vote?id=40129233&amp;how=up&amp;auth=3030c3190607ece1a44d2bab4e1f18d6401c7cc0&amp;goto=item%3Fid%3D40127806#40129233'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=hoseja" class="hnuser">hoseja</a> <span class="age" title="2024-04-23T06:50:12"><a href="item?id=40129233">1 hour ago</a></span> <span id="unv_40129233"></span>          <span class='navs'>
+             | <a href="#40128351" class="clicky" aria-hidden="true">root</a> | <a href="#40128980" class="clicky" aria-hidden="true">parent</a> | <a href="#40129693" class="clicky" aria-hidden="true">prev</a> | <a href="#40128438" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40129233" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Looks like a good and useful benchmark.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40129233&amp;goto=item%3Fid%3D40127806%2340129233" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                        <tr class='athing comtr' id='40128438'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128438' class='clicky' href='vote?id=40128438&amp;how=up&amp;auth=b1aa55108b36c647981389b6cd499e17a423cc2a&amp;goto=item%3Fid%3D40127806#40128438'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=refulgentis" class="hnuser">refulgentis</a> <span class="age" title="2024-04-23T04:15:29"><a href="item?id=40128438">4 hours ago</a></span> <span id="unv_40128438"></span>          <span class='navs'>
+             | <a href="#40128351" class="clicky" aria-hidden="true">parent</a> | <a href="#40128483" class="clicky" aria-hidden="true">prev</a> | <a href="#40128046" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128438" n="5" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Phi-2 wasn&#x27;t chat&#x2F;instruct tuned, so it didn&#x27;t act good in chat, it was a base model. But the benchmark #s were real.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128438&amp;goto=item%3Fid%3D40127806%2340128438" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128793'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128793' class='clicky' href='vote?id=40128793&amp;how=up&amp;auth=d50be391306f48bcff2dc16abdf1ce55df97df3e&amp;goto=item%3Fid%3D40127806#40128793'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=nl" class="hnuser">nl</a> <span class="age" title="2024-04-23T05:27:25"><a href="item?id=40128793">3 hours ago</a></span> <span id="unv_40128793"></span>          <span class='navs'>
+             | <a href="#40128351" class="clicky" aria-hidden="true">root</a> | <a href="#40128438" class="clicky" aria-hidden="true">parent</a> | <a href="#40128552" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128793" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">I had a lot of issues trying to get Phi-2 to perform as well as the benchmarks indicated on non-chat tasks.<p>It felt a lot like it was overfitted to the exact type of tasks (ie, not a data leak) in the benchmarks but if you were trying something a bit off track if didn&#x27;t know what to do. At the time my hypothesis was that the small model just didn&#x27;t have the capacity to generalise well enough, but since then Gemma 2B has come out and seems to be ok.<p>So now I have no idea why, but yes: the benchmarks for Phi-2 didn&#x27;t represent how it worked for me on real world tasks where you&#x27;d expect it top be ok.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128793&amp;goto=item%3Fid%3D40127806%2340128793" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128552'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128552' class='clicky' href='vote?id=40128552&amp;how=up&amp;auth=e52cd3e90a8922dcd534e0467eca59c42569eeb2&amp;goto=item%3Fid%3D40127806#40128552'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=irjustin" class="hnuser">irjustin</a> <span class="age" title="2024-04-23T04:36:18"><a href="item?id=40128552">4 hours ago</a></span> <span id="unv_40128552"></span>          <span class='navs'>
+             | <a href="#40128351" class="clicky" aria-hidden="true">root</a> | <a href="#40128438" class="clicky" aria-hidden="true">parent</a> | <a href="#40128793" class="clicky" aria-hidden="true">prev</a> | <a href="#40128046" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128552" n="3" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">I&#x27;m pretty naive so please forgive it&#x27;s a stupid question.<p>To me, what the parent comment is saying is that even though the benchmarks are cool, it&#x27;s not super helpful to the every day person. Because if you can&#x27;t chat with it very well (even for a narrow context) what utility does it have with great benchmarks?</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128552&amp;goto=item%3Fid%3D40127806%2340128552" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128703'><td><table border='0'>  <tr>    <td class='ind' indent='3'><img src="s.gif" height="1" width="120"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128703' class='clicky' href='vote?id=40128703&amp;how=up&amp;auth=34fd390eb0c32627f68a5079d07d1bef3fd929fc&amp;goto=item%3Fid%3D40127806#40128703'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=svnt" class="hnuser">svnt</a> <span class="age" title="2024-04-23T05:08:35"><a href="item?id=40128703">3 hours ago</a></span> <span id="unv_40128703"></span>          <span class='navs'>
+             | <a href="#40128351" class="clicky" aria-hidden="true">root</a> | <a href="#40128552" class="clicky" aria-hidden="true">parent</a> | <a href="#40128046" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128703" n="2" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Both are saying the same thing: in order for the base model that is phi to perform well as a chat agent, it would need to be tuned for that purpose before its benchmark results could have real-world value.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128703&amp;goto=item%3Fid%3D40127806%2340128703" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128906'><td><table border='0'>  <tr>    <td class='ind' indent='4'><img src="s.gif" height="1" width="160"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128906' class='clicky' href='vote?id=40128906&amp;how=up&amp;auth=0b510ef2caaebfca092e3d5e154dbb7a7e31fd2e&amp;goto=item%3Fid%3D40127806#40128906'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=imjonse" class="hnuser">imjonse</a> <span class="age" title="2024-04-23T05:49:07"><a href="item?id=40128906">2 hours ago</a></span> <span id="unv_40128906"></span>          <span class='navs'>
+             | <a href="#40128351" class="clicky" aria-hidden="true">root</a> | <a href="#40128703" class="clicky" aria-hidden="true">parent</a> | <a href="#40128046" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128906" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">From this report. Phi-2 was not instruct tuned indeed.<p>&quot;Our models went through post-training with both supervised instruction fine-tuning, and preference tuning with DPO. We have worked on generating and curating various instruction and preference data. This has improved the model chat capabilities, robustness, as well as its safety.&quot;</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128906&amp;goto=item%3Fid%3D40127806%2340128906" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                                    <tr class='athing comtr' id='40128046'><td><table border='0'>  <tr>    <td class='ind' indent='0'><img src="s.gif" height="1" width="0"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128046' class='clicky' href='vote?id=40128046&amp;how=up&amp;auth=e1667a6327a248e5779f85d452112fde1fb2288f&amp;goto=item%3Fid%3D40127806#40128046'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=oersted" class="hnuser">oersted</a> <span class="age" title="2024-04-23T03:08:29"><a href="item?id=40128046">5 hours ago</a></span> <span id="unv_40128046"></span>          <span class='navs'>
+             | <a href="#40128351" class="clicky" aria-hidden="true">prev</a> | <a href="#40128359" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128046" n="31" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Incredible, rivals Llama 3 8B with 3.8B parameters after less than a week of release.<p>And on LMSYS English, Llama 3 8B is on par with GPT-4 (not GPT-4-Turbo), as well as Mistral-Large.<p>Source: <a href="https:&#x2F;&#x2F;chat.lmsys.org&#x2F;?leaderboard" rel="nofollow">https:&#x2F;&#x2F;chat.lmsys.org&#x2F;?leaderboard</a> (select English in the dropdown)<p>So we now have an open-source LLM approximately equivalent in quality to GPT-4 that can run on phones? Kinda? Wild.<p>(I&#x27;m sure there&#x27;s a lot of nuance to it, for one these benchmarks are not so hard to game, we&#x27;ll see how the dust settles, but still...)<p>Phi-3-mini 3.8b:  71.2<p>Phi-3-small 7b:   74.9<p>Phi-3-medium 14b: 78.2<p>Phi-2 2.7b:       58.8<p>Mistral 7b:       61.0<p>Gemma 7b:         62.0<p>Llama-3-In 8b:    68.0<p>Mixtral 8x7b:     69.9<p>GPT-3.5 1106:     75.3<p>(these are averages across all tasks for each model, but looking at individual scores shows a similar picture)</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128046&amp;goto=item%3Fid%3D40127806%2340128046" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40129792'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40129792' class='clicky' href='vote?id=40129792&amp;how=up&amp;auth=d2f60e3eb3f6ae3216ec9bcc153bfb29a9fc00fd&amp;goto=item%3Fid%3D40127806#40129792'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=karmasimida" class="hnuser">karmasimida</a> <span class="age" title="2024-04-23T08:33:27"><a href="item?id=40129792">5 minutes ago</a></span> <span id="unv_40129792"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">parent</a> | <a href="#40128229" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40129792" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Where did you get this from?<p>&gt; So we now have an open-source LLM approximately equivalent in quality to GPT-4 that can run on phones<p>No, not even close ... Even Gemini has huge UX gap comparing to GPT4&#x2F;Opus, 8B I won&#x27;t even attempt this argument.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40129792&amp;goto=item%3Fid%3D40127806%2340129792" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128229'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128229' class='clicky' href='vote?id=40128229&amp;how=up&amp;auth=176792881adadea502201a50ccff088132611e54&amp;goto=item%3Fid%3D40127806#40128229'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=jxy" class="hnuser">jxy</a> <span class="age" title="2024-04-23T03:42:03"><a href="item?id=40128229">4 hours ago</a></span> <span id="unv_40128229"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">parent</a> | <a href="#40129792" class="clicky" aria-hidden="true">prev</a> | <a href="#40129742" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128229" n="6" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">This inductive logic is way overblown.<p>&gt; Incredible, beat Llama 3 8B with 3.8B parameters after less than a week of release.<p>Judging by a single benchmark? Without even trying it out with real world usage?<p>&gt; And on LMSYS English, Llama 3 8B is on par with GPT-4 (not GPT-4-Turbo), as well as Mistral-Large.<p>Any potential caveat in such a leaderboard not withstanding, on that leaderboard alone, there is a huge gap between llama 3 8B and Mistral-Large, let alone any of the GPT-4.<p>By the way, for beating benchmark, &quot;Pretraining on the Test Set Is All You Need&quot;</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128229&amp;goto=item%3Fid%3D40127806%2340128229" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128277'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128277' class='clicky' href='vote?id=40128277&amp;how=up&amp;auth=84ec0a9ecde3a586f7af54919fa8dd6ff653ce60&amp;goto=item%3Fid%3D40127806#40128277'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=oersted" class="hnuser">oersted</a> <span class="age" title="2024-04-23T03:49:45"><a href="item?id=40128277">4 hours ago</a></span> <span id="unv_40128277"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128229" class="clicky" aria-hidden="true">parent</a> | <a href="#40129742" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128277" n="5" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">It&#x27;s easy to miss: select English in the dropdown.
+The scores are quite different in Overall and in English for LMSYS.<p>As I&#x27;ve stated in other comments, yeah... Agreed, I&#x27;m stretching it a bit. It&#x27;s just that any indication of a 3.8B model being in the vicinity of GPT-4 is huge.<p>I&#x27;m sure that when things are properly measured by third-parties it will show a more sober picture. But still, with good fine-tunes, we&#x27;ll probably get close.<p>It&#x27;s a very significant demonstration of what could be possible soon.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128277&amp;goto=item%3Fid%3D40127806%2340128277" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128474'><td><table border='0'>  <tr>    <td class='ind' indent='3'><img src="s.gif" height="1" width="120"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128474' class='clicky' href='vote?id=40128474&amp;how=up&amp;auth=8731ba33c35c22ca98383de856ac33fdcda73732&amp;goto=item%3Fid%3D40127806#40128474'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=saretup" class="hnuser">saretup</a> <span class="age" title="2024-04-23T04:21:14"><a href="item?id=40128474">4 hours ago</a></span> <span id="unv_40128474"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128277" class="clicky" aria-hidden="true">parent</a> | <a href="#40129742" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128474" n="4" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Firstly, English is a highly subjective category.<p>Secondly, Llama 3 usually adds first sentences like ‘What a unique question!’ or ‘What an insightful thought’, which might make people like it more than the competition because of the pandering.<p>While Llama 3 is singular in terms of size to quality ratio, calling the 8B model close to GPT4 would be an overstretch.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128474&amp;goto=item%3Fid%3D40127806%2340128474" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40129033'><td><table border='0'>  <tr>    <td class='ind' indent='4'><img src="s.gif" height="1" width="160"></td><td valign="top" class="votelinks">
+      <center><a id='up_40129033' class='clicky' href='vote?id=40129033&amp;how=up&amp;auth=c15252aaebcde7386f0cf08503f7d9a639fe52ce&amp;goto=item%3Fid%3D40127806#40129033'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=YetAnotherNick" class="hnuser">YetAnotherNick</a> <span class="age" title="2024-04-23T06:16:38"><a href="item?id=40129033">2 hours ago</a></span> <span id="unv_40129033"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128474" class="clicky" aria-hidden="true">parent</a> | <a href="#40129742" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40129033" n="3" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Yes, I don&#x27;t know how people don&#x27;t realize how much cheap tricks works in Chatbot Arena. A single base model produces 100s of ELO difference depending on the way it is tuned. And on most cases, instruction tuning heavily slightly even decreases reasoning ability on standard benchmark. You can see base model scores better in MMLU&#x2F;ARC most of the times in huggingface leaderboard.<p>Even GPT-4-1106 seems to only sounds better than GPT-4-0613 and works for wider range of prompt. But in a well defined prompt and follow up questions I don&#x27;t think there is an improvement in reasoning.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40129033&amp;goto=item%3Fid%3D40127806%2340129033" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40129131'><td><table border='0'>  <tr>    <td class='ind' indent='5'><img src="s.gif" height="1" width="200"></td><td valign="top" class="votelinks">
+      <center><a id='up_40129131' class='clicky' href='vote?id=40129131&amp;how=up&amp;auth=b65e9a9a36b95863529699ea3521a925c31c4394&amp;goto=item%3Fid%3D40127806#40129131'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=imtringued" class="hnuser">imtringued</a> <span class="age" title="2024-04-23T06:33:38"><a href="item?id=40129131">2 hours ago</a></span> <span id="unv_40129131"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40129033" class="clicky" aria-hidden="true">parent</a> | <a href="#40129742" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40129131" n="2" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">When I tried Phi2 it was just bad. I don&#x27;t know where you got this fantasy from that people accept obviously wrong answers, because of &quot;pandering&quot;.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40129131&amp;goto=item%3Fid%3D40127806%2340129131" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40129583'><td><table border='0'>  <tr>    <td class='ind' indent='6'><img src="s.gif" height="1" width="240"></td><td valign="top" class="votelinks">
+      <center><a id='up_40129583' class='clicky' href='vote?id=40129583&amp;how=up&amp;auth=ff1f2aa6e109d1522cef19bc2e5d5a0be5a0ca37&amp;goto=item%3Fid%3D40127806#40129583'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=YetAnotherNick" class="hnuser">YetAnotherNick</a> <span class="age" title="2024-04-23T07:51:58"><a href="item?id=40129583">46 minutes ago</a></span> <span id="unv_40129583"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40129131" class="clicky" aria-hidden="true">parent</a> | <a href="#40129742" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40129583" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Obviously correct answer matters more but ~100-200 elo points could be gained just for better writing. Answer would be range of 500 elo in comparison.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40129583&amp;goto=item%3Fid%3D40127806%2340129583" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                                          <tr class='athing comtr' id='40129742'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40129742' class='clicky' href='vote?id=40129742&amp;how=up&amp;auth=72091d3dbaee61c4165f48a2ef3725dffb4f15d6&amp;goto=item%3Fid%3D40127806#40129742'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=alecco" class="hnuser">alecco</a> <span class="age" title="2024-04-23T08:26:25"><a href="item?id=40129742">12 minutes ago</a></span> <span id="unv_40129742"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">parent</a> | <a href="#40128229" class="clicky" aria-hidden="true">prev</a> | <a href="#40128105" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40129742" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">At a glance, it looks like Phi-3 was trained on an English only, STEM-strong dataset. See how they are not as strong in HumanEval, Trivia, etc. But of course it&#x27;s very good.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40129742&amp;goto=item%3Fid%3D40127806%2340129742" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128105'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128105' class='clicky' href='vote?id=40128105&amp;how=up&amp;auth=a4c100dab9f9e6958c11e761f5c9b6e95ad1c290&amp;goto=item%3Fid%3D40127806#40128105'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=ignoramous" class="hnuser">ignoramous</a> <span class="age" title="2024-04-23T03:22:06"><a href="item?id=40128105">5 hours ago</a></span> <span id="unv_40128105"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">parent</a> | <a href="#40129742" class="clicky" aria-hidden="true">prev</a> | <a href="#40129308" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128105" n="5" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">&gt; <i>Phi-3-mini 3.8b: 71.2</i><p>Per the paper, phi3-mini (which is english-only) quantised to 4bit uses 1.8gb RAM and outputs 1212 tokens&#x2F;sec (correction: 12 tokens&#x2F;sec) on iOS.<p>A model on par with GPT-3.5 running on phones!<p>(weights haven&#x27;t been released, though)</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128105&amp;goto=item%3Fid%3D40127806%2340128105" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128205'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128205' class='clicky' href='vote?id=40128205&amp;how=up&amp;auth=e4297e659e40c58ab418afb0f576e34ff174d18a&amp;goto=item%3Fid%3D40127806#40128205'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=coder543" class="hnuser">coder543</a> <span class="age" title="2024-04-23T03:38:22"><a href="item?id=40128205">5 hours ago</a></span> <span id="unv_40128205"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128105" class="clicky" aria-hidden="true">parent</a> | <a href="#40129308" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128205" n="4" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">&gt; (weights haven&#x27;t been released, though)<p>Phi-1, Phi-1.5, and Phi-2 have all had their weights released, and those weights are available under the MIT License.<p>Hopefully Microsoft will continue that trend with Phi-3.<p>&gt; outputs 1212 tokens&#x2F;sec on iOS<p>I think you meant &quot;12 tokens&#x2F;sec&quot;, which is still nice, just a little less exciting than a kilotoken&#x2F;sec.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128205&amp;goto=item%3Fid%3D40127806%2340128205" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128579'><td><table border='0'>  <tr>    <td class='ind' indent='3'><img src="s.gif" height="1" width="120"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128579' class='clicky' href='vote?id=40128579&amp;how=up&amp;auth=03eac50aea156a8d8f805dac5ee87890b2e00919&amp;goto=item%3Fid%3D40127806#40128579'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=jph00" class="hnuser">jph00</a> <span class="age" title="2024-04-23T04:42:18"><a href="item?id=40128579">3 hours ago</a></span> <span id="unv_40128579"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128205" class="clicky" aria-hidden="true">parent</a> | <a href="#40128648" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128579" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Weights will be realised tomorrow, according to one of the tech report authors on Twitter.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128579&amp;goto=item%3Fid%3D40127806%2340128579" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128648'><td><table border='0'>  <tr>    <td class='ind' indent='3'><img src="s.gif" height="1" width="120"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128648' class='clicky' href='vote?id=40128648&amp;how=up&amp;auth=36a7892b8bfd4c4a009151d44d1f16effbdf25ce&amp;goto=item%3Fid%3D40127806#40128648'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=ignoramous" class="hnuser">ignoramous</a> <span class="age" title="2024-04-23T04:54:37"><a href="item?id=40128648">3 hours ago</a></span> <span id="unv_40128648"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128205" class="clicky" aria-hidden="true">parent</a> | <a href="#40128579" class="clicky" aria-hidden="true">prev</a> | <a href="#40129089" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128648" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">&gt; <i>you meant 12 tokens&#x2F;sec</i><p>Thanks! The HTML version on archive.is has messed up markup and shows <i>1212</i> instead: <a href="https:&#x2F;&#x2F;archive.is&#x2F;Ndox6" rel="nofollow">https:&#x2F;&#x2F;archive.is&#x2F;Ndox6</a></span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128648&amp;goto=item%3Fid%3D40127806%2340128648" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40129089'><td><table border='0'>  <tr>    <td class='ind' indent='3'><img src="s.gif" height="1" width="120"></td><td valign="top" class="votelinks">
+      <center><a id='up_40129089' class='clicky' href='vote?id=40129089&amp;how=up&amp;auth=df803430e7a24fc1d77b88d52c10c0976614ab96&amp;goto=item%3Fid%3D40127806#40129089'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=intellectronica" class="hnuser">intellectronica</a> <span class="age" title="2024-04-23T06:24:35"><a href="item?id=40129089">2 hours ago</a></span> <span id="unv_40129089"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128205" class="clicky" aria-hidden="true">parent</a> | <a href="#40128648" class="clicky" aria-hidden="true">prev</a> | <a href="#40129308" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40129089" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Weights are coming tomorrow.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40129089&amp;goto=item%3Fid%3D40127806%2340129089" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                        <tr class='athing comtr' id='40129308'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40129308' class='clicky' href='vote?id=40129308&amp;how=up&amp;auth=4eac6b36ca558cceeff02d6eef7de239bf5e3ca7&amp;goto=item%3Fid%3D40127806#40129308'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=viraptor" class="hnuser">viraptor</a> <span class="age" title="2024-04-23T07:02:29"><a href="item?id=40129308">1 hour ago</a></span> <span id="unv_40129308"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">parent</a> | <a href="#40128105" class="clicky" aria-hidden="true">prev</a> | <a href="#40128060" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40129308" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">On par in some categories. Phi was intended for reasoning, not storing data, due to small size. I mean, it&#x27;s still great, but the smaller it gets, the more facts from outside of the prompts context will not be known at all.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40129308&amp;goto=item%3Fid%3D40127806%2340129308" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128060'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128060' class='clicky' href='vote?id=40128060&amp;how=up&amp;auth=0f99ab09dc4b469ce5a2b40089b57e20a1a409a5&amp;goto=item%3Fid%3D40127806#40128060'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=crakenzak" class="hnuser">crakenzak</a> <span class="age" title="2024-04-23T03:12:33"><a href="item?id=40128060">5 hours ago</a></span> <span id="unv_40128060"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">parent</a> | <a href="#40129308" class="clicky" aria-hidden="true">prev</a> | <a href="#40128075" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128060" n="7" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Can’t wait to see some Phi-3 fine tunes! Will be testing this out locally, such a small model that I can run it without quantization.<p>Feels incredible to be living in a time with such neck breaking innovations. What are chances we’ll have a &lt;100B parameter GPT4&#x2F;Claude Opus model in the next 5 years?</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128060&amp;goto=item%3Fid%3D40127806%2340128060" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128854'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128854' class='clicky' href='vote?id=40128854&amp;how=up&amp;auth=b73c9a701154240b3bc87647231e223724f3c92d&amp;goto=item%3Fid%3D40127806#40128854'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=nl" class="hnuser">nl</a> <span class="age" title="2024-04-23T05:37:59"><a href="item?id=40128854">3 hours ago</a></span> <span id="unv_40128854"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128060" class="clicky" aria-hidden="true">parent</a> | <a href="#40128273" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128854" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">&gt; What are chances we’ll have a &lt;100B parameter GPT4&#x2F;Claude Opus model in the next 5 years?<p>In 5 years time we&#x27;ll have adaptive compute and the idea of talking about the parameter count of a model will seem as quaint as talking about the cylinder capacity of a jet engine.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128854&amp;goto=item%3Fid%3D40127806%2340128854" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128273'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128273' class='clicky' href='vote?id=40128273&amp;how=up&amp;auth=dc4fd2fb0a84d69aecdc6a4e649f62de09fab03d&amp;goto=item%3Fid%3D40127806#40128273'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=Deverauxi" class="hnuser">Deverauxi</a> <span class="age" title="2024-04-23T03:49:22"><a href="item?id=40128273">4 hours ago</a></span> <span id="unv_40128273"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128060" class="clicky" aria-hidden="true">parent</a> | <a href="#40128854" class="clicky" aria-hidden="true">prev</a> | <a href="#40128209" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128273" n="2" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">5 years? 5 years is a millennia these days.<p>We’ll have small local models beating gpt-4&#x2F;Claude opus in 2024. We already have sub 100b models trading blows with former gpt-4 models, and the future is racing toward us. All these little breakthroughs are piling up.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128273&amp;goto=item%3Fid%3D40127806%2340128273" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128446'><td><table border='0'>  <tr>    <td class='ind' indent='3'><img src="s.gif" height="1" width="120"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128446' class='clicky' href='vote?id=40128446&amp;how=up&amp;auth=d6d74fde13732bf723592aa61678c8a1dbce56ba&amp;goto=item%3Fid%3D40127806#40128446'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=refulgentis" class="hnuser">refulgentis</a> <span class="age" title="2024-04-23T04:16:32"><a href="item?id=40128446">4 hours ago</a></span> <span id="unv_40128446"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128273" class="clicky" aria-hidden="true">parent</a> | <a href="#40128209" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128446" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Absolutely not on the first one. Not even close.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128446&amp;goto=item%3Fid%3D40127806%2340128446" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                  <tr class='athing comtr' id='40128209'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128209' class='clicky' href='vote?id=40128209&amp;how=up&amp;auth=e1e0f4b49eeee5ca808bf1a2bfb2bd018de72853&amp;goto=item%3Fid%3D40127806#40128209'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=stavros" class="hnuser">stavros</a> <span class="age" title="2024-04-23T03:39:09"><a href="item?id=40128209">4 hours ago</a></span> <span id="unv_40128209"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128060" class="clicky" aria-hidden="true">parent</a> | <a href="#40128273" class="clicky" aria-hidden="true">prev</a> | <a href="#40128595" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128209" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Is it released?</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128209&amp;goto=item%3Fid%3D40127806%2340128209" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128595'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128595' class='clicky' href='vote?id=40128595&amp;how=up&amp;auth=aedc1b6415b5b603fcfe4466e2f83b07b4ff5d76&amp;goto=item%3Fid%3D40127806#40128595'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=bugglebeetle" class="hnuser">bugglebeetle</a> <span class="age" title="2024-04-23T04:45:37"><a href="item?id=40128595">3 hours ago</a></span> <span id="unv_40128595"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128060" class="clicky" aria-hidden="true">parent</a> | <a href="#40128209" class="clicky" aria-hidden="true">prev</a> | <a href="#40128075" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128595" n="2" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">We already do. It’s called LLama 3 70B Instruct.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128595&amp;goto=item%3Fid%3D40127806%2340128595" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40129462'><td><table border='0'>  <tr>    <td class='ind' indent='3'><img src="s.gif" height="1" width="120"></td><td valign="top" class="votelinks">
+      <center><a id='up_40129462' class='clicky' href='vote?id=40129462&amp;how=up&amp;auth=e5baf5012ef3d9777b71c6903e9907b7f0db111d&amp;goto=item%3Fid%3D40127806#40129462'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=vitorgrs" class="hnuser">vitorgrs</a> <span class="age" title="2024-04-23T07:28:01"><a href="item?id=40129462">1 hour ago</a></span> <span id="unv_40129462"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128595" class="clicky" aria-hidden="true">parent</a> | <a href="#40128075" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40129462" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Llama 3 is awful in non-English. 95% of their training data is in English....<p>GPT is still the king when talking about multiple languages&#x2F;knowledge.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40129462&amp;goto=item%3Fid%3D40127806%2340129462" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                        <tr class='athing comtr' id='40128075'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128075' class='clicky' href='vote?id=40128075&amp;how=up&amp;auth=626bf59ee646b93fd560ba544909a0b849487e3a&amp;goto=item%3Fid%3D40127806#40128075'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=moralestapia" class="hnuser">moralestapia</a> <span class="age" title="2024-04-23T03:16:59"><a href="item?id=40128075">5 hours ago</a></span> <span id="unv_40128075"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">parent</a> | <a href="#40128060" class="clicky" aria-hidden="true">prev</a> | <a href="#40128290" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128075" n="6" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">&gt;And on LMSYS English, Llama 3 8B is well above GPT-4<p>Source?</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128075&amp;goto=item%3Fid%3D40127806%2340128075" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128086'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128086' class='clicky' href='vote?id=40128086&amp;how=up&amp;auth=b6f4171a8590537faa885ac6b6f542f3a04ff743&amp;goto=item%3Fid%3D40127806#40128086'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=oersted" class="hnuser">oersted</a> <span class="age" title="2024-04-23T03:18:46"><a href="item?id=40128086">5 hours ago</a></span> <span id="unv_40128086"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128075" class="clicky" aria-hidden="true">parent</a> | <a href="#40128290" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128086" n="5" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Right thanks for the reminder, I added it</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128086&amp;goto=item%3Fid%3D40127806%2340128086" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128110'><td><table border='0'>  <tr>    <td class='ind' indent='3'><img src="s.gif" height="1" width="120"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128110' class='clicky' href='vote?id=40128110&amp;how=up&amp;auth=e94f34d0a0fba52649831252e41650d116089a2b&amp;goto=item%3Fid%3D40127806#40128110'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=moralestapia" class="hnuser">moralestapia</a> <span class="age" title="2024-04-23T03:22:29"><a href="item?id=40128110">5 hours ago</a></span> <span id="unv_40128110"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128086" class="clicky" aria-hidden="true">parent</a> | <a href="#40128290" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128110" n="4" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Thanks, I don&#x27;t see them being &quot;well above GPT-4&quot;, merely 1 point? Also, no idea why one would want to exclude GPT-4-Turbo, the flagship &quot;GPT-4&quot; model, but w&#x2F;e.<p>I also don&#x27;t think they &quot;beat Llama 3 8B&quot;; their own abstract says &quot;rivals that of models such as Mixtral 8x7B and GPT-3.5&quot;, &quot;rivals&quot; not even &quot;beats&quot;.<p>Great model, but let&#x27;s not overplay it.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128110&amp;goto=item%3Fid%3D40127806%2340128110" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128170'><td><table border='0'>  <tr>    <td class='ind' indent='4'><img src="s.gif" height="1" width="160"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128170' class='clicky' href='vote?id=40128170&amp;how=up&amp;auth=a27e7f14b3e1e536e3d8624ffa4a3681771964a1&amp;goto=item%3Fid%3D40127806#40128170'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=oersted" class="hnuser">oersted</a> <span class="age" title="2024-04-23T03:32:24"><a href="item?id=40128170">5 hours ago</a></span> <span id="unv_40128170"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128110" class="clicky" aria-hidden="true">parent</a> | <a href="#40128290" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128170" n="3" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">In the English category: GPT-4-0314 (ELO 1166), Llama 3 8B Instruct (ELO 1161), Mistral-Large-2402 (ELO 1151), GPT-4-0613 (ELO 1148).<p>You are right, I toned down the language, I got a bit overexcited, and I missed the difference in the versions of GPT-4. And LMSYS is a subjective benchmark for what users prefer, which I&#x27;m sure has weird inherent biases.<p>It&#x27;s just that any signal of an 3.8B model being anywhere in the vicinity of GPT-4 is huge.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128170&amp;goto=item%3Fid%3D40127806%2340128170" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128210'><td><table border='0'>  <tr>    <td class='ind' indent='5'><img src="s.gif" height="1" width="200"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128210' class='clicky' href='vote?id=40128210&amp;how=up&amp;auth=8512d4db1e326ec3dedbaad21548579e2442e28c&amp;goto=item%3Fid%3D40127806#40128210'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=moralestapia" class="hnuser">moralestapia</a> <span class="age" title="2024-04-23T03:39:11"><a href="item?id=40128210">4 hours ago</a></span> <span id="unv_40128210"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128170" class="clicky" aria-hidden="true">parent</a> | <a href="#40128290" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128210" n="2" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c5a">Yeah, GPT3.5, in a phone, at ~1,000 tokens&#x2F;sec ... nice!</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128210&amp;goto=item%3Fid%3D40127806%2340128210" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128376'><td><table border='0'>  <tr>    <td class='ind' indent='6'><img src="s.gif" height="1" width="240"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128376' class='clicky' href='vote?id=40128376&amp;how=up&amp;auth=855408a2ff994fde28634e0e676f6bd397d111ab&amp;goto=item%3Fid%3D40127806#40128376'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=mlyle" class="hnuser">mlyle</a> <span class="age" title="2024-04-23T04:05:10"><a href="item?id=40128376">4 hours ago</a></span> <span id="unv_40128376"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128210" class="clicky" aria-hidden="true">parent</a> | <a href="#40128290" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128376" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">&gt;  at ~1,000 tokens&#x2F;sec<p>12 tokens per second.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128376&amp;goto=item%3Fid%3D40127806%2340128376" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                                          <tr class='athing comtr' id='40128290'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128290' class='clicky' href='vote?id=40128290&amp;how=up&amp;auth=c282230006940c162adeafb57e284143c591b18e&amp;goto=item%3Fid%3D40127806#40128290'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=zone411" class="hnuser">zone411</a> <span class="age" title="2024-04-23T03:51:10"><a href="item?id=40128290">4 hours ago</a></span> <span id="unv_40128290"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">parent</a> | <a href="#40128075" class="clicky" aria-hidden="true">prev</a> | <a href="#40128359" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128290" n="3" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c5a">&gt; So we now have an open-source LLM approximately equivalent in quality to GPT-4 that can run on phones?<p>No, we don&#x27;t. LMsys is just one, very flawed benchmark.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128290&amp;goto=item%3Fid%3D40127806%2340128290" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128494'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128494' class='clicky' href='vote?id=40128494&amp;how=up&amp;auth=b5386a31acfaffb2ba6084ef2766bc789f39856d&amp;goto=item%3Fid%3D40127806#40128494'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=ukuina" class="hnuser">ukuina</a> <span class="age" title="2024-04-23T04:24:46"><a href="item?id=40128494">4 hours ago</a></span> <span id="unv_40128494"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128290" class="clicky" aria-hidden="true">parent</a> | <a href="#40128302" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128494" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Why is LMsys flawed?<p>Many people treat LMsys as gospel because it&#x27;s the only large-scale, up-to-date qualitative benchmark. All the numeric benchmarks seem to miss real-world applicability.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128494&amp;goto=item%3Fid%3D40127806%2340128494" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128302'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128302' class='clicky' href='vote?id=40128302&amp;how=up&amp;auth=4018485fabf399520c62edd24f2fb31d45a80b19&amp;goto=item%3Fid%3D40127806#40128302'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=oersted" class="hnuser">oersted</a> <span class="age" title="2024-04-23T03:53:03"><a href="item?id=40128302">4 hours ago</a></span> <span id="unv_40128302"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">root</a> | <a href="#40128290" class="clicky" aria-hidden="true">parent</a> | <a href="#40128494" class="clicky" aria-hidden="true">prev</a> | <a href="#40128359" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128302" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Agreed, but it&#x27;s wild that even one benchmark shows this. Based on what we knew just a few months ago, these models should be so far from each other in every benchmark.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128302&amp;goto=item%3Fid%3D40127806%2340128302" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                        <tr class='athing comtr' id='40128359'><td><table border='0'>  <tr>    <td class='ind' indent='0'><img src="s.gif" height="1" width="0"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128359' class='clicky' href='vote?id=40128359&amp;how=up&amp;auth=2a7087a69f65a83f694191891aab89c34bbd6e63&amp;goto=item%3Fid%3D40127806#40128359'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=visarga" class="hnuser">visarga</a> <span class="age" title="2024-04-23T04:02:54"><a href="item?id=40128359">4 hours ago</a></span> <span id="unv_40128359"></span>          <span class='navs'>
+             | <a href="#40128046" class="clicky" aria-hidden="true">prev</a> | <a href="#40128521" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128359" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">This shows the power of synthetic content - 3.3 trillion tokens! This approach can make a model even smaller and more efficient than organic text training, and it will not be able to regurgitate NYT articles because it hasn&#x27;t seen any of them. This is how copyright infringement claims can be placated.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128359&amp;goto=item%3Fid%3D40127806%2340128359" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128521'><td><table border='0'>  <tr>    <td class='ind' indent='0'><img src="s.gif" height="1" width="0"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128521' class='clicky' href='vote?id=40128521&amp;how=up&amp;auth=358afbd8ae82a8865af8ddaed1472d846a6d016a&amp;goto=item%3Fid%3D40127806#40128521'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=mythz" class="hnuser">mythz</a> <span class="age" title="2024-04-23T04:29:02"><a href="item?id=40128521">4 hours ago</a></span> <span id="unv_40128521"></span>          <span class='navs'>
+             | <a href="#40128359" class="clicky" aria-hidden="true">prev</a> | <a href="#40128111" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128521" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">I&#x27;ll believe it till I try it for myself, Phi-2 was the clear worst of the 20 LLMs we evaluated (was also smallest so was expected).<p>But it was slow for its size, generated the longest responses with the most hallucinations, as well as generating the most empty responses. It was also the model ranked with the lowest quality answers.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128521&amp;goto=item%3Fid%3D40127806%2340128521" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128111'><td><table border='0'>  <tr>    <td class='ind' indent='0'><img src="s.gif" height="1" width="0"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128111' class='clicky' href='vote?id=40128111&amp;how=up&amp;auth=79a1510c42e6c0043422bbcc9d4823a5be0a4e83&amp;goto=item%3Fid%3D40127806#40128111'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=brcmthrowaway" class="hnuser">brcmthrowaway</a> <span class="age" title="2024-04-23T03:22:31"><a href="item?id=40128111">5 hours ago</a></span> <span id="unv_40128111"></span>          <span class='navs'>
+             | <a href="#40128521" class="clicky" aria-hidden="true">prev</a> | <a href="#40129248" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128111" n="18" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">If I was Apple I&#x27;d be quaking in my boots. They are getting too far behind to ever catch up. Nokia in 2010 vibes.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128111&amp;goto=item%3Fid%3D40127806%2340128111" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128253'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128253' class='clicky' href='vote?id=40128253&amp;how=up&amp;auth=807dcb85fb3b3727be94e46f6a116693c55cea64&amp;goto=item%3Fid%3D40127806#40128253'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=PedroBatista" class="hnuser">PedroBatista</a> <span class="age" title="2024-04-23T03:46:32"><a href="item?id=40128253">4 hours ago</a></span> <span id="unv_40128253"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">parent</a> | <a href="#40128256" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128253" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">They&#x27;ll just do what they have been doing for ~20 years, they wait, pick the &quot;winner&quot;, polish the &quot;user experience&quot;, call it Apple magic and incorporate that into their product cycles.<p>Some day will be the day their joke book becomes so mediocre it will not stick anymore, but I think they are safe on this one, for now..</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128253&amp;goto=item%3Fid%3D40127806%2340128253" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128256'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128256' class='clicky' href='vote?id=40128256&amp;how=up&amp;auth=b8aca190027a316df62b202d23114d8251eead52&amp;goto=item%3Fid%3D40127806#40128256'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=vessenes" class="hnuser">vessenes</a> <span class="age" title="2024-04-23T03:46:41"><a href="item?id=40128256">4 hours ago</a></span> <span id="unv_40128256"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">parent</a> | <a href="#40128253" class="clicky" aria-hidden="true">prev</a> | <a href="#40128358" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128256" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">I don&#x27;t think MS has a special sauce here, just a willingness to publish. To the extent MS has disclosed the bulk of what they are doing with Phi, it&#x27;s a combination of really nice initial idea &quot;Use written texts + GPT-4 to generate high quality prompts where we know the answer is great because it&#x27;s written down&quot; and engineering.<p>To me this is advancing the state of the art as to the impact of <i>data quality</i>, but it doesn&#x27;t look to me like the phi series have some magical special sauce otherwise. Data of quality and synthetic data creation are not magical moats that Apple can&#x27;t cross.<p>I&#x27;ll say too that I&#x27;m psyched to try Phi-3; the sweet spot for me is a model that can be a local coding assistant and still answer random q&amp;a questions with <i>some</i> sophistication. I&#x27;m skeptical that 3-8b parameter models will bring the high-level of sophistication sometimes needed in this cycle; there&#x27;s still a very large gap with the larger models in daily use, despite some often close benchmark scores.<p>Anyway, Apple-Phi-3 is in no way an impossibility.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128256&amp;goto=item%3Fid%3D40127806%2340128256" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128358'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128358' class='clicky' href='vote?id=40128358&amp;how=up&amp;auth=6e9c8133b26a7b2a2000e8b23defabe5a29305ba&amp;goto=item%3Fid%3D40127806#40128358'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=bt1a" class="hnuser">bt1a</a> <span class="age" title="2024-04-23T04:02:37"><a href="item?id=40128358">4 hours ago</a></span> <span id="unv_40128358"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">parent</a> | <a href="#40128256" class="clicky" aria-hidden="true">prev</a> | <a href="#40128131" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128358" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">I tore my hair out developing a SwiftUI app that could run llama.cpp and whisper.cpp simultaneously. Was able to run a Q3_K Mistral 7B along with a smaller whisper model eventually, but grinding through XCode is a nightmare.<p>They&#x27;re working on MLX but it only recently got swift bindings. They just don&#x27;t have the DEVELOPERS DEVELOPERS DEVELOPERS coked out attitude i guess</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128358&amp;goto=item%3Fid%3D40127806%2340128358" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128131'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128131' class='clicky' href='vote?id=40128131&amp;how=up&amp;auth=6b4a5046fdb21124272483edc3947a0d2a3b1389&amp;goto=item%3Fid%3D40127806#40128131'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=esafak" class="hnuser">esafak</a> <span class="age" title="2024-04-23T03:26:08"><a href="item?id=40128131">5 hours ago</a></span> <span id="unv_40128131"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">parent</a> | <a href="#40128358" class="clicky" aria-hidden="true">prev</a> | <a href="#40128276" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128131" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Did they ever claim to be a powerhouse in foundation models? Did your MacBook or iPhone become obsolete or stop working? They use the models, they don&#x27;t release them because they don&#x27;t hoard data.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128131&amp;goto=item%3Fid%3D40127806%2340128131" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128276'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128276' class='clicky' href='vote?id=40128276&amp;how=up&amp;auth=80cf1e74dac3743d581d2617cc75d66ac52539c5&amp;goto=item%3Fid%3D40127806#40128276'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=WanderPanda" class="hnuser">WanderPanda</a> <span class="age" title="2024-04-23T03:49:43"><a href="item?id=40128276">4 hours ago</a></span> <span id="unv_40128276"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">parent</a> | <a href="#40128131" class="clicky" aria-hidden="true">prev</a> | <a href="#40128263" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128276" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">The opposite is the case, with all the advancements, even by doing nothing, Apple (like everyone, including hobbyists) is moving closer to the frontier. Hopefully this trend stays alive!</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128276&amp;goto=item%3Fid%3D40127806%2340128276" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128263'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128263' class='clicky' href='vote?id=40128263&amp;how=up&amp;auth=f53c9a8266b81c3e6ace24118632005db7eb66c3&amp;goto=item%3Fid%3D40127806#40128263'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=Deverauxi" class="hnuser">Deverauxi</a> <span class="age" title="2024-04-23T03:47:54"><a href="item?id=40128263">4 hours ago</a></span> <span id="unv_40128263"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">parent</a> | <a href="#40128276" class="clicky" aria-hidden="true">prev</a> | <a href="#40128228" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128263" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">They have something like 140 billion dollars in cash.<p>They’ll be fine.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128263&amp;goto=item%3Fid%3D40127806%2340128263" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128228'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128228' class='clicky' href='vote?id=40128228&amp;how=up&amp;auth=90a282e41075e47dc1a8f7e0871fdc6705eb6e91&amp;goto=item%3Fid%3D40127806#40128228'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=IncreasePosts" class="hnuser">IncreasePosts</a> <span class="age" title="2024-04-23T03:41:50"><a href="item?id=40128228">4 hours ago</a></span> <span id="unv_40128228"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">parent</a> | <a href="#40128263" class="clicky" aria-hidden="true">prev</a> | <a href="#40128953" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128228" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">How exactly does publicized research lead to them not being able to catch up? I don&#x27;t think anything in this paper is patentable.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128228&amp;goto=item%3Fid%3D40127806%2340128228" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128953'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128953' class='clicky' href='vote?id=40128953&amp;how=up&amp;auth=7f21f3d8cb34bfb3be0397169fba7a2d1b445248&amp;goto=item%3Fid%3D40127806#40128953'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=seydor" class="hnuser">seydor</a> <span class="age" title="2024-04-23T05:57:47"><a href="item?id=40128953">2 hours ago</a></span> <span id="unv_40128953"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">parent</a> | <a href="#40128228" class="clicky" aria-hidden="true">prev</a> | <a href="#40128637" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128953" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Apple&#x27;s advantage is that their devices are safeguarding people from the dangers of AI</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128953&amp;goto=item%3Fid%3D40127806%2340128953" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128637'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128637' class='clicky' href='vote?id=40128637&amp;how=up&amp;auth=0ad9b6cd36ee0555ec38aa8030253a6fa18c7cac&amp;goto=item%3Fid%3D40127806#40128637'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=astrange" class="hnuser">astrange</a> <span class="age" title="2024-04-23T04:52:19"><a href="item?id=40128637">3 hours ago</a></span> <span id="unv_40128637"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">parent</a> | <a href="#40128953" class="clicky" aria-hidden="true">prev</a> | <a href="#40128197" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128637" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">I think that when people release new interesting software products it&#x27;s good for hardware companies.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128637&amp;goto=item%3Fid%3D40127806%2340128637" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128197'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128197' class='clicky' href='vote?id=40128197&amp;how=up&amp;auth=a358afb690b9ffafb54623560cd4eea8a4fa286a&amp;goto=item%3Fid%3D40127806#40128197'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=oersted" class="hnuser">oersted</a> <span class="age" title="2024-04-23T03:37:46"><a href="item?id=40128197">5 hours ago</a></span> <span id="unv_40128197"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">parent</a> | <a href="#40128637" class="clicky" aria-hidden="true">prev</a> | <a href="#40128177" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128197" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">If anything this is good for them. Apple&#x27;s play here has always been getting their devices ready for running LLMs locally. This makes it way easier.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128197&amp;goto=item%3Fid%3D40127806%2340128197" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128177'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128177' class='clicky' href='vote?id=40128177&amp;how=up&amp;auth=2fc3e6672673571cb9590856ec3f0a801b9e5849&amp;goto=item%3Fid%3D40127806#40128177'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=thoughtegting" class="hnuser">thoughtegting</a> <span class="age" title="2024-04-23T03:34:05"><a href="item?id=40128177">5 hours ago</a></span> <span id="unv_40128177"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">parent</a> | <a href="#40128197" class="clicky" aria-hidden="true">prev</a> | <a href="#40128206" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128177" n="5" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c5a">If I were apple, I would be developing something in total secrecy and then release something ahead of the rest of competition when people least expect it. very big ifs but siri can be updated everywhere overnight and I dont see them rushing into anything like this</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128177&amp;goto=item%3Fid%3D40127806%2340128177" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128201'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128201' class='clicky' href='vote?id=40128201&amp;how=up&amp;auth=ffee4db49a634f6e5b91ea8d4a919b5244889f32&amp;goto=item%3Fid%3D40127806#40128201'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=golergka" class="hnuser">golergka</a> <span class="age" title="2024-04-23T03:38:14"><a href="item?id=40128201">5 hours ago</a></span> <span id="unv_40128201"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">root</a> | <a href="#40128177" class="clicky" aria-hidden="true">parent</a> | <a href="#40128206" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128201" n="4" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">If I were apple, I would just buy one of the major LLM companies. They have the cash.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128201&amp;goto=item%3Fid%3D40127806%2340128201" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128598'><td><table border='0'>  <tr>    <td class='ind' indent='3'><img src="s.gif" height="1" width="120"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128598' class='clicky' href='vote?id=40128598&amp;how=up&amp;auth=a6950b7eb5f1e2a11054905b6d4565aaf35e6d7d&amp;goto=item%3Fid%3D40127806#40128598'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=bingbingbing777" class="hnuser">bingbingbing777</a> <span class="age" title="2024-04-23T04:45:57"><a href="item?id=40128598">3 hours ago</a></span> <span id="unv_40128598"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">root</a> | <a href="#40128201" class="clicky" aria-hidden="true">parent</a> | <a href="#40128206" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128598" n="3" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">They&#x27;ve been buying AI companies and have nothing to show for it.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128598&amp;goto=item%3Fid%3D40127806%2340128598" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128722'><td><table border='0'>  <tr>    <td class='ind' indent='4'><img src="s.gif" height="1" width="160"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128722' class='clicky' href='vote?id=40128722&amp;how=up&amp;auth=b2eff93f5bc9b183791ad23310982d6ed1ce7483&amp;goto=item%3Fid%3D40127806#40128722'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=elbear" class="hnuser">elbear</a> <span class="age" title="2024-04-23T05:14:09"><a href="item?id=40128722">3 hours ago</a></span> <span id="unv_40128722"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">root</a> | <a href="#40128598" class="clicky" aria-hidden="true">parent</a> | <a href="#40129208" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128722" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Why do you think that is? Do you think their culture is an obstacle or is it something else?</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128722&amp;goto=item%3Fid%3D40127806%2340128722" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40129208'><td><table border='0'>  <tr>    <td class='ind' indent='4'><img src="s.gif" height="1" width="160"></td><td valign="top" class="votelinks">
+      <center><a id='up_40129208' class='clicky' href='vote?id=40129208&amp;how=up&amp;auth=e58f7fbb6d8bf44e09177781324962fbb86dbbf4&amp;goto=item%3Fid%3D40127806#40129208'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=golergka" class="hnuser">golergka</a> <span class="age" title="2024-04-23T06:46:01"><a href="item?id=40129208">1 hour ago</a></span> <span id="unv_40129208"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">root</a> | <a href="#40128598" class="clicky" aria-hidden="true">parent</a> | <a href="#40128722" class="clicky" aria-hidden="true">prev</a> | <a href="#40128206" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40129208" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Showing off work in progress is not really their thing.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40129208&amp;goto=item%3Fid%3D40127806%2340129208" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                              <tr class='athing comtr' id='40128206'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128206' class='clicky' href='vote?id=40128206&amp;how=up&amp;auth=dbf7fc18f1ae2a3f12dc559f09f1e4ec56465abf&amp;goto=item%3Fid%3D40127806#40128206'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=ec109685" class="hnuser">ec109685</a> <span class="age" title="2024-04-23T03:38:32"><a href="item?id=40128206">5 hours ago</a></span> <span id="unv_40128206"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">parent</a> | <a href="#40128177" class="clicky" aria-hidden="true">prev</a> | <a href="#40128156" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128206" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Eh, I think it’s showing that this class of model is becoming commoditized given there is a new one launching every week.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128206&amp;goto=item%3Fid%3D40127806%2340128206" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128156'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128156' class='clicky' href='vote?id=40128156&amp;how=up&amp;auth=fafe37fa02841f648ec4b639da018e4cedd6b41d&amp;goto=item%3Fid%3D40127806#40128156'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=moralestapia" class="hnuser">moralestapia</a> <span class="age" title="2024-04-23T03:30:25"><a href="item?id=40128156">5 hours ago</a></span> <span id="unv_40128156"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">parent</a> | <a href="#40128206" class="clicky" aria-hidden="true">prev</a> | <a href="#40129248" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128156" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">I don&#x27;t recall Nokia being a 3 <i>trillion</i> dollar company. Your vibes may vary, though.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128156&amp;goto=item%3Fid%3D40127806%2340128156" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                  <tr class='athing comtr' id='40129248'><td><table border='0'>  <tr>    <td class='ind' indent='0'><img src="s.gif" height="1" width="0"></td><td valign="top" class="votelinks">
+      <center><a id='up_40129248' class='clicky' href='vote?id=40129248&amp;how=up&amp;auth=649611f94bf4e5c93038abc59b41a2da21eff64f&amp;goto=item%3Fid%3D40127806#40129248'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=smartmic" class="hnuser">smartmic</a> <span class="age" title="2024-04-23T06:51:31"><a href="item?id=40129248">1 hour ago</a></span> <span id="unv_40129248"></span>          <span class='navs'>
+             | <a href="#40128111" class="clicky" aria-hidden="true">prev</a> | <a href="#40128639" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40129248" n="3" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Hm, roundabout 84 authors of one &quot;scientific&quot; paper. I wonder if this says something about (a) the quality of its content, (b) the path were academic (?) paper publishing goes to, (c) nothing at all, or (d), something entirely else.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40129248&amp;goto=item%3Fid%3D40127806%2340129248" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40129740'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40129740' class='clicky' href='vote?id=40129740&amp;how=up&amp;auth=c287acbc2fc8912690ba98d36c0bb39169950215&amp;goto=item%3Fid%3D40127806#40129740'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=lysecret" class="hnuser">lysecret</a> <span class="age" title="2024-04-23T08:25:50"><a href="item?id=40129740">12 minutes ago</a></span> <span id="unv_40129740"></span>          <span class='navs'>
+             | <a href="#40129248" class="clicky" aria-hidden="true">parent</a> | <a href="#40129298" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40129740" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Just means you need a big machine and a lot of capital to make advancement. Take a look at any paper coming out of cern.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40129740&amp;goto=item%3Fid%3D40127806%2340129740" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40129298'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40129298' class='clicky' href='vote?id=40129298&amp;how=up&amp;auth=898ec95d602cc2f7f3b1987724126d5964fac228&amp;goto=item%3Fid%3D40127806#40129298'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=a_bonobo" class="hnuser">a_bonobo</a> <span class="age" title="2024-04-23T07:01:00"><a href="item?id=40129298">1 hour ago</a></span> <span id="unv_40129298"></span>          <span class='navs'>
+             | <a href="#40129248" class="clicky" aria-hidden="true">parent</a> | <a href="#40129740" class="clicky" aria-hidden="true">prev</a> | <a href="#40128639" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40129298" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">I have been on far larger author lists :) There&#x27;s probably a whole team for the training data generation and assessment, a whole team for the safety assessment  (section 4), that stuff adds up.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40129298&amp;goto=item%3Fid%3D40127806%2340129298" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                  <tr class='athing comtr' id='40128639'><td><table border='0'>  <tr>    <td class='ind' indent='0'><img src="s.gif" height="1" width="0"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128639' class='clicky' href='vote?id=40128639&amp;how=up&amp;auth=70c9a6ff41c34ae9bfcb3ba38c9ed3a1dfa0452d&amp;goto=item%3Fid%3D40127806#40128639'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=abidlabs" class="hnuser">abidlabs</a> <span class="age" title="2024-04-23T04:52:42"><a href="item?id=40128639">3 hours ago</a></span> <span id="unv_40128639"></span>          <span class='navs'>
+             | <a href="#40129248" class="clicky" aria-hidden="true">prev</a> | <a href="#40128057" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128639" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Hugging Face Paper Page and Discussion: <a href="https:&#x2F;&#x2F;huggingface.co&#x2F;papers&#x2F;2404.14219" rel="nofollow">https:&#x2F;&#x2F;huggingface.co&#x2F;papers&#x2F;2404.14219</a></span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128639&amp;goto=item%3Fid%3D40127806%2340128639" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128057'><td><table border='0'>  <tr>    <td class='ind' indent='0'><img src="s.gif" height="1" width="0"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128057' class='clicky' href='vote?id=40128057&amp;how=up&amp;auth=471511662c4d692f845504443bec75da4ed77830&amp;goto=item%3Fid%3D40127806#40128057'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=simonw" class="hnuser">simonw</a> <span class="age" title="2024-04-23T03:11:46"><a href="item?id=40128057">5 hours ago</a></span> <span id="unv_40128057"></span>          <span class='navs'>
+             | <a href="#40128639" class="clicky" aria-hidden="true">prev</a> | <a href="#40128158" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128057" n="2" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">I&#x27;m getting a bit skeptical of MMLU at this point. As far as I can tell it&#x27;s a set of multiple choice questions that hasn&#x27;t been updated since 2020. We have to trust the model providers not to deliberately or accidentally train on it for those scores to be useful.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128057&amp;goto=item%3Fid%3D40127806%2340128057" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128120'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128120' class='clicky' href='vote?id=40128120&amp;how=up&amp;auth=f2e4128dc5e3aae3bb38681148e03b35bf7c8089&amp;goto=item%3Fid%3D40127806#40128120'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=minimaxir" class="hnuser">minimaxir</a> <span class="age" title="2024-04-23T03:24:07"><a href="item?id=40128120">5 hours ago</a></span> <span id="unv_40128120"></span>          <span class='navs'>
+             | <a href="#40128057" class="clicky" aria-hidden="true">parent</a> | <a href="#40128158" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128120" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">At the least, there&#x27;s multiple benchmarks noted in the paper (21!) and the results are consistent across all of them.<p>I&#x27;d trust Microsoft to do decontamination testing, although the paper doesn&#x27;t explicitly mention it other than &quot;The prompts and number of shots are part of a Microsoft internal tool to evaluate language models, and in particular we did no optimization to the pipeline for the phi-3 models.&quot;</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128120&amp;goto=item%3Fid%3D40127806%2340128120" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                  <tr class='athing comtr' id='40128158'><td><table border='0'>  <tr>    <td class='ind' indent='0'><img src="s.gif" height="1" width="0"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128158' class='clicky' href='vote?id=40128158&amp;how=up&amp;auth=cf6cf8f4e50423b97724f4f75701b10b04432b7f&amp;goto=item%3Fid%3D40127806#40128158'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=blackoil" class="hnuser">blackoil</a> <span class="age" title="2024-04-23T03:30:31"><a href="item?id=40128158">5 hours ago</a></span> <span id="unv_40128158"></span>          <span class='navs'>
+             | <a href="#40128057" class="clicky" aria-hidden="true">prev</a> | <a href="#40128480" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128158" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Has anyone used these&#x2F;similar with fine tune and RAG? How is the performance over a narrow domain for simple queries? Is it good enough for say an informational chat bot?</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128158&amp;goto=item%3Fid%3D40127806%2340128158" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128480'><td><table border='0'>  <tr>    <td class='ind' indent='0'><img src="s.gif" height="1" width="0"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128480' class='clicky' href='vote?id=40128480&amp;how=up&amp;auth=1ab4cb924b33596e70c38c1b7c0b71ebe2d0b50e&amp;goto=item%3Fid%3D40127806#40128480'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=ur-whale" class="hnuser">ur-whale</a> <span class="age" title="2024-04-23T04:22:33"><a href="item?id=40128480">4 hours ago</a></span> <span id="unv_40128480"></span>          <span class='navs'>
+             | <a href="#40128158" class="clicky" aria-hidden="true">prev</a> | <a href="#40128116" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128480" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">That&#x27;s a whole lot of Zhangs!</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128480&amp;goto=item%3Fid%3D40127806%2340128480" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128116'><td><table border='0'>  <tr>    <td class='ind' indent='0'><img src="s.gif" height="1" width="0"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128116' class='clicky' href='vote?id=40128116&amp;how=up&amp;auth=99b663741e3957a8bb154333748445848a7693cc&amp;goto=item%3Fid%3D40127806#40128116'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=hackerlight" class="hnuser">hackerlight</a> <span class="age" title="2024-04-23T03:23:51"><a href="item?id=40128116">5 hours ago</a></span> <span id="unv_40128116"></span>          <span class='navs'>
+             | <a href="#40128480" class="clicky" aria-hidden="true">prev</a> <a class="togg clicky" id="40128116" n="8" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c73">Less tokens than Llama 3 (3.3T vs 15T) yet better outcome. No doubt more information dense training data. The interesting thing is the use of synthetic data which they don&#x27;t talk about.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128116&amp;goto=item%3Fid%3D40127806%2340128116" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128264'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128264' class='clicky' href='vote?id=40128264&amp;how=up&amp;auth=08007ca73900059f3fdb34c670f15dac490762ae&amp;goto=item%3Fid%3D40127806#40128264'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=vessenes" class="hnuser">vessenes</a> <span class="age" title="2024-04-23T03:48:25"><a href="item?id=40128264">4 hours ago</a></span> <span id="unv_40128264"></span>          <span class='navs'>
+             | <a href="#40128116" class="clicky" aria-hidden="true">parent</a> | <a href="#40128140" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128264" n="5" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Actually the original Phi papers did talk about their synthetic data strategy, and it&#x27;s very cool -- essentially invert high quality textbook text using GPT-4 to create prompts, where the textbooks supply the answers. There may be more undisclosed, but it remains in my mind as one of the best ideas of the last twelve months -- so smart, and interesting, and apparently, it works well.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128264&amp;goto=item%3Fid%3D40127806%2340128264" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128652'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128652' class='clicky' href='vote?id=40128652&amp;how=up&amp;auth=15580e46bd91408e8cdc6df46693c47165e8c5cc&amp;goto=item%3Fid%3D40127806#40128652'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=astrange" class="hnuser">astrange</a> <span class="age" title="2024-04-23T04:56:12"><a href="item?id=40128652">3 hours ago</a></span> <span id="unv_40128652"></span>          <span class='navs'>
+             | <a href="#40128116" class="clicky" aria-hidden="true">root</a> | <a href="#40128264" class="clicky" aria-hidden="true">parent</a> | <a href="#40128775" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128652" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">I feel like literal dictionaries would make good training data; wonder if any of them have done that. LLMs are good at faking so it&#x27;s hard to tell by asking them.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128652&amp;goto=item%3Fid%3D40127806%2340128652" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128775'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128775' class='clicky' href='vote?id=40128775&amp;how=up&amp;auth=7e75d619977f15f8d8b70a4ff2762ef1cdcadb22&amp;goto=item%3Fid%3D40127806#40128775'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=torginus" class="hnuser">torginus</a> <span class="age" title="2024-04-23T05:24:12"><a href="item?id=40128775">3 hours ago</a></span> <span id="unv_40128775"></span>          <span class='navs'>
+             | <a href="#40128116" class="clicky" aria-hidden="true">root</a> | <a href="#40128264" class="clicky" aria-hidden="true">parent</a> | <a href="#40128652" class="clicky" aria-hidden="true">prev</a> | <a href="#40128369" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128775" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Except everything that comes out of an LLM (like GPT4) is highly suspect (at least in my experience).</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128775&amp;goto=item%3Fid%3D40127806%2340128775" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128369'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128369' class='clicky' href='vote?id=40128369&amp;how=up&amp;auth=564370253f8f280eb686301bc21eef5f202c8212&amp;goto=item%3Fid%3D40127806#40128369'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=xarope" class="hnuser">xarope</a> <span class="age" title="2024-04-23T04:04:19"><a href="item?id=40128369">4 hours ago</a></span> <span id="unv_40128369"></span>          <span class='navs'>
+             | <a href="#40128116" class="clicky" aria-hidden="true">root</a> | <a href="#40128264" class="clicky" aria-hidden="true">parent</a> | <a href="#40128775" class="clicky" aria-hidden="true">prev</a> | <a href="#40128894" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128369" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">perhaps that&#x27;s the best path forward? Text and reference books (hopefully unbiased) for answers, and web scraped data for conversational tone.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128369&amp;goto=item%3Fid%3D40127806%2340128369" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+            <tr class='athing comtr' id='40128894'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128894' class='clicky' href='vote?id=40128894&amp;how=up&amp;auth=e66dca841aba6345132c5a345b1a54bf120ae668&amp;goto=item%3Fid%3D40127806#40128894'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=YetAnotherNick" class="hnuser">YetAnotherNick</a> <span class="age" title="2024-04-23T05:47:48"><a href="item?id=40128894">2 hours ago</a></span> <span id="unv_40128894"></span>          <span class='navs'>
+             | <a href="#40128116" class="clicky" aria-hidden="true">root</a> | <a href="#40128264" class="clicky" aria-hidden="true">parent</a> | <a href="#40128369" class="clicky" aria-hidden="true">prev</a> | <a href="#40128140" class="clicky" aria-hidden="true">next</a> <a class="togg clicky" id="40128894" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">No they don&#x27;t use textbook text at all despite the paper title. They just asked GPT-4 to generate &quot;textbook quality&quot; content, which doesn&#x27;t even exactly looks like textbook.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128894&amp;goto=item%3Fid%3D40127806%2340128894" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                  <tr class='athing comtr' id='40128140'><td><table border='0'>  <tr>    <td class='ind' indent='1'><img src="s.gif" height="1" width="40"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128140' class='clicky' href='vote?id=40128140&amp;how=up&amp;auth=ab0e8b3f557a6c9267d550e2dd7eef552cd5df5a&amp;goto=item%3Fid%3D40127806#40128140'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=minimaxir" class="hnuser">minimaxir</a> <span class="age" title="2024-04-23T03:27:46"><a href="item?id=40128140">5 hours ago</a></span> <span id="unv_40128140"></span>          <span class='navs'>
+             | <a href="#40128116" class="clicky" aria-hidden="true">parent</a> | <a href="#40128264" class="clicky" aria-hidden="true">prev</a> <a class="togg clicky" id="40128140" n="2" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">Yes, &quot;chinchilla optimal&quot; is a meme, but 15T might turn out to be too many tokens.</span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128140&amp;goto=item%3Fid%3D40127806%2340128140" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                <tr class='athing comtr' id='40128190'><td><table border='0'>  <tr>    <td class='ind' indent='2'><img src="s.gif" height="1" width="80"></td><td valign="top" class="votelinks">
+      <center><a id='up_40128190' class='clicky' href='vote?id=40128190&amp;how=up&amp;auth=6e961f59db1e07bb46cfc961db1a3525744faf42&amp;goto=item%3Fid%3D40127806#40128190'><div class='votearrow' title='upvote'></div></a></center>    </td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="user?id=wrsh07" class="hnuser">wrsh07</a> <span class="age" title="2024-04-23T03:36:45"><a href="item?id=40128190">5 hours ago</a></span> <span id="unv_40128190"></span>          <span class='navs'>
+             | <a href="#40128116" class="clicky" aria-hidden="true">root</a> | <a href="#40128140" class="clicky" aria-hidden="true">parent</a> <a class="togg clicky" id="40128190" n="1" href="javascript:void(0)">[–]</a><span class="onstory"></span>          </span>
+                  </span></div><br><div class="comment">
+                  <span class="commtext c00">My understanding from this tweet thread [1] is that chinchilla probably overspecified some of the hyperparameters to the model<p>tl;dr I&#x27;m looking forward to having lots of models (ideally models) trained with a wide range of parameters to narrow down &quot;what is actually optimal&quot;<p>I think there is an interesting tradeoff of data quality and data volume, though<p>(Eg if we train with the highest quality 10% of our data, does the model improve if we use the other 90%? What if we increase our data size by 10x?)<p>[1] <a href="https:&#x2F;&#x2F;twitter.com&#x2F;tamaybes&#x2F;status&#x2F;1780639257389904013" rel="nofollow">https:&#x2F;&#x2F;twitter.com&#x2F;tamaybes&#x2F;status&#x2F;1780639257389904013</a></span>
+              <div class='reply'>        <p><font size="1">
+                      <u><a href="reply?id=40128190&amp;goto=item%3Fid%3D40127806%2340128190" rel="nofollow">reply</a></u>
+                  </font>
+      </div></div></td></tr>
+        </table></td></tr>
+                        </table>
+  <br><br>
+</td></tr>
+<tr><td><img src="s.gif" height="10" width="0"><table width="100%" cellspacing="0" cellpadding="1"><tr><td bgcolor="#ff6600"></td></tr></table><br>
+<center><span class="yclinks"><a href="newsguidelines.html">Guidelines</a> | <a href="newsfaq.html">FAQ</a> | <a href="lists">Lists</a> | <a href="https://github.com/HackerNews/API">API</a> | <a href="security.html">Security</a> | <a href="https://www.ycombinator.com/legal/">Legal</a> | <a href="https://www.ycombinator.com/apply/">Apply to YC</a> | <a href="mailto:hn@ycombinator.com">Contact</a></span><br><br>
+<form method="get" action="//hn.algolia.com/">Search: <input type="text" name="q" size="17" autocorrect="off" spellcheck="false" autocapitalize="off" autocomplete="false"></form></center></td></tr>      </table></center></body>
+      <script type='text/javascript' src='hn.js?j4HvSflhjAzyTqHPFG5X'></script>
+  </html>
+

@@ -1,0 +1,3 @@
+Homepage - User not logged in
+Article comments - No comments, not logged in
+Article comments - Comments, not logged in

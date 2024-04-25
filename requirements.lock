@@ -58,3 +58,5 @@ typing-extensions==4.10.0
     # via pydantic
     # via pydantic-core
     # via pyee
+setuptools==69.5.1
+    # via ai-web-explorer
