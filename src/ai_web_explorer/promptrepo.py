@@ -23,7 +23,7 @@ class Prompt:
 
     def execute_prompt(
         self, client: openai.Client, **data
-    ) -> chat.chat_completion.Choice:
+    ) -> chat.chat_completion.ChatCompletion:
         prompt_text = self.prompt_with_data(**data)
         message: chat.ChatCompletionMessageParam = {
             "role": "user",
@@ -47,9 +47,7 @@ class Prompt:
             tools=tools,
             tool_choice=tool_choice,
         )
-        response = completion.choices[0]
-        return response
-
+        return completion
 
 def get_prompt(name: str) -> Prompt:
     with open(config.PROMPTS_PATH) as f:
