@@ -1,8 +1,10 @@
 import dataclasses
 
+import anthropic
 import openai
 from openai.types import chat, shared_params
 import yaml
+import copy
 
 from . import config
 
@@ -48,6 +50,24 @@ class Prompt:
             tool_choice=tool_choice,
         )
         return completion
+
+    def execute_prompt_anthropic(self, model: str, **data):
+        prompt_text = self.prompt_with_data(**data)
+        
+        tools = copy.deepcopy(self.functions)
+        for tool in tools:
+            tool["input_schema"] = tool["parameters"]
+            del tool["parameters"]
+
+        response = anthropic.Anthropic().beta.tools.messages.create(
+            model=model,
+            messages=[{"role": "user", "content": prompt_text}],
+            temperature=self.temperature,
+            max_tokens=2048,
+            tools=tools,
+        )
+
+        return response
 
 def get_prompt(name: str) -> Prompt:
     with open(config.PROMPTS_PATH) as f:

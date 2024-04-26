@@ -14,7 +14,10 @@ aniso8601==9.0.1
     # via graphene
 annotated-types==0.6.0
     # via pydantic
+anthropic==0.25.6
+    # via ai-web-explorer
 anyio==4.3.0
+    # via anthropic
     # via httpx
     # via openai
 beautifulsoup4==4.12.3
@@ -39,15 +42,20 @@ contourpy==1.2.1
 cycler==0.12.1
     # via matplotlib
 distro==1.9.0
+    # via anthropic
     # via openai
 docker==7.0.0
     # via mlflow
 entrypoints==0.4
     # via mlflow
+filelock==3.13.4
+    # via huggingface-hub
 flask==3.0.3
     # via mlflow
 fonttools==4.51.0
     # via matplotlib
+fsspec==2024.3.1
+    # via huggingface-hub
 gitdb==4.0.11
     # via gitpython
 gitpython==3.1.43
@@ -69,7 +77,10 @@ h11==0.14.0
 httpcore==1.0.4
     # via httpx
 httpx==0.27.0
+    # via anthropic
     # via openai
+huggingface-hub==0.22.2
+    # via tokenizers
 idna==3.6
     # via anyio
     # via httpx
@@ -115,6 +126,7 @@ packaging==24.0
     # via black
     # via docker
     # via gunicorn
+    # via huggingface-hub
     # via matplotlib
     # via mlflow
     # via pytest
@@ -135,6 +147,7 @@ protobuf==5.26.1
 pyarrow==15.0.2
     # via mlflow
 pydantic==2.6.4
+    # via anthropic
     # via openai
 pydantic-core==2.16.3
     # via pydantic
@@ -151,11 +164,13 @@ pytz==2024.1
     # via pandas
 pyyaml==6.0.1
     # via ai-web-explorer
+    # via huggingface-hub
     # via mlflow
 querystring-parser==1.2.4
     # via mlflow
 requests==2.31.0
     # via docker
+    # via huggingface-hub
     # via mlflow
 scikit-learn==1.4.2
     # via mlflow
@@ -168,6 +183,7 @@ six==1.16.0
 smmap==5.0.1
     # via gitdb
 sniffio==1.3.1
+    # via anthropic
     # via anyio
     # via httpx
     # via openai
@@ -180,10 +196,15 @@ sqlparse==0.5.0
     # via mlflow
 threadpoolctl==3.4.0
     # via scikit-learn
+tokenizers==0.19.1
+    # via anthropic
 tqdm==4.66.2
+    # via huggingface-hub
     # via openai
 typing-extensions==4.10.0
     # via alembic
+    # via anthropic
+    # via huggingface-hub
     # via openai
     # via pydantic
     # via pydantic-core

@@ -10,7 +10,10 @@
 -e file:.
 annotated-types==0.6.0
     # via pydantic
+anthropic==0.25.6
+    # via ai-web-explorer
 anyio==4.3.0
+    # via anthropic
     # via httpx
     # via openai
 beautifulsoup4==4.12.3
@@ -18,8 +21,16 @@ beautifulsoup4==4.12.3
 certifi==2024.2.2
     # via httpcore
     # via httpx
+    # via requests
+charset-normalizer==3.3.2
+    # via requests
 distro==1.9.0
+    # via anthropic
     # via openai
+filelock==3.13.4
+    # via huggingface-hub
+fsspec==2024.3.1
+    # via huggingface-hub
 greenlet==3.0.3
     # via playwright
 h11==0.14.0
@@ -27,17 +38,24 @@ h11==0.14.0
 httpcore==1.0.4
     # via httpx
 httpx==0.27.0
+    # via anthropic
     # via openai
+huggingface-hub==0.22.2
+    # via tokenizers
 idna==3.6
     # via anyio
     # via httpx
+    # via requests
 numpy==1.26.4
     # via ai-web-explorer
 openai==1.14.2
     # via ai-web-explorer
+packaging==24.0
+    # via huggingface-hub
 playwright==1.42.0
     # via ai-web-explorer
 pydantic==2.6.4
+    # via anthropic
     # via openai
 pydantic-core==2.16.3
     # via pydantic
@@ -45,18 +63,29 @@ pyee==11.0.1
     # via playwright
 pyyaml==6.0.1
     # via ai-web-explorer
+    # via huggingface-hub
+requests==2.31.0
+    # via huggingface-hub
 sniffio==1.3.1
+    # via anthropic
     # via anyio
     # via httpx
     # via openai
 soupsieve==2.5
     # via beautifulsoup4
+tokenizers==0.19.1
+    # via anthropic
 tqdm==4.66.2
+    # via huggingface-hub
     # via openai
 typing-extensions==4.10.0
+    # via anthropic
+    # via huggingface-hub
     # via openai
     # via pydantic
     # via pydantic-core
     # via pyee
+urllib3==2.2.1
+    # via requests
 setuptools==69.5.1
     # via ai-web-explorer
