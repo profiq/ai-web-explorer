@@ -23,6 +23,10 @@ PRICES = {
         "input": 3.0,
         "output": 15.0,
     },
+    "gemini-1.0": {
+        "input": 0.125,
+        "output": 0.375,
+    },
 }
 
 DATA_DIR = os.path.join(
@@ -73,22 +77,34 @@ def test_title():
         with open(os.path.join(DATA_DIR, filename)) as f:
             html = f.read()[: config.HTML_PART_LENGTH]
             time_start = datetime.datetime.now()
+            # GPT
             # completion = prompt.execute_prompt(html=html)
             # response = completion.choices[0]
-            completion = prompt.execute_prompt_anthropic(
-                model="claude-3-sonnet-20240229", html=html
-            )
+
+            # Claude
+            # completion = prompt.execute_prompt_anthropic(
+            #    model="claude-3-sonnet-20240229", html=html
+            # )
+
+            # Gemini
+            completion = prompt.execute_prompt_gemini("gemini-1.5-pro-preview-0409", html=html)
             print(completion)
+
             time_end = datetime.datetime.now()
             eval_table["time"].append((time_end - time_start).total_seconds())
 
         # model_type = prompt.model.split("-")[0] + "-" + prompt.model.split("-")[1]
-        model_type = "claude-3-sonnet"
-
-        if model_type in PRICES and completion.usage:
+        # model_type = "claude-3-sonnet"
+        model_type = "gemini-1.0"
+        if model_type in PRICES:  #and completion.usage:
             prices = PRICES[model_type]
-            price_input = prices["input"] * completion.usage.input_tokens / 1_000_000
-            price_output = prices["output"] * completion.usage.output_tokens / 1_000_000
+            # Claude / OpenAI
+            #price_input = prices["input"] * completion.usage.input_tokens / 1_000_000
+            #price_output = prices["output"] * completion.usage.output_tokens / 1_000_000
+            #price_total = price_input + price_output
+            # Gemini
+            price_input = len(prompt.prompt_with_data(html=html)) * prices['input'] / 1_000_000
+            price_output = len(str(completion.candidates[0].content.parts[0])) * prices['output'] / 1_000_000
             price_total = price_input + price_output
         else:
             price_total = None
@@ -96,18 +112,26 @@ def test_title():
         # if not response.message.tool_calls or len(response.message.tool_calls) == 0:
         #    raise ValueError("No tool calls in response when getting page title")
 
+        # OpenAI
         # args_str = response.message.tool_calls[0].function.arguments
         # args = json.loads(args_str)
         # title_generated = args["title"]
 
-        for response in completion.content:
-            if type(response) == ToolUseBlock:
-                title_generated = response.input["title"]
-                similarity = compare_embeddings(titles_expected[no - 1], title_generated)
-                break
-        else:
-            title_generated = ""
-            similarity = 0
+        # Claude
+        # for response in completion.content:
+        #    if type(response) == ToolUseBlock:
+        #        title_generated = response.input["title"]
+        #        similarity = compare_embeddings(
+        #            titles_expected[no - 1], title_generated
+        #        )
+        #        break
+        #else:
+        #    title_generated = ""
+        #    similarity = 0
+        
+        # Gemini
+        title_generated = completion.candidates[0].content.parts[0].function_call.args['title']
+        similarity = compare_embeddings(titles_expected[no - 1], title_generated)
 
         eval_table["no"].append(no)
         eval_table["title_expected"].append(titles_expected[no - 1])

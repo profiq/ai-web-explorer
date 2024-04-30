@@ -1,10 +1,13 @@
+import copy
 import dataclasses
 
 import anthropic
 import openai
 from openai.types import chat, shared_params
+import vertexai
+import vertexai.generative_models
+from vertexai.preview import generative_models
 import yaml
-import copy
 
 from . import config
 
@@ -42,6 +45,7 @@ class Prompt:
             if len(self.functions) == 1
             else openai.NOT_GIVEN
         )
+
         completion = client.chat.completions.create(
             model=self.model,
             messages=[message],
@@ -53,7 +57,7 @@ class Prompt:
 
     def execute_prompt_anthropic(self, model: str, **data):
         prompt_text = self.prompt_with_data(**data)
-        
+
         tools = copy.deepcopy(self.functions)
         for tool in tools:
             tool["input_schema"] = tool["parameters"]
@@ -68,6 +72,37 @@ class Prompt:
         )
 
         return response
+
+    def execute_prompt_gemini(self, model: str, **data):
+        prompt_text = self.prompt_with_data(**data)
+        prompt_text = prompt_text + "\n\n" + "Always call a function!"
+        functions = []
+
+        for fn in self.functions:
+            t = vertexai.generative_models.FunctionDeclaration(
+                name=fn["name"],
+                description=fn.get("description", ""),
+                parameters=fn.get("parameters", {}),
+            )
+            functions.append(t)
+
+        tool = vertexai.generative_models.Tool(function_declarations=functions)
+
+        vertexai.init(project="vebiss-1129")
+        m = vertexai.generative_models.GenerativeModel(model)
+        response = m.generate_content(
+            [prompt_text],
+            generation_config={"temperature": 0},
+            tools=[tool],
+            safety_settings={
+                generative_models.HarmCategory.HARM_CATEGORY_HATE_SPEECH: generative_models.HarmBlockThreshold.BLOCK_ONLY_HIGH,
+                generative_models.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: generative_models.HarmBlockThreshold.BLOCK_ONLY_HIGH,
+                generative_models.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: generative_models.HarmBlockThreshold.BLOCK_ONLY_HIGH,
+                generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_ONLY_HIGH,
+            },
+        )
+        return response
+
 
 def get_prompt(name: str) -> Prompt:
     with open(config.PROMPTS_PATH) as f:
