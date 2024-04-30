@@ -8,6 +8,10 @@
 #   with-sources: false
 
 -e file:.
+aiohttp==3.9.5
+    # via mlflow
+aiosignal==1.3.1
+    # via aiohttp
 alembic==1.13.1
     # via mlflow
 aniso8601==9.0.1
@@ -20,11 +24,22 @@ anyio==4.3.0
     # via anthropic
     # via httpx
     # via openai
+    # via starlette
+    # via watchfiles
+attrs==23.2.0
+    # via aiohttp
 beautifulsoup4==4.12.3
     # via ai-web-explorer
 black==24.3.0
 blinker==1.7.0
     # via flask
+boto3==1.34.92
+    # via mlflow
+botocore==1.34.92
+    # via boto3
+    # via s3transfer
+cachetools==5.3.3
+    # via google-auth
 certifi==2024.2.2
     # via httpcore
     # via httpx
@@ -35,18 +50,25 @@ click==8.1.7
     # via black
     # via flask
     # via mlflow
+    # via uvicorn
 cloudpickle==3.0.0
     # via mlflow
 contourpy==1.2.1
     # via matplotlib
 cycler==0.12.1
     # via matplotlib
+deprecated==1.2.14
+    # via limits
 distro==1.9.0
     # via anthropic
     # via openai
 docker==7.0.0
     # via mlflow
+docstring-parser==0.16
+    # via google-cloud-aiplatform
 entrypoints==0.4
+    # via mlflow
+fastapi==0.110.2
     # via mlflow
 filelock==3.13.4
     # via huggingface-hub
@@ -54,12 +76,50 @@ flask==3.0.3
     # via mlflow
 fonttools==4.51.0
     # via matplotlib
+frozenlist==1.4.1
+    # via aiohttp
+    # via aiosignal
 fsspec==2024.3.1
     # via huggingface-hub
 gitdb==4.0.11
     # via gitpython
 gitpython==3.1.43
     # via mlflow
+google-api-core==2.18.0
+    # via google-api-core
+    # via google-cloud-aiplatform
+    # via google-cloud-bigquery
+    # via google-cloud-core
+    # via google-cloud-resource-manager
+    # via google-cloud-storage
+google-auth==2.29.0
+    # via google-api-core
+    # via google-cloud-aiplatform
+    # via google-cloud-bigquery
+    # via google-cloud-core
+    # via google-cloud-resource-manager
+    # via google-cloud-storage
+google-cloud-aiplatform==1.49.0
+    # via ai-web-explorer
+google-cloud-bigquery==3.21.0
+    # via google-cloud-aiplatform
+google-cloud-core==2.4.1
+    # via google-cloud-bigquery
+    # via google-cloud-storage
+google-cloud-resource-manager==1.12.3
+    # via google-cloud-aiplatform
+google-cloud-storage==2.16.0
+    # via google-cloud-aiplatform
+google-crc32c==1.5.0
+    # via google-cloud-storage
+    # via google-resumable-media
+google-resumable-media==2.7.0
+    # via google-cloud-bigquery
+    # via google-cloud-storage
+googleapis-common-protos==1.63.0
+    # via google-api-core
+    # via grpc-google-iam-v1
+    # via grpcio-status
 graphene==3.3
     # via mlflow
 graphql-core==3.2.3
@@ -70,12 +130,24 @@ graphql-relay==3.2.0
 greenlet==3.0.3
     # via playwright
     # via sqlalchemy
+grpc-google-iam-v1==0.13.0
+    # via google-cloud-resource-manager
+grpcio==1.62.2
+    # via google-api-core
+    # via googleapis-common-protos
+    # via grpc-google-iam-v1
+    # via grpcio-status
+grpcio-status==1.62.2
+    # via google-api-core
 gunicorn==21.2.0
     # via mlflow
 h11==0.14.0
     # via httpcore
+    # via uvicorn
 httpcore==1.0.4
     # via httpx
+httptools==0.6.1
+    # via uvicorn
 httpx==0.27.0
     # via anthropic
     # via openai
@@ -85,8 +157,11 @@ idna==3.6
     # via anyio
     # via httpx
     # via requests
+    # via yarl
 importlib-metadata==7.1.0
     # via mlflow
+importlib-resources==6.4.0
+    # via limits
 iniconfig==2.0.0
     # via pytest
 itsdangerous==2.2.0
@@ -94,10 +169,15 @@ itsdangerous==2.2.0
 jinja2==3.1.3
     # via flask
     # via mlflow
+jmespath==1.0.1
+    # via boto3
+    # via botocore
 joblib==1.4.0
     # via scikit-learn
 kiwisolver==1.4.5
     # via matplotlib
+limits==3.11.0
+    # via slowapi
 mako==1.3.3
     # via alembic
 markdown==3.6
@@ -109,6 +189,11 @@ markupsafe==2.1.5
 matplotlib==3.8.4
     # via mlflow
 mlflow==2.12.1
+    # via ai-web-explorer
+    # via mlflow
+multidict==6.0.5
+    # via aiohttp
+    # via yarl
 mypy-extensions==1.0.0
     # via black
 numpy==1.26.4
@@ -120,13 +205,17 @@ numpy==1.26.4
     # via pyarrow
     # via scikit-learn
     # via scipy
+    # via shapely
 openai==1.14.2
     # via ai-web-explorer
 packaging==24.0
     # via black
     # via docker
+    # via google-cloud-aiplatform
+    # via google-cloud-bigquery
     # via gunicorn
     # via huggingface-hub
+    # via limits
     # via matplotlib
     # via mlflow
     # via pytest
@@ -142,12 +231,31 @@ playwright==1.42.0
     # via ai-web-explorer
 pluggy==1.5.0
     # via pytest
-protobuf==5.26.1
+proto-plus==1.23.0
+    # via google-api-core
+    # via google-cloud-aiplatform
+    # via google-cloud-resource-manager
+protobuf==4.25.3
+    # via google-api-core
+    # via google-cloud-aiplatform
+    # via google-cloud-resource-manager
+    # via googleapis-common-protos
+    # via grpc-google-iam-v1
+    # via grpcio-status
     # via mlflow
+    # via proto-plus
 pyarrow==15.0.2
     # via mlflow
+pyasn1==0.6.0
+    # via pyasn1-modules
+    # via rsa
+pyasn1-modules==0.4.0
+    # via google-auth
 pydantic==2.6.4
     # via anthropic
+    # via fastapi
+    # via google-cloud-aiplatform
+    # via mlflow
     # via openai
 pydantic-core==2.16.3
     # via pydantic
@@ -157,8 +265,12 @@ pyparsing==3.1.2
     # via matplotlib
 pytest==8.1.1
 python-dateutil==2.9.0.post0
+    # via botocore
+    # via google-cloud-bigquery
     # via matplotlib
     # via pandas
+python-dotenv==1.0.1
+    # via uvicorn
 pytz==2024.1
     # via mlflow
     # via pandas
@@ -166,20 +278,35 @@ pyyaml==6.0.1
     # via ai-web-explorer
     # via huggingface-hub
     # via mlflow
+    # via uvicorn
 querystring-parser==1.2.4
     # via mlflow
+regex==2024.4.16
+    # via tiktoken
 requests==2.31.0
     # via docker
+    # via google-api-core
+    # via google-cloud-bigquery
+    # via google-cloud-storage
     # via huggingface-hub
     # via mlflow
+    # via tiktoken
+rsa==4.9
+    # via google-auth
+s3transfer==0.10.1
+    # via boto3
 scikit-learn==1.4.2
     # via mlflow
 scipy==1.13.0
     # via mlflow
     # via scikit-learn
+shapely==2.0.4
+    # via google-cloud-aiplatform
 six==1.16.0
     # via python-dateutil
     # via querystring-parser
+slowapi==0.1.9
+    # via mlflow
 smmap==5.0.1
     # via gitdb
 sniffio==1.3.1
@@ -194,8 +321,12 @@ sqlalchemy==2.0.29
     # via mlflow
 sqlparse==0.5.0
     # via mlflow
+starlette==0.37.2
+    # via fastapi
 threadpoolctl==3.4.0
     # via scikit-learn
+tiktoken==0.6.0
+    # via mlflow
 tokenizers==0.19.1
     # via anthropic
 tqdm==4.66.2
@@ -204,7 +335,9 @@ tqdm==4.66.2
 typing-extensions==4.10.0
     # via alembic
     # via anthropic
+    # via fastapi
     # via huggingface-hub
+    # via limits
     # via openai
     # via pydantic
     # via pydantic-core
@@ -213,10 +346,25 @@ typing-extensions==4.10.0
 tzdata==2024.1
     # via pandas
 urllib3==2.2.1
+    # via botocore
     # via docker
     # via requests
+uvicorn==0.29.0
+    # via mlflow
+    # via uvicorn
+uvloop==0.19.0
+    # via uvicorn
+watchfiles==0.21.0
+    # via mlflow
+    # via uvicorn
+websockets==12.0
+    # via uvicorn
 werkzeug==3.0.2
     # via flask
+wrapt==1.16.0
+    # via deprecated
+yarl==1.9.4
+    # via aiohttp
 zipp==3.18.1
     # via importlib-metadata
 setuptools==69.5.1
