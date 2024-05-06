@@ -1,3 +1,13 @@
 Homepage - User not logged in
 Article comments - No comments, not logged in
 Article comments - Comments, not logged in
+Authentication page - Forms empty
+Password reset - Form empty
+Show HN - User not logged in
+Post comments - comments available, user not logged in
+Hacker News FAQ
+Hacker News Guidelines
+Homepage - Posts available, search form filled
+Homepage - Posts available
+Search Results - Empty form, results available, pagination, first page
+Homepage - Search form empty

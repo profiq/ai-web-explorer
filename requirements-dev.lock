@@ -129,7 +129,6 @@ graphql-relay==3.2.0
     # via graphene
 greenlet==3.0.3
     # via playwright
-    # via sqlalchemy
 grpc-google-iam-v1==0.13.0
     # via google-cloud-resource-manager
 grpcio==1.62.2
