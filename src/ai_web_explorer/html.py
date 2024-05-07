@@ -5,7 +5,7 @@ import typing
 import bs4
 import playwright.sync_api
 
-from . import config
+from ai_web_explorer import config
 
 
 class PageNotLoadedException(Exception):

@@ -8,7 +8,7 @@ from anthropic.types.beta.tools import ToolUseBlock
 import mlflow
 import numpy as np
 import openai
-
+import htmlmin
 from ai_web_explorer import config
 from ai_web_explorer import promptrepo
 
@@ -84,6 +84,7 @@ def _test_model(model_name: str, test_fn: typing.Callable):
         no = int(filename.split(".")[0])
         with open(os.path.join(DATA_DIR, filename)) as f:
             html = f.read()[: config.HTML_PART_LENGTH]
+            html = htmlmin.minify(html)
             time_start = datetime.datetime.now()
             result = test_fn(prompt, html, titles_expected[no - 1])
             time_end = datetime.datetime.now()
@@ -188,9 +189,9 @@ def test_title():
     print("GPT 4")
     with mlflow.start_run():
         eval_table, prompt, model_type = _test_model("gpt-4-turbo", _test_gpt)
-       _log_metrics(eval_table, prompt, model_type)
+        _log_metrics(eval_table, prompt, model_type)
+    
     """
-
     print("Claude")
     with mlflow.start_run():
         eval_table, prompt, model_type = _test_model("claude-3-sonnet", _test_claude)
@@ -201,9 +202,9 @@ def test_title():
     with mlflow.start_run():
         eval_table, prompt, model_type = _test_model("gemini-1.0", _test_gemini)
         _log_metrics(eval_table, prompt, model_type)
+    """
 
     print("Gemini 1.5")
     with mlflow.start_run():
         eval_table, prompt, model_type = _test_model("gemini-1.5", _test_gemini)
         _log_metrics(eval_table, prompt, model_type)
-    """
