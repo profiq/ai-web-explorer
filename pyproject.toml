@@ -16,6 +16,7 @@ dependencies = [
     "mlflow[genai]>=2.12.1",
     "google-cloud-aiplatform>=1.49.0",
     "htmlmin>=0.1.12",
+    "tenacity>=8.3.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
