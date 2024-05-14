@@ -4,6 +4,7 @@ import typing
 
 import bs4
 import playwright.sync_api
+import htmlmin
 
 from . import config
 
@@ -24,8 +25,10 @@ JS_FUNCTIONS = """
 """
 
 
-def iterate_html(page: playwright.sync_api.Page) -> typing.Iterable[str]:
-    html = get_full_html(page)
+def iterate_html(
+    page: playwright.sync_api.Page, minified: bool = True
+) -> typing.Iterable[str]:
+    html = get_full_html(page, minified=minified)
     html_tokens = html.split("<")
 
     i = 0
@@ -41,7 +44,7 @@ def iterate_html(page: playwright.sync_api.Page) -> typing.Iterable[str]:
         yield part
 
 
-def get_full_html(page: playwright.sync_api.Page) -> str:
+def get_full_html(page: playwright.sync_api.Page, minified: bool = True) -> str:
     page.evaluate("setValueAsDataAttribute()")
 
     for el in page.locator(":visible").all():
@@ -62,6 +65,14 @@ def get_full_html(page: playwright.sync_api.Page) -> str:
     _clean_attributes(soup)
     html_clean = soup.prettify()
     html_clean = _remove_comments(html_clean)
+
+    print(len(html_clean))
+
+    if minified:
+        html_clean = htmlmin.minify(html_clean)
+
+    print(len(html_clean))
+
     return html_clean
 
 

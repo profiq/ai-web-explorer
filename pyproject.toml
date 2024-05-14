@@ -11,6 +11,8 @@ dependencies = [
     "pyyaml>=6.0.1",
     "beautifulsoup4>=4.12.3",
     "numpy>=1.26.4",
+    "setuptools>=69.5.1",
+    "htmlmin>=0.1.12",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
