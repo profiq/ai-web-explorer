@@ -14,6 +14,10 @@ from ai_web_explorer import promptrepo
 
 
 PRICES = {
+    "gpt-4o": {
+        "input": 5,
+        "output": 15,
+    },
     "gpt-4": {
         "input": 10,
         "output": 30,
@@ -21,6 +25,10 @@ PRICES = {
     "gpt-3.5": {
         "input": 0.5,
         "output": 1.5,
+    },
+    "ft:gpt-3.5": {
+        "input": 3,
+        "output": 6,
     },
     "claude-3-sonnet": {
         "input": 3.0,
@@ -180,6 +188,16 @@ def _test_gemini(prompt: promptrepo.Prompt, html: str, title_expected: str) -> t
 
 
 def test_title():
+    print("GPT 3.5 Fine-tuned")
+    with mlflow.start_run():
+        eval_table, prompt, model_type = _test_model("ft:gpt-3.5-turbo-0125:profiq:title:9OiEKGh1", _test_gpt)
+        _log_metrics(eval_table, prompt, model_type)
+    
+    print("GPT 4o")
+    with mlflow.start_run():
+        eval_table, prompt, model_type = _test_model("gpt-4o", _test_gpt)
+        _log_metrics(eval_table, prompt, model_type)
+
     """
     print("GPT 3.5")
     with mlflow.start_run():
@@ -190,21 +208,19 @@ def test_title():
     with mlflow.start_run():
         eval_table, prompt, model_type = _test_model("gpt-4-turbo", _test_gpt)
         _log_metrics(eval_table, prompt, model_type)
-    
-    """
+
     print("Claude")
     with mlflow.start_run():
         eval_table, prompt, model_type = _test_model("claude-3-sonnet", _test_claude)
         _log_metrics(eval_table, prompt, model_type)
 
-    """
     print("Gemini 1.0")
     with mlflow.start_run():
         eval_table, prompt, model_type = _test_model("gemini-1.0", _test_gemini)
         _log_metrics(eval_table, prompt, model_type)
-    """
 
     print("Gemini 1.5")
     with mlflow.start_run():
         eval_table, prompt, model_type = _test_model("gemini-1.5", _test_gemini)
         _log_metrics(eval_table, prompt, model_type)
+    """
