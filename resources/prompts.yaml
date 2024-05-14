@@ -25,7 +25,7 @@ accept_cookies_selector:
         Click on the element for accepting cookies. Use unique or very specific selectors so 
         there is no confusion. This usually means some type of a button.
     temperature: 0.0
-    model: gpt-4-turbo-preview
+    model: gpt-4o
     functions:
         - name: accept_cookies
           description: Accept cookies by clicking an element identified by a Playwright selector
@@ -73,7 +73,7 @@ page_title:
         {html}
         ----- HTML END -----
     temperature: 0.0
-    model: gpt-4-turbo-preview
+    model: gpt-4o
     functions:
         - name: display_page_title
           description: Display a title for a web page based on its HTML content
@@ -211,7 +211,7 @@ suggest_actions:
         {description}
         ----- DESCRIPTION END -----
     temperature: 0.05
-    model: gpt-4-turbo-preview
+    model: gpt-4o
     functions:
         - name: suggest_actions
           description: Recommend actions to perform next

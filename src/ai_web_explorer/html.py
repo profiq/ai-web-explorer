@@ -66,12 +66,8 @@ def get_full_html(page: playwright.sync_api.Page, minified: bool = True) -> str:
     html_clean = soup.prettify()
     html_clean = _remove_comments(html_clean)
 
-    print(len(html_clean))
-
     if minified:
         html_clean = htmlmin.minify(html_clean)
-
-    print(len(html_clean))
 
     return html_clean
 
