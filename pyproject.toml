@@ -23,6 +23,7 @@ build-backend = "hatchling.build"
 
 [project.scripts]
 explore = "ai_web_explorer:main"
+ft = "ai_web_explorer.ft:main"
 
 [tool.rye]
 managed = true

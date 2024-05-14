@@ -1,6 +1,7 @@
 import dataclasses
 import logging
 import time
+from urllib.parse import urlparse
 
 import openai
 import playwright.sync_api
@@ -97,7 +98,11 @@ class ExploreLoop:
         action_result, tool_calls = self._executor.execute(self._action_current)
         self._action_current.function_calls = tool_calls
 
-        if self._domain not in self._page.url:
+        url_parsed = urlparse(self._page.url)
+        print(url_parsed.netloc)
+        print(self._domain in url_parsed.netloc)
+
+        if self._domain not in url_parsed.netloc:
             self._back_to_domain()
             self._action_current.status = "failure"
         else:
@@ -169,8 +174,13 @@ class ExploreLoop:
 
     def _back_to_domain(self):
         logging.info("Navigated away from domain, going back to domain")
-        while self._domain not in self._page.url:
+        url_parsed = urlparse(self._page.url)
+        max_attempts = 2
+        attempts = 0
+        while self._domain not in url_parsed.netloc and attempts < max_attempts:
             self._page.go_back()
+            attempts += 1
+        self._page.goto(f"https://{self._domain}")
 
     def _search_next_available_action(self) -> webstate.Action | None:
         states_visiting: list[WebStateBacktrack] = [(self._webstates[0], None, None)]
