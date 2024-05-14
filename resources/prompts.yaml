@@ -64,6 +64,8 @@ page_title:
         Todo List - Today, Empty
         Todo List - Week, With items
         Privacy settings - New settings saved
+        Article comments - Comments present, User not logged in
+        User personal projects - Not logged in
 
         The user will give you a part of HTML. You will return a title and reasoning behind it.
 

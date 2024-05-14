@@ -50,8 +50,8 @@ class Prompt:
             model=self.model,
             messages=[message],
             temperature=self.temperature,
-            tools=tools,
-            tool_choice=tool_choice,
+            #tools=tools,
+            #tool_choice=tool_choice,
         )
         return completion
 
