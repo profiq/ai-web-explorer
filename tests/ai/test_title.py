@@ -130,11 +130,11 @@ def _test_gpt(prompt: promptrepo.Prompt, html: str, title_expected: str) -> tupl
     client = openai.OpenAI()
     completion = prompt.execute_prompt(client, html=html)
     response = completion.choices[0]
-    #args_str = response.message.tool_calls[0].function.arguments
-    #args = json.loads(args_str)
-    #title_generated = args.get("title", "NO TITLE")
-    print(response.message)
-    title_generated = json.loads(response.message.content).get('title', 'NO TITLE')
+    args_str = response.message.tool_calls[0].function.arguments
+    args = json.loads(args_str)
+    title_generated = args.get("title", "NO TITLE")
+    #print(response.message)
+    #title_generated = json.loads(response.message.content).get('title', 'NO TITLE')
     similarity = compare_embeddings(title_expected, title_generated)
     model_type = prompt.model.split("-")[0] + "-" + prompt.model.split("-")[1]
     prices = PRICES[model_type]
@@ -190,17 +190,19 @@ def _test_gemini(prompt: promptrepo.Prompt, html: str, title_expected: str) -> t
 
 
 def test_title():
+    """
     print("GPT 3.5 Fine-tuned")
     with mlflow.start_run():
         eval_table, prompt, model_type = _test_model("ft:gpt-3.5-turbo-0125:profiq:title:9OiuQe0B", _test_gpt)
         _log_metrics(eval_table, prompt, model_type)
-    
-    """
-    print("GPT 4o")
+    """   
+
+    print("GPT 4")
     with mlflow.start_run():
-        eval_table, prompt, model_type = _test_model("gpt-4o", _test_gpt)
+        eval_table, prompt, model_type = _test_model("gpt-4-turbo", _test_gpt)
         _log_metrics(eval_table, prompt, model_type)
 
+    """
     print("GPT 3.5")
     with mlflow.start_run():
         eval_table, prompt, model_type = _test_model("gpt-3.5-turbo", _test_gpt)
