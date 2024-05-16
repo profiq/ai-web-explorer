@@ -80,12 +80,12 @@ page_title:
           parameters:
               type: object
               properties:
-                  title:
-                      type: string
-                      description: A title for the web page
                   reasoning:
                       type: string
                       description: Why was a given title chosen
+                  title:
+                      type: string
+                      description: A title for the web page
 
 describe_html:
     prompt: |
@@ -270,6 +270,7 @@ execute_action:
         might help with the action:
         {additional_info}
     temperature: 0.0
+    model: gpt-4o
     functions:
         - name: click_element
           description: Click on an element identified by a Playwright selector
