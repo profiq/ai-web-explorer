@@ -12,6 +12,7 @@ ActionStatus = typing.Literal["none", "success", "failure"]
 class Action:
     description: str
     part: int
+    priority: int
     status: ActionStatus = dataclasses.field(default="none")
     function_calls: list[dict] = dataclasses.field(default_factory=list)
 
@@ -34,9 +35,18 @@ class WebState:
 
     @property
     def random_action(self) -> None | Action:
+        candidates_obvious = [action for action in self.actions if action.status == "none" and action.priority == 11]
+
+        if candidates_obvious:
+            return random.choice(candidates_obvious)
+
         candidates = [action for action in self.actions if action.status == "none"]
+        probabilities = np.array([action.priority for action in candidates])
+        probabilities = probabilities / probabilities.sum()
+
         if candidates:
-            return random.choice(candidates)
+            return np.random.choice(np.array(candidates), p=probabilities)  # type: ignore
+
         return None
 
     def cosine_distance(self, embedding: list[float]):

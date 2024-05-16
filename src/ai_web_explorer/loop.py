@@ -99,8 +99,6 @@ class ExploreLoop:
         self._action_current.function_calls = tool_calls
 
         url_parsed = urlparse(self._page.url)
-        print(url_parsed.netloc)
-        print(self._domain in url_parsed.netloc)
 
         if self._domain not in url_parsed.netloc:
             self._back_to_domain()
