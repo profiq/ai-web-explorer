@@ -35,10 +35,11 @@ class WebState:
 
     @property
     def random_action(self) -> None | Action:
-        candidates_obvious = [action for action in self.actions if action.status == "none" and action.priority == 11]
+        candidates_obvious = [action for action in self.actions if action.status == "none" and action.priority >= 11]
 
         if candidates_obvious:
-            return random.choice(candidates_obvious)
+            candidates_obvious = sorted(candidates_obvious, key=lambda x: x.priority, reverse=True)
+            return candidates_obvious[0]
 
         candidates = [action for action in self.actions if action.status == "none"]
         probabilities = np.array([action.priority for action in candidates])

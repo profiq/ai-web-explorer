@@ -141,4 +141,5 @@ class Executor:
             )
         else:
             raise ValueError(f"Unknown function {tool_call.function.name}")
+        time.sleep(1)
         return {"role": "tool", "content": "OK", "tool_call_id": tool_call.id}

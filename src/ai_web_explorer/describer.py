@@ -110,5 +110,15 @@ class Describer:
             raise ValueError("No actions in response when getting actions")
 
         actions = [webstate.Action(**action) for action in args["actions"]]
-        print(actions)
         return actions
+
+    def is_loading(self) -> bool:
+        logging.info(f"Checking if webpage is loading")
+        prompt = promptrepo.get_prompt("is_loading")
+
+        for part in html.iterate_html(self._page):
+            response = prompt.execute_prompt(self._client, html=part)
+            response_text = response.message.content
+            return response_text is not None and 'yes' in response_text.lower()
+
+        return False

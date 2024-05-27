@@ -64,6 +64,7 @@ page_title:
         Todo List - Today, Empty
         Todo List - Week, With items
         Privacy settings - New settings saved
+        Todo List - Today, Add new task dialog open
 
         The user will give you a part of HTML. You will return a title and reasoning behind it.
 
@@ -184,9 +185,12 @@ suggest_actions:
         Suggest only actions with a high probability of staying on the current domain. Avoid actions that
         could lead to a different website. Assume that all parts of the wepage are visible.
 
-        Assign a priority to each action on a scale from 1 to 10. Higher priority means that the action
-        is more important to perform in order to learn new things about the website. If an action
-        is an obvious next step, assign it a high priority of 11.
+        Assign a priority to each action like this:
+        - set the priority to 12 for actions related to a modal dialog if there is one,
+        - set the priority to 11 for actions that are an obvious next step,
+        - if you are on a login page, set the priority to 11 for logging in with username and password,
+        - all other actions should have a priority between 1 and 10. Higher priority means that the action
+          is more important to perform in order to learn new things about the website.
 
         The user provided the following additional information about the page:
         {additional_info}
@@ -324,3 +328,12 @@ verify_action:
         If the action is not finished or you registered failure, continue calling more tools.
         If the action is finished successfully, simply say 'success'
         If the action is failing and you cannot continue, say 'failure'
+is_loading:
+    prompt: |
+        Answer with 'yes' if the HTML following piece of HTML represents 
+        a loading page, e.g. a spinner or a progress bar.
+        Answer with 'no' if the HTML does not represent a loading page.
+
+        ----- HTML START -----
+        {html}
+        ----- HTML END -----

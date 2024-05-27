@@ -1,12 +1,11 @@
 import argparse
 import logging
+import time
 
 import openai
 import playwright.sync_api
 
-from . import cookies
 from . import loop
-from . import html
 
 logging.basicConfig(level=logging.INFO)
 

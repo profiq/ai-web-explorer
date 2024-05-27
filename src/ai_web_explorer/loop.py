@@ -109,6 +109,7 @@ class ExploreLoop:
         logging.info(f"Action result: {self._action_current.status}")
 
     def _get_webstate(self) -> webstate.WebState:
+        self._ensure_page_loaded()
         page_title = self._describer.get_title(
             self._config.confirm_titles, self._config.store_titles
         )
@@ -169,6 +170,13 @@ class ExploreLoop:
         time.sleep(5)
         cookies.accept_cookies_if_present(self._openai_client, page)
         return pw, page
+
+    def _ensure_page_loaded(self):
+        for _ in range(config.ENSURE_LOADED_MAX_TRIES):
+            if not self._describer.is_loading():
+                break
+            logging.info("Page is still loading, waiting...")
+            time.sleep(config.ENSURE_LOADED_SLEEP_TIME)
 
     def _back_to_domain(self):
         logging.info("Navigated away from domain, going back to domain")
