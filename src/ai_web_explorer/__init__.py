@@ -42,6 +42,14 @@ parser.add_argument(
     default="----- No additional information was provided -----",
 )
 
+parser.add_argument(
+    "--output",
+    "-o",
+    type=str,
+    help='Output format - "jsonemb" (includes title embedding), "json" or "digraph". JSON is more detailed, digraph can be easily visualized',
+    default="digraph",
+)
+
 
 def main():
     args = parser.parse_args()
@@ -64,5 +72,10 @@ def main():
 
     explore_loop = loop.ExploreLoop(domain, url, openai_client, loop_config)
     explore_loop.start()
-    explore_loop.print_graph()
+    if args.output == "jsonemb":
+        explore_loop.print_json(True)
+    elif args.output == "json":
+        explore_loop.print_json(False)
+    elif args.output == "digraph":
+        explore_loop.print_graph()
     explore_loop.stop()

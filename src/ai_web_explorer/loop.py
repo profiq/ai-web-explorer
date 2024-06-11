@@ -1,4 +1,6 @@
 import dataclasses
+import dataclasses
+import json
 import logging
 import time
 from urllib.parse import urlparse
@@ -154,6 +156,10 @@ class ExploreLoop:
                 )
 
         print("}")
+
+    def print_json(self, embedding=True):
+        outputs = [ws.dict(embedding) for ws in self._webstates]
+        print(json.dumps(outputs, indent=4))
 
     def stop(self):
         self._pw.stop()
