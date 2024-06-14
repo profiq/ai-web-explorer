@@ -157,8 +157,8 @@ class ExploreLoop:
 
         print("}")
 
-    def print_json(self, embedding=True):
-        outputs = [ws.dict(embedding) for ws in self._webstates]
+    def print_json(self, simple=True):
+        outputs = [ws.dict(simple) for ws in self._webstates]
         print(json.dumps(outputs, indent=4))
 
     def stop(self):

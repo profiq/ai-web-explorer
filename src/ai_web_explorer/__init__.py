@@ -1,9 +1,7 @@
 import argparse
 import logging
-import time
 
 import openai
-import playwright.sync_api
 
 from . import loop
 
@@ -46,7 +44,7 @@ parser.add_argument(
     "--output",
     "-o",
     type=str,
-    help='Output format - "jsonemb" (includes title embedding), "json" or "digraph". JSON is more detailed, digraph can be easily visualized',
+    help='Output format - "jsonsimple", "json" or "digraph". JSON is more detailed, digraph can be easily visualized',
     default="digraph",
 )
 
@@ -72,7 +70,7 @@ def main():
 
     explore_loop = loop.ExploreLoop(domain, url, openai_client, loop_config)
     explore_loop.start()
-    if args.output == "jsonemb":
+    if args.output == "jsonsimple":
         explore_loop.print_json(True)
     elif args.output == "json":
         explore_loop.print_json(False)

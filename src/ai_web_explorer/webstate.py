@@ -15,7 +15,11 @@ class Action:
     status: ActionStatus = dataclasses.field(default="none")
     function_calls: list[dict] = dataclasses.field(default_factory=list)
 
-    def dict(self):
+    def dict(self, simple=False):
+
+        if simple:
+            return self.description
+
         return {
             "description": self.description,
             "part": self.part,
@@ -30,9 +34,9 @@ class StateTransition:
     action: Action
     state_new: "WebState"
 
-    def dict(self):
+    def dict(self, simple=False):
         return {
-            "action": self.action.dict(),
+            "action": self.action.dict(simple),
             "state_new": str(self.state_new.ws_id),
         }
 
@@ -75,17 +79,17 @@ class WebState:
             np.linalg.norm(self.title_embedding) * np.linalg.norm(embedding)
         )
 
-    def dict(self, embedding=True):
+    def dict(self, simple=False):
         d =  {
             "ws_id": str(self.ws_id),
             "title": self.title,
             "urls": self.urls,
             "description": self.description,
-            "actions": [a.dict() for a in self.actions],
-            "transitions": [t.dict() for t in self.transitions],
+            "actions": [a.dict(simple) for a in self.actions],
+            "transitions": [t.dict(simple) for t in self.transitions],
         }
 
-        if embedding:
+        if not simple:
             d["title_embedding"] = self.title_embedding
 
         return d
