@@ -1,7 +1,8 @@
 import dataclasses
+import json
 import typing
 import uuid
-
+from openai.types.chat import ChatCompletionMessageToolCall
 import numpy as np
 
 ActionStatus = typing.Literal["none", "success", "failure"]
@@ -27,6 +28,16 @@ class Action:
             "status": self.status,
             "function_calls": [f.model_dump() for f in self.function_calls],
         }
+
+    @staticmethod
+    def from_dict(action_raw) -> "Action":
+        return Action(
+            description=action_raw["description"],
+            part=action_raw["part"],
+            priority=action_raw["priority"],
+            status=action_raw["status"],
+            function_calls=[ChatCompletionMessageToolCall(**f) for f in action_raw["function_calls"]],  # type: ignore
+        )
 
 
 @dataclasses.dataclass
@@ -64,7 +75,6 @@ class WebState:
                 candidates_obvious, key=lambda x: x.priority, reverse=True
             )
             return candidates_obvious[0]
-
         candidates = [action for action in self.actions if action.status == "none"]
         probabilities = np.array([action.priority for action in candidates])
         probabilities = probabilities / probabilities.sum()
@@ -80,7 +90,7 @@ class WebState:
         )
 
     def dict(self, simple=False):
-        d =  {
+        d = {
             "ws_id": str(self.ws_id),
             "title": self.title,
             "urls": self.urls,
@@ -93,3 +103,34 @@ class WebState:
             d["title_embedding"] = self.title_embedding
 
         return d
+
+
+def load_states_from_file(file_path: str) -> list[WebState]:
+    with open(file_path, "r") as f:
+        webstates_raw = json.load(f)
+
+    webstates = []
+    transitions_raw = []
+
+    for ws_raw in webstates_raw:
+        ws = WebState(
+            title=ws_raw["title"],
+            title_embedding=ws_raw["title_embedding"],
+            urls=ws_raw["urls"],
+            description=ws_raw["description"],
+            actions=[Action.from_dict(a) for a in ws_raw["actions"]],
+            transitions=[],
+            ws_id=uuid.UUID(ws_raw["ws_id"]),
+        )
+        webstates.append(ws)
+        transitions_raw.extend((uuid.UUID(ws_raw["ws_id"]), t) for t in ws_raw["transitions"] if t)
+
+    for state_id, transition_raw in transitions_raw:
+        state_current = next(ws for ws in webstates if ws.ws_id == state_id)
+        action = Action.from_dict(transition_raw["action"])
+        state_new = next(
+            ws for ws in webstates if ws.ws_id == uuid.UUID(transition_raw["state_new"])
+        )
+        state_current.transitions.append(StateTransition(action, state_new))
+
+    return webstates

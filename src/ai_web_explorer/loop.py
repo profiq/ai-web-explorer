@@ -70,6 +70,9 @@ class ExploreLoop:
 
         self._explore(True)
 
+    def set_webstates(self, webstates: list[webstate.WebState]):
+        self._webstates = webstates
+
     def _explore(self, finish=False):
         logging.info(f"Current URL: {self._page.url}")
         ws = self._get_webstate()
