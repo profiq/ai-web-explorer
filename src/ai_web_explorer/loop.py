@@ -1,4 +1,6 @@
 import dataclasses
+import dataclasses
+import json
 import logging
 import time
 from urllib.parse import urlparse
@@ -67,6 +69,9 @@ class ExploreLoop:
             i += 1
 
         self._explore(True)
+
+    def set_webstates(self, webstates: list[webstate.WebState]):
+        self._webstates = webstates
 
     def _explore(self, finish=False):
         logging.info(f"Current URL: {self._page.url}")
@@ -154,6 +159,10 @@ class ExploreLoop:
                 )
 
         print("}")
+
+    def print_json(self, simple=True):
+        outputs = [ws.dict(simple) for ws in self._webstates]
+        print(json.dumps(outputs, indent=4))
 
     def stop(self):
         self._pw.stop()

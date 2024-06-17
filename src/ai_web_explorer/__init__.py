@@ -1,11 +1,10 @@
 import argparse
 import logging
-import time
 
 import openai
-import playwright.sync_api
 
 from . import loop
+from . import webstate
 
 logging.basicConfig(level=logging.INFO)
 
@@ -42,6 +41,22 @@ parser.add_argument(
     default="----- No additional information was provided -----",
 )
 
+parser.add_argument(
+    "--output",
+    "-o",
+    type=str,
+    help='Output format - "jsonsimple", "json" or "digraph". JSON is more detailed, digraph can be easily visualized',
+    default="digraph",
+)
+
+parser.add_argument(
+    "--restore",
+    "-r",
+    type=str,
+    help="Restore the exploration from a file",
+    default=None,
+)
+
 
 def main():
     args = parser.parse_args()
@@ -63,6 +78,17 @@ def main():
     )
 
     explore_loop = loop.ExploreLoop(domain, url, openai_client, loop_config)
+    
+    if args.restore:
+        webstates = webstate.load_states_from_file(args.restore)
+        explore_loop.set_webstates(webstates)
+
     explore_loop.start()
-    explore_loop.print_graph()
+
+    if args.output == "jsonsimple":
+        explore_loop.print_json(True)
+    elif args.output == "json":
+        explore_loop.print_json(False)
+    elif args.output == "digraph":
+        explore_loop.print_graph()
     explore_loop.stop()

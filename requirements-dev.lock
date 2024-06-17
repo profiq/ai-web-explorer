@@ -50,9 +50,9 @@ platformdirs==4.2.1
     # via black
 playwright==1.43.0
     # via ai-web-explorer
-pydantic==2.7.1
+pydantic==2.7.3
     # via openai
-pydantic-core==2.18.2
+pydantic-core==2.18.4
     # via pydantic
 pyee==11.1.0
     # via playwright
