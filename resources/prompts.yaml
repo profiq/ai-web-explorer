@@ -130,6 +130,7 @@ describe_html:
         {html_part}
         ----- HTML END -----
     temperature: 0.05
+    max_tokens: 2048
     functions:
         - name: describe_html
           description: Describe the subpage from its HTML

@@ -13,6 +13,7 @@ class Prompt:
     functions: list[shared_params.FunctionDefinition]
     temperature: float
     model: str
+    max_tokens: int | None = None
 
     @property
     def tools(self) -> list[chat.ChatCompletionToolParam]:
@@ -46,6 +47,7 @@ class Prompt:
             temperature=self.temperature,
             tools=tools,
             tool_choice=tool_choice,
+            max_tokens=self.max_tokens,
         )
         response = completion.choices[0]
         return response
@@ -64,5 +66,6 @@ def get_prompt(name: str) -> Prompt:
         prompt_raw.get("functions", []),
         prompt_raw.get("temperature", config.TEMPERATURE_DEFAULT),
         prompt_raw.get("model", config.MODEL_DEFAULT),
+        prompt_raw.get("max_tokens", None),
     )
     return prompt
