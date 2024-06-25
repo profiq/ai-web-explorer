@@ -254,7 +254,8 @@ execute_action:
 
         If a tool requires a selector, the selector has to be
         compatible with Playwright and the element should be present
-        in HTML.
+        in HTML. If possible and unique, you should prefer the `:has-text()` 
+        selector from Playwright.
 
         When using the tool for filling text inputs, be very careful about
         selecting elements that can acually be filled.

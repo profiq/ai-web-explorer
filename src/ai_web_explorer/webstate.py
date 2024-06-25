@@ -107,7 +107,9 @@ class WebState:
 
 def load_states_from_file(file_path: str) -> list[WebState]:
     with open(file_path, "r") as f:
-        webstates_raw = json.load(f)
+        json_string = f.read()
+        print(json_string)
+        webstates_raw = json.loads(json_string)
 
     webstates = []
     transitions_raw = []

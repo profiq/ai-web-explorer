@@ -21,7 +21,22 @@ JS_FUNCTIONS = """
         input.setAttribute('data-current-value', value);
       });
     }
+
+    function isVisible(element) {
+        return !!(element.offsetWidth || element.offsetHeight || element.getClientRects().length);
+    }
+
+    function markInvisibleElements() {
+        const allElements = document.querySelectorAll('*');
+        allElements.forEach(element => {
+            if (!isVisible(element)) {
+                element.setAttribute('data-playwright-invisible', 'true');
+            }
+        });
+    }
+
     window.setValueAsDataAttribute = setValueAsDataAttribute;
+    window.markInvisibleElements = markInvisibleElements;
 """
 
 
@@ -46,6 +61,7 @@ def iterate_html(
 
 def get_full_html(page: playwright.sync_api.Page, minified: bool = True) -> str:
     page.evaluate("setValueAsDataAttribute()")
+    page.evaluate("markInvisibleElements()")
 
     for el in page.locator(":visible").all():
         try:
@@ -93,8 +109,8 @@ def _clean_attributes(soup: bs4.BeautifulSoup, classes: bool = True):
         "placeholder",
         "data-test-id",
         "data-testid",
-        "data-playwright-scrollable",
         "data-current-value",
+        "data-playwright-invisible",
         "href",
     ]
 
@@ -112,16 +128,6 @@ def _remove_comments(html: str):
 
 
 def _remove_invisible(soup: bs4.BeautifulSoup):
-    to_keep = set()
-    visible_elements = soup.find_all(attrs={"data-playwright-visible": True})
-    for element in visible_elements:
-        current = element
-        while current is not None:
-            if current in to_keep:
-                break
-            to_keep.add(current)
-            current = current.parent
-
-    for element in soup.find_all(True):
-        if element.name and element not in to_keep:
-            element.decompose()
+    invisible_elements = soup.find_all(attrs={"data-playwright-invisible": True})
+    for element in invisible_elements:
+        element.decompose()
