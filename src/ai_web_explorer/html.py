@@ -76,7 +76,6 @@ def get_full_html(page: playwright.sync_api.Page, minified: bool = True) -> str:
     if minified:
         html_clean = htmlmin.minify(html_clean)
 
-    print(html_clean)
     return html_clean
 
 

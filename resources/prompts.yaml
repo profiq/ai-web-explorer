@@ -1,7 +1,7 @@
 search_cookies:
     prompt: |
-        You are an expert on HTML. You are given a part of website HTML and you are
-        asked to check if the website shows a cookie consent banner.
+        You are an expert on HTML. You are given a part of website HTML as well as its screenshot 
+        and you are asked to check if the website shows a cookie consent banner.
 
         Here is the current HTML.
 
@@ -14,13 +14,15 @@ search_cookies:
 accept_cookies_selector:
     prompt: |
         You are an expert on finding elements in HTML that, when clicked, accepts all
-        cookies.
+        cookies. 
 
         Here is the current HTML.
 
         ----- HTML START -----
         {html_part}
         ----- HTML END ----
+
+        I am also giving you the screenshot of the wepage.
 
         Click on the element for accepting cookies. Use unique or very specific selectors so 
         there is no confusion. This usually means some type of a button.
@@ -40,10 +42,9 @@ accept_cookies_selector:
                       description: |
                           A playwright-compatible CSS selector of an element for accepting cookies
                           when clicked
-
 page_title:
     prompt: |
-        You are an expert on giving titles to web pages from parts of their HTML. 
+        You are an expert on giving titles to web pages from parts of their HTML and their screenshots.
         You can create titles that capture what type of page the HTML represents and its state.
 
         You figured out that by creating titles this way you can model any website as a graph. 
@@ -90,7 +91,7 @@ page_title:
 
 describe_html:
     prompt: |
-        Analyze the following HTML and provide a specific and extensive 
+        Analyze the following HTML and screenshot and provide a specific and extensive 
         description of its contents. Imagine you are describing the page
         to a friend over phone.
 
@@ -332,7 +333,7 @@ verify_action:
         If the action is failing and you cannot continue, say 'failure'
 is_loading:
     prompt: |
-        Answer with 'yes' if the HTML following piece of HTML represents 
+        Answer with 'yes' if the HTML following piece of HTML and screenhot represents 
         a loading page, e.g. a spinner or a progress bar.
         Answer with 'no' if the HTML does not represent a loading page.
 

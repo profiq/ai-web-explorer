@@ -1,5 +1,4 @@
 import dataclasses
-import dataclasses
 import json
 import logging
 import time
@@ -14,6 +13,7 @@ from . import executor
 from . import config
 from . import cookies
 from . import html
+from . import config
 
 
 @dataclasses.dataclass
@@ -175,6 +175,9 @@ class ExploreLoop:
         context = browser.new_context()
         page = context.new_page()
         page.add_init_script(html.JS_FUNCTIONS)
+        page.set_viewport_size(
+            {"width": config.BROWSER_SIZE[0], "height": config.BROWSER_SIZE[1]}
+        )
         page.goto(url)
         time.sleep(5)
         cookies.accept_cookies_if_present(self._openai_client, page)

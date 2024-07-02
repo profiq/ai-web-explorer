@@ -25,9 +25,12 @@ class Describer:
 
     def get_title(self, confirm: bool = True, store_title: bool = True) -> str:
         page_html = html.get_full_html(self._page)[: config.HTML_PART_LENGTH * 2]
+        screenshot = self._page.screenshot()
         prompt = promptrepo.get_prompt("page_title")
         logging.info(f"Getting title for webpage")
-        response = prompt.execute_prompt(self._client, html=page_html)
+        response = prompt.execute_prompt(
+            self._client, image_bytes=screenshot, html=page_html
+        )
 
         if not response.message.tool_calls or len(response.message.tool_calls) == 0:
             raise ValueError("No tool calls in response when getting page title")
@@ -70,15 +73,24 @@ class Describer:
         logging.info(f"Getting description for webpage")
 
         for part in html.iterate_html(self._page):
-            response = prompt.execute_prompt(self._client, html_part=part)
+            response = prompt.execute_prompt(
+                self._client, image_bytes=self._page.screenshot(), html_part=part
+            )
 
             if not response.message.tool_calls or len(response.message.tool_calls) == 0:
                 raise ValueError("No tool calls in response when getting description")
 
             args_str = response.message.tool_calls[0].function.arguments
-            args = json.loads(args_str)
+
+            try:
+                args = json.loads(args_str)
+            except json.JSONDecodeError as e:
+                logging.error(f"Error decoding JSON: {args_str}")
+                raise e
+
             description.append(args)
 
+        print(description)
         return description
 
     def get_actions(self, title: str, description: list[dict]) -> list[webstate.Action]:
@@ -94,6 +106,7 @@ class Describer:
 
         response = prompt.execute_prompt(
             self._client,
+            image_bytes=self._page.screenshot(),
             description=description_str,
             url=self._page.url,
             title=title,
@@ -104,7 +117,12 @@ class Describer:
             raise ValueError("No tool calls in response when getting actions")
 
         args_str = response.message.tool_calls[0].function.arguments
-        args = json.loads(args_str)
+
+        try:
+            args = json.loads(args_str)
+        except json.JSONDecodeError as e:
+            logging.error(f"Error decoding JSON: {args_str}")
+            raise e
 
         if not "actions" in args:
             raise ValueError("No actions in response when getting actions")
@@ -117,8 +135,10 @@ class Describer:
         prompt = promptrepo.get_prompt("is_loading")
 
         for part in html.iterate_html(self._page):
-            response = prompt.execute_prompt(self._client, html=part)
+            response = prompt.execute_prompt(
+                self._client, image_bytes=self._page.screenshot(), html=part
+            )
             response_text = response.message.content
-            return response_text is not None and 'yes' in response_text.lower()
+            return response_text is not None and "yes" in response_text.lower()
 
         return False
