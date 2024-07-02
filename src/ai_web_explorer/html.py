@@ -63,15 +63,6 @@ def get_full_html(page: playwright.sync_api.Page, minified: bool = True) -> str:
     page.evaluate("setValueAsDataAttribute()")
     page.evaluate("markInvisibleElements()")
 
-    for el in page.locator(":visible").all():
-        try:
-            el.evaluate(
-                "el => el.setAttribute('data-playwright-visible', true)",
-                timeout=config.PLAYWRIGHT_TIMEOUT,
-            )
-        except playwright.sync_api.TimeoutError:
-            logging.warning("Timeout error while setting visible attribute")
-
     if page.url == "about:blank":
         raise PageNotLoadedException("No page loaded yet")
     html = page.content()
@@ -85,6 +76,7 @@ def get_full_html(page: playwright.sync_api.Page, minified: bool = True) -> str:
     if minified:
         html_clean = htmlmin.minify(html_clean)
 
+    print(html_clean)
     return html_clean
 
 
@@ -114,7 +106,7 @@ def _clean_attributes(soup: bs4.BeautifulSoup, classes: bool = True):
         "href",
     ]
 
-    if not classes:
+    if classes:
         allowed_attrs.append("class")
 
     for element in soup.find_all(True):
