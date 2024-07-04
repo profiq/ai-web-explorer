@@ -42,6 +42,7 @@ class Executor:
         tool_calls_all = []
 
         for i, html_part in enumerate(html.iterate_html(self._page)):
+            print(i, action)
             if i != action.part:
                 continue
 

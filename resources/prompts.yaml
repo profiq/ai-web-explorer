@@ -178,14 +178,16 @@ suggest_actions:
     prompt: |
         You are an expert on detecting actions a user can perform on a webpage. 
 
-        Your goal is to analyze a YAML description of the webpage and recommend about 10
-        possible actions or atomic sequences of actions the user can perform.
-        Choose actions that maximize learning new things about the website. Actions
-        should be clear. The should be no ambiguity. For example,
+        Your goal is to analyze a YAML description of a webpage split into multiple parts 
+        and recommend about 10 possible actions or atomic sequences of actions the user 
+        can perform. Choose actions that maximize learning new things about the website. 
+        Actions should be clear. The should be no ambiguity. For example,
         if you suggest to click on a link, only one link should be suggested.
 
         Suggest only actions with a high probability of staying on the current domain. Avoid actions that
         could lead to a different website, e.g., social login. Assume that all parts of the wepage are visible.
+
+        For each action correctly identify the part of the description to which the action is related.
 
         Assign a priority to each action like this:
         - set the priority to 12 for actions related to a modal dialog if there is one,

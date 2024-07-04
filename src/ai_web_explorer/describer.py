@@ -90,19 +90,27 @@ class Describer:
 
             description.append(args)
 
-        print(description)
         return description
 
     def get_actions(self, title: str, description: list[dict]) -> list[webstate.Action]:
         description_str = "\n\n".join(
             [
-                "PART " + str(i) + ":\n" + yaml.dump(part)
+                "----- PART " + str(i) + "-----:\n" + yaml.dump(part)
                 for i, part in enumerate(description)
             ]
         )
 
         prompt = promptrepo.get_prompt("suggest_actions")
         logging.info(f"Getting actions for webpage")
+
+        print(description_str)
+
+        print(prompt.prompt_with_data(
+            description=description_str,
+            url=self._page.url,
+            title=title,
+            additional_info=self._additional_info,
+        ))
 
         response = prompt.execute_prompt(
             self._client,
@@ -128,6 +136,13 @@ class Describer:
             raise ValueError("No actions in response when getting actions")
 
         actions = [webstate.Action(**action) for action in args["actions"]]
+
+        # GPT sometimes returns incorrect part numbers. We can fix it
+        # at least when the description has only one part
+        if len(description) == 1:
+            for action in actions:
+                action.part = 0
+
         return actions
 
     def is_loading(self) -> bool:
