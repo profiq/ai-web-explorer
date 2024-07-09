@@ -225,6 +225,7 @@ suggest_actions:
         ----- DESCRIPTION END -----
     temperature: 0.05
     model: gpt-4o
+    max_tokens: 2048
     functions:
         - name: suggest_actions
           description: Recommend actions to perform next
