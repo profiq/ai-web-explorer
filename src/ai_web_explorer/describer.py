@@ -103,15 +103,6 @@ class Describer:
         prompt = promptrepo.get_prompt("suggest_actions")
         logging.info(f"Getting actions for webpage")
 
-        print(description_str)
-
-        print(prompt.prompt_with_data(
-            description=description_str,
-            url=self._page.url,
-            title=title,
-            additional_info=self._additional_info,
-        ))
-
         response = prompt.execute_prompt(
             self._client,
             image_bytes=self._page.screenshot(),

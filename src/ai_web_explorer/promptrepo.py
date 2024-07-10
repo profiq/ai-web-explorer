@@ -4,6 +4,8 @@ import dataclasses
 import openai
 from openai.types import chat, shared_params
 import yaml
+import datetime
+import json
 
 from . import config
 
@@ -60,7 +62,31 @@ class Prompt:
             max_tokens=self.max_tokens,
         )
         response = completion.choices[0]
+
+        if config.PROMPT_LOGGING_ENABLED:
+            self.log_prompt([message], response)
+
         return response
+
+    def log_prompt(self, messages, response) -> None:
+        for i, message in enumerate(messages):
+            if not isinstance(message, dict):
+                message = message.model_dump()
+            if isinstance(message["content"], list):
+                message["content"] = message["content"][0]
+            messages[i] = message
+
+        with open(config.PROMPT_LOGS_PATH, "a") as f:
+            log_record = {
+                "timestamp": datetime.datetime.now().isoformat(),
+                "messages": messages,
+                "response": response.model_dump(),
+                "functions": self.functions,
+                "temperature": self.temperature,
+                "model": self.model,
+            }
+
+            f.write(json.dumps(log_record) + "\n")
 
 
 def get_prompt(name: str) -> Prompt:
