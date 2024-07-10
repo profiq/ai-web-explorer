@@ -69,6 +69,9 @@ class Executor:
                 tools=prompt.tools,  # type: ignore
             ).choices[0]
 
+            if config.PROMPT_LOGGING_ENABLED:
+                prompt.log_prompt(messages, response)
+
             messages.append(response.message)  # type: ignore
 
             if not response.message.tool_calls or len(response.message.tool_calls) == 0:

@@ -64,15 +64,22 @@ class Prompt:
         response = completion.choices[0]
 
         if config.PROMPT_LOGGING_ENABLED:
-            self._log_prompt(message, response)
+            self.log_prompt([message], response)
 
         return response
 
-    def _log_prompt(self, message, response) -> None:
+    def log_prompt(self, messages, response) -> None:
+        for i, message in enumerate(messages):
+            if not isinstance(message, dict):
+                message = message.model_dump()
+            if isinstance(message["content"], list):
+                message["content"] = message["content"][0]
+            messages[i] = message
+
         with open(config.PROMPT_LOGS_PATH, "a") as f:
             log_record = {
                 "timestamp": datetime.datetime.now().isoformat(),
-                "message": message["content"][0],
+                "messages": messages,
                 "response": response.model_dump(),
                 "functions": self.functions,
                 "temperature": self.temperature,

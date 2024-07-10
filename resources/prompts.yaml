@@ -252,7 +252,7 @@ suggest_actions:
                               - priority
 execute_action:
     prompt: |
-        You are an expert on executing action on the web. You are given
+        You are an expert on executing actions on the web. You are given
         a website HTML, it's short text description and an action to perform.
         You can execute a sequence of multiple actions if needed.
 
