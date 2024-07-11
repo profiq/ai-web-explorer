@@ -4,7 +4,11 @@ import os
 BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 RESOURCES_PATH = os.path.join(BASE_PATH, "resources")
 DATA_PATH = os.path.join(BASE_PATH, "data")
+
+# Title settings
 TITLES_PATH = os.path.join(DATA_PATH, "titles.jsonl")
+HTMLS_PATH = os.path.join(DATA_PATH, "htmls")
+SCREENSHOTS_PATH = os.path.join(DATA_PATH, "screenshots")
 
 # GPT settings
 MODEL_DEFAULT = "gpt-4o"

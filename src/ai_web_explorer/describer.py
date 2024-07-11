@@ -9,6 +9,7 @@ from . import promptrepo
 from . import html
 from . import config
 from . import webstate
+import uuid
 
 
 class Describer:
@@ -24,10 +25,14 @@ class Describer:
         self._additional_info = additional_info
 
     def get_title(self, confirm: bool = True, store_title: bool = True) -> str:
+        website_uuid = str(uuid.uuid4())
         page_html = html.get_full_html(self._page)[: config.HTML_PART_LENGTH * 2]
         screenshot = self._page.screenshot()
         prompt = promptrepo.get_prompt("page_title")
         logging.info(f"Getting title for webpage")
+
+        self._log_page(website_uuid, page_html, screenshot)
+
         response = prompt.execute_prompt(
             self._client, image_bytes=screenshot, html=page_html
         )
@@ -148,3 +153,12 @@ class Describer:
             return response_text is not None and "yes" in response_text.lower()
 
         return False
+
+    def _log_page(self, website_uuid: str, page_html: str, screenshot: bytes) -> None:
+        logging.info(f"Logging webpage with UUID: {website_uuid}")
+
+        with open(config.HTMLS_PATH + f"/{website_uuid}.html", "w") as f:
+            f.write(page_html)
+
+        with open(config.SCREENSHOTS_PATH + f"/{website_uuid}_start.png", "wb") as f:
+            f.write(screenshot)
