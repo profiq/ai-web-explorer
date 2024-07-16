@@ -30,6 +30,8 @@ managed = true
 dev-dependencies = [
     "black>=24.3.0",
     "pytest>=8.2.2",
+    "mlflow>=2.14.3",
+    "pandas>=2.2.2",
 ]
 
 [tool.hatch.metadata]

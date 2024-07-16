@@ -3,7 +3,9 @@ import json
 import os
 
 import numpy as np
+import pandas as pd
 import openai
+import mlflow
 
 from ai_web_explorer import promptrepo
 
@@ -33,6 +35,7 @@ def eval_prompt(titles: list[dict], prompt_name, image: bool):
     prompt = promptrepo.get_prompt(prompt_name)
     similarities = []
     prices = []
+    titles_generated = []
 
     for title in titles:
         screenshot_path = os.path.join(
@@ -60,28 +63,53 @@ def eval_prompt(titles: list[dict], prompt_name, image: bool):
         args = json.loads(args_str)
         title_generated = args["title"]
         embeddings = get_embeddings([title_generated, title["title"]])
+
         similarity = cosine_similarity(embeddings)
         similarities.append(similarity)
         price = prompt.get_last_price()
         prices.append(price)
+        titles_generated.append(title_generated)
+
+    df = pd.DataFrame(titles)
+    df["title_generated"] = titles_generated
+    df["similarity"] = similarities
+    df["price"] = prices
 
     similatity_mean = np.mean(similarities)
     similarity_min = np.min(similarities)
     price_total = np.sum(prices)
     similarity_per_price = similatity_mean / price_total
+
     print("Similarity mean: %.4f" % similatity_mean)
     print("Similarity min: %.4f" % similarity_min)
     print("Price total: %.4f" % price_total)
     print("Similarity per price: %.4f" % similarity_per_price)
 
+    mlflow.log_metric("similarity_mean", float(similatity_mean))
+    mlflow.log_metric("similarity_min", similarity_min)
+    mlflow.log_metric("price_total", price_total)
+    mlflow.log_metric("similarity_per_price", similarity_per_price)
+    mlflow.log_table(data=df, artifact_file="outputs.json")
+
 
 def test_title_image_impact():
+    mlflow.set_tracking_uri("http://localhost:5000")
+    mlflow.set_experiment("Title Input Types")
+
     title_list_path = os.path.join(TITLES_PATH, "titles.csv")
 
     with open(title_list_path) as titles_fd:
         titles_reader = csv.DictReader(titles_fd)
         titles = list(titles_reader)
 
-    eval_prompt(titles, "page_title", image=True)
-    eval_prompt(titles, "page_title_image_only", image=True)
-    eval_prompt(titles, "page_title_html_only", image=False)
+    with mlflow.start_run():
+        mlflow.log_param("input_type", "both")
+        eval_prompt(titles, "page_title", image=True)
+
+    with mlflow.start_run():
+        mlflow.log_param("input_type", "image_only")
+        eval_prompt(titles, "page_title_image_only", image=True)
+
+    with mlflow.start_run():
+        mlflow.log_param("input_type", "html_only")
+        eval_prompt(titles, "page_title_html_only", image=False)
