@@ -36,6 +36,8 @@ httpx==0.27.0
 idna==3.7
     # via anyio
     # via httpx
+iniconfig==2.0.0
+    # via pytest
 mypy-extensions==1.0.0
     # via black
 numpy==1.26.4
@@ -44,18 +46,22 @@ openai==1.29.0
     # via ai-web-explorer
 packaging==24.0
     # via black
+    # via pytest
 pathspec==0.12.1
     # via black
 platformdirs==4.2.1
     # via black
 playwright==1.43.0
     # via ai-web-explorer
+pluggy==1.5.0
+    # via pytest
 pydantic==2.7.3
     # via openai
 pydantic-core==2.18.4
     # via pydantic
 pyee==11.1.0
     # via playwright
+pytest==8.2.2
 pyyaml==6.0.1
     # via ai-web-explorer
 sniffio==1.3.1

@@ -29,6 +29,7 @@ ft = "ai_web_explorer.ft:main"
 managed = true
 dev-dependencies = [
     "black>=24.3.0",
+    "pytest>=8.2.2",
 ]
 
 [tool.hatch.metadata]
