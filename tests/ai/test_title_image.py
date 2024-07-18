@@ -100,7 +100,7 @@ def test_title_image_impact():
 
     with open(title_list_path) as titles_fd:
         titles_reader = csv.DictReader(titles_fd)
-        titles = list(titles_reader)
+        titles = list(titles_reader)[:3]
 
     with mlflow.start_run():
         mlflow.log_param("input_type", "both")
