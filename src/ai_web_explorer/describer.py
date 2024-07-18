@@ -33,9 +33,7 @@ class Describer:
 
         self._log_page(website_uuid, page_html, screenshot)
 
-        response = prompt.execute_prompt(
-            self._client, image_bytes=screenshot, html=page_html
-        )
+        response = prompt.execute_prompt(self._client, image_bytes=screenshot)
 
         if not response.message.tool_calls or len(response.message.tool_calls) == 0:
             raise ValueError("No tool calls in response when getting page title")

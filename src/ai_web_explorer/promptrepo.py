@@ -106,8 +106,8 @@ class Prompt:
         return input_price + output_price
 
 
-def get_prompt(name: str) -> Prompt:
-    with open(config.PROMPTS_PATH) as f:
+def get_prompt(name: str, prompts_path: str = config.PROMPTS_PATH) -> Prompt:
+    with open(prompts_path) as f:
         prompts = yaml.safe_load(f)
     if name not in prompts:
         raise ValueError(f"Prompt {name} not found")

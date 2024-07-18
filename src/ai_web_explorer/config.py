@@ -14,7 +14,10 @@ SCREENSHOTS_PATH = os.path.join(DATA_PATH, "screenshots")
 MODEL_DEFAULT = "gpt-4o"
 MAX_TOKENS_DEFAULT = 512
 TEMPERATURE_DEFAULT = 0.1
+
 PROMPTS_PATH = os.path.join(RESOURCES_PATH, "prompts.yaml")
+PROMPTS_PATH_TEST = os.path.join(RESOURCES_PATH, "prompts_test.yaml")
+
 PROMPT_LOGGING_ENABLED = True
 PROMPT_LOGS_PATH = os.path.join(DATA_PATH, "prompt_logs.jsonl")
 

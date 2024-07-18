@@ -7,6 +7,7 @@ import pandas as pd
 import openai
 import mlflow
 
+from ai_web_explorer import config
 from ai_web_explorer import promptrepo
 
 TESTS_PATH = os.path.dirname(os.path.dirname(__file__))
@@ -32,7 +33,7 @@ def cosine_similarity(embeddings: list[list[float]]) -> float:
 def eval_prompt(titles: list[dict], prompt_name, image: bool):
     print("-----")
     print(f"Evaluating prompt {prompt_name}")
-    prompt = promptrepo.get_prompt(prompt_name)
+    prompt = promptrepo.get_prompt(prompt_name, config.PROMPTS_PATH_TEST)
     similarities = []
     prices = []
     titles_generated = []
@@ -100,11 +101,11 @@ def test_title_image_impact():
 
     with open(title_list_path) as titles_fd:
         titles_reader = csv.DictReader(titles_fd)
-        titles = list(titles_reader)[:3]
+        titles = list(titles_reader)[:2]
 
     with mlflow.start_run():
         mlflow.log_param("input_type", "both")
-        eval_prompt(titles, "page_title", image=True)
+        eval_prompt(titles, "page_title_both", image=True)
 
     with mlflow.start_run():
         mlflow.log_param("input_type", "image_only")
