@@ -142,15 +142,11 @@ class Describer:
     def is_loading(self) -> bool:
         logging.info(f"Checking if webpage is loading")
         prompt = promptrepo.get_prompt("is_loading")
-
-        for part in html.iterate_html(self._page):
-            response = prompt.execute_prompt(
-                self._client, image_bytes=self._page.screenshot(), html=part
-            )
-            response_text = response.message.content
-            return response_text is not None and "yes" in response_text.lower()
-
-        return False
+        response = prompt.execute_prompt(
+            self._client, image_bytes=self._page.screenshot()
+        )
+        response_text = response.message.content
+        return response_text is not None and "yes" in response_text.lower()
 
     def _log_page(self, website_uuid: str, page_html: str, screenshot: bytes) -> None:
         logging.info(f"Logging webpage with UUID: {website_uuid}")
