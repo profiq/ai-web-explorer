@@ -61,6 +61,7 @@ def eval_prompt(titles: list[dict], prompt_name, image: bool):
             raise ValueError("No tool calls in response when getting page title")
 
         args_str = response.message.tool_calls[0].function.arguments
+        print(args_str)
         args = json.loads(args_str)
         title_generated = args["title"]
         embeddings = get_embeddings([title_generated, title["title"]])
@@ -101,8 +102,8 @@ def test_title_image_impact():
 
     with open(title_list_path) as titles_fd:
         titles_reader = csv.DictReader(titles_fd)
-        titles = list(titles_reader)[:2]
-
+        titles = list(titles_reader)
+    
     with mlflow.start_run():
         mlflow.log_param("input_type", "both")
         eval_prompt(titles, "page_title_both", image=True)

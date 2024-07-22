@@ -70,7 +70,8 @@ page_title_image_only:
         Privacy settings - New settings saved
         Todo List - Today, Add new task dialog open
 
-        The user has given you a screenshot. You will return a title and reasoning behind it.
+        The user has given you a screenshot. You will return reasoning behind the title and the title itself.
+        When calling a function, first provide the reasoning and then the title.
     temperature: 0.0
     model: gpt-4o
     functions:
