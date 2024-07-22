@@ -132,3 +132,8 @@ page_title_html_only:
                   title:
                       type: string
                       description: A title for the web page
+is_loading:
+    prompt: |
+        Answer with 'yes' if the following screenhot shows a loading page, e.g. 
+        a spinner or a progress bar. Answer with 'no' if the screenshot does not
+        represent a loading page.

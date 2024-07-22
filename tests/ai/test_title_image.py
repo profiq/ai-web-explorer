@@ -2,17 +2,16 @@ import csv
 import json
 import os
 
-import numpy as np
-import pandas as pd
-import openai
 import mlflow
+import numpy as np
+import openai
+import pandas as pd
 
 from ai_web_explorer import config
 from ai_web_explorer import promptrepo
+import base
 
-TESTS_PATH = os.path.dirname(os.path.dirname(__file__))
-DATA_PATH = os.path.join(TESTS_PATH, "data")
-TITLES_PATH = os.path.join(DATA_PATH, "title")
+TITLES_PATH = os.path.join(base.DATA_PATH, "title")
 
 openai_client = openai.OpenAI()
 
@@ -61,7 +60,6 @@ def eval_prompt(titles: list[dict], prompt_name, image: bool):
             raise ValueError("No tool calls in response when getting page title")
 
         args_str = response.message.tool_calls[0].function.arguments
-        print(args_str)
         args = json.loads(args_str)
         title_generated = args["title"]
         embeddings = get_embeddings([title_generated, title["title"]])
@@ -103,7 +101,7 @@ def test_title_image_impact():
     with open(title_list_path) as titles_fd:
         titles_reader = csv.DictReader(titles_fd)
         titles = list(titles_reader)
-    
+
     with mlflow.start_run():
         mlflow.log_param("input_type", "both")
         eval_prompt(titles, "page_title_both", image=True)
