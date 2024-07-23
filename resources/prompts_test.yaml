@@ -137,3 +137,22 @@ is_loading:
         Answer with 'yes' if the following screenhot shows a loading page, e.g. 
         a spinner or a progress bar. Answer with 'no' if the screenshot does not
         represent a loading page.
+
+verify_action_images:
+    prompt: |
+        You are an expert in verifying actions on web pages. You can determine if a given action
+        was successful or not from the screenhot of the web page before and after the action.
+
+        You know that showing an error message if the user input is invalid is also a success.
+        The same is true for asking the user to perform some intermediate steps.
+
+        And here is the description of the action:
+
+        ----- ACTION DESCRIPTION -----
+        {action}
+        ----- ACTION DESCRIPTION -----
+
+        I've also given you the screenshot of the web page before and after the action.
+
+        If the action is finished successfully, simply say 'success'
+        If the action is failed say 'failure'

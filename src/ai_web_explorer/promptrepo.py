@@ -26,15 +26,21 @@ class Prompt:
         return self.prompt_text.format(**data)
 
     def execute_prompt(
-        self, client: openai.Client, image_bytes: bytes | None, **data
+        self, client: openai.Client, image_bytes: bytes | list[bytes] | None, **data
     ) -> chat.chat_completion.Choice:
         prompt_text = self.prompt_with_data(**data)
         content: list[dict] = [{"type": "text", "text": prompt_text}]
 
         if image_bytes is not None:
-            image_encoded = base64.b64encode(image_bytes).decode("utf-8")
-            image_encoded = f"data:image/png;base64,{image_encoded}"
-            content.append({"type": "image_url", "image_url": {"url": image_encoded}})
+            if not isinstance(image_bytes, list):
+                image_bytes = [image_bytes]
+
+            for image in image_bytes:
+                image_encoded = base64.b64encode(image).decode("utf-8")
+                image_encoded = f"data:image/png;base64,{image_encoded}"
+                content.append(
+                    {"type": "image_url", "image_url": {"url": image_encoded}}
+                )
 
         message: chat.ChatCompletionMessageParam = {
             "role": "user",
