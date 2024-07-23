@@ -1,0 +1,39 @@
+1 dcd488c0-976a-44aa-a21f-af47d58c66bc	Click on the link to submit an article
+1 f8cac24c-f3fa-43b0-accc-9955812870d5	Fill in the username input for login
+1 95c2cdfb-b9bc-4990-9d9a-1dd39e1273d3	Fill in the password input for login
+1 ffa4d992-9bb0-4361-8b86-d23427e973a0	Fill in the 'Username' input field with 'standard_user'.
+1 c6fc7ec9-4380-49b7-bf1a-d01c0b80194e	Fill in the password input field with 'secret_sauce'.
+0 cd1d96ae-d37b-41c9-b192-0c14b09ddbb8	Login with username 'standard_user' and password 'secret_sauce'
+1 cedd953b-108c-4d40-936d-2a977dfb00cc	Click on the link to the shopping cart
+1 2e9e7cef-044d-4b9f-9a00-a989e065be2b	Click on the button to continue shopping
+1 99355d92-f62b-498d-80eb-5e95d9569b1c	Click on the button to add 'Sauce Labs Bolt T-Shirt' to the cart
+1 e6f35fa2-0619-46ae-87f6-4e9e59dcbf14	Click on the link to the shopping cart
+1 41421db7-6539-46b4-a68b-1e38331dc17c	Click on the button to proceed to checkout
+1 00890bc6-0ea3-4379-912b-db553b9409b9	Click the button to continue to the next step of the checkout process
+1 d3f3cd18-06d5-400d-9ebb-c31a4b9f7d2c	Click on the button to dismiss the error message
+1 c4af2cb1-2cae-4878-8cc0-460c6b0aa9ad	Click on the button to log in
+1 6eed33e3-13ff-438a-95ba-b0b620ed671e	Click on the button to add a new task
+1 dbee043a-f8c3-4d4c-a6d9-81b520e0b027	Fill in the task name input field
+1 6ece6976-4283-45ef-b887-1e773e25bb98	Fill in the task description input field
+0 0c0130ad-e381-4d99-8d05-f7246af99a56	Set the task's due date
+0 2a01a54b-0aa2-4437-9f33-1c3a50b7c7e2	Set the task's priority
+1 8ab735d8-00bc-455e-abce-41c828125fa4	Set task reminders
+0 32ca73e5-c7a5-4346-983f-aba0b7072179	Click on the button to add reminders to the task.
+0 ae038e72-6b81-4a08-a281-a126901761c2	Submit the task form
+0 1439a388-b0b1-4f24-add3-f01385f9a113	Cancel task editing
+1 fbd82230-c03e-45f3-82e3-5b34b610f758	Fill in the email input field
+0 44ce14b2-424d-4f9a-8b60-4058288f29ea	Click on the button to log in
+1 2988903d-d06e-4c1e-b487-b62f7a60af5c	Fill in the password input field
+1 2b22e2d7-7675-4613-9f65-1c3177ab2526	Log in with username and password
+1 260a45d6-0699-4f3a-bd3b-aba8ac35350a	Click on the button to add a new record
+1 58458515-01c5-4fd6-ab6f-c2993a190d05	Fill in the input field for amount in the add record modal
+1 839645fb-c77f-4adb-bf5c-b0e25584bee3	Click on the button to add the record in the add record modal
+0 ee618211-61d2-45b3-9912-39be08a8fafc	Click on the link to the imports page
+1 259e52d4-9c2b-499c-b619-00bd9a6b4e89	Click on the link to the form for adding a new ad
+0 ebf42206-3841-4534-be1f-dace79c5f351	Click on the link to add an ad in the 'Zvířata' category
+0 623e3765-764a-401a-bd17-352f435ea769	Click on the submit button for search
+1 4f08207d-a889-4ad6-b37e-340c4f238c7d	Click on the link to the help page in the footer
+1 5518f8be-0395-4366-8617-fef5b4816658	Click on the button to switch to mobile version
+0 e68b5149-2256-47c0-a6f8-53c856400acb	Click on the link to the jobs category
+0 922df12c-1672-4c7e-b6c3-0101ff8ac5e6	Click on the link to the login page
+0 da6a2272-6fa4-44cd-a50a-ae99c11aed0f	Click on the link to register
