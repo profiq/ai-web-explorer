@@ -44,8 +44,8 @@ accept_cookies_selector:
                           when clicked
 page_title:
     prompt: |
-        You are an expert on giving titles to web pages from parts of their HTML and their screenshots.
-        You can create titles that capture what type of page the HTML represents and its state.
+        You are an expert on giving titles to web pages from their screenshots.
+        You can create titles that capture what type of page the screenhot represents and its state.
 
         You figured out that by creating titles this way you can model any website as a graph. 
         Each node represents one state and each edge represents a possible transition by performing 
@@ -67,13 +67,8 @@ page_title:
         Privacy settings - New settings saved
         Todo List - Today, Add new task dialog open
 
-        The user will give you a part of HTML. You will return a title and reasoning behind it.
-
-        HTML from the user:
-
-        ----- HTML START -----
-        {html}
-        ----- HTML END -----
+        The user has given you a screenshot. You will return reasoning behind the title and the title itself.
+        When calling a function, first provide the reasoning and then the title.
     temperature: 0.0
     model: gpt-4o
     functions:
@@ -88,7 +83,6 @@ page_title:
                   title:
                       type: string
                       description: A title for the web page
-
 describe_html:
     prompt: |
         Analyze the following HTML and screenshot and provide a specific and extensive 
@@ -336,10 +330,6 @@ verify_action:
         If the action is failing and you cannot continue, say 'failure'
 is_loading:
     prompt: |
-        Answer with 'yes' if the HTML following piece of HTML and screenhot represents 
-        a loading page, e.g. a spinner or a progress bar.
-        Answer with 'no' if the HTML does not represent a loading page.
-
-        ----- HTML START -----
-        {html}
-        ----- HTML END -----
+        Answer with 'yes' if the following screenhot shows a loading page, e.g. 
+        a spinner or a progress bar. Answer with 'no' if the screenshot does not
+        represent a loading page.

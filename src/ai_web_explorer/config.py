@@ -4,13 +4,20 @@ import os
 BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 RESOURCES_PATH = os.path.join(BASE_PATH, "resources")
 DATA_PATH = os.path.join(BASE_PATH, "data")
+
+# Title settings
 TITLES_PATH = os.path.join(DATA_PATH, "titles.jsonl")
+HTMLS_PATH = os.path.join(DATA_PATH, "htmls")
+SCREENSHOTS_PATH = os.path.join(DATA_PATH, "screenshots")
 
 # GPT settings
 MODEL_DEFAULT = "gpt-4o"
 MAX_TOKENS_DEFAULT = 512
 TEMPERATURE_DEFAULT = 0.1
+
 PROMPTS_PATH = os.path.join(RESOURCES_PATH, "prompts.yaml")
+PROMPTS_PATH_TEST = os.path.join(RESOURCES_PATH, "prompts_test.yaml")
+
 PROMPT_LOGGING_ENABLED = True
 PROMPT_LOGS_PATH = os.path.join(DATA_PATH, "prompt_logs.jsonl")
 
