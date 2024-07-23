@@ -10,6 +10,11 @@ TITLES_PATH = os.path.join(DATA_PATH, "titles.jsonl")
 HTMLS_PATH = os.path.join(DATA_PATH, "htmls")
 SCREENSHOTS_PATH = os.path.join(DATA_PATH, "screenshots")
 
+# Action execution settings
+ACTION_NAMES_PATH = os.path.join(DATA_PATH, "actions.txt")
+ACTIONS_SCREENSHOTS_PATH = os.path.join(DATA_PATH, "actions_screenshots")
+ACTIONS_HTMLS_PATH = os.path.join(DATA_PATH, "actions_htmls")
+
 # GPT settings
 MODEL_DEFAULT = "gpt-4o"
 MAX_TOKENS_DEFAULT = 512
@@ -22,7 +27,7 @@ PROMPT_LOGGING_ENABLED = True
 PROMPT_LOGS_PATH = os.path.join(DATA_PATH, "prompt_logs.jsonl")
 
 # Browser settings
-BROWSER_SIZE = (1024, 768)
+BROWSER_SIZE = (1024, 1024)
 HTML_PART_LENGTH = 40000
 PLAYWRIGHT_TIMEOUT = 5000
 

@@ -10,7 +10,7 @@ from . import webstate
 from . import promptrepo
 from . import html
 from . import config
-
+import uuid
 
 class Executor:
 
@@ -34,6 +34,8 @@ class Executor:
             self._login_prompt = ""
 
     def execute(self, action: webstate.Action) -> tuple[bool, list]:
+        action_uuid = str(uuid.uuid4())
+        self._log_action(action_uuid, action)
         prompt = promptrepo.get_prompt("execute_action")
         prompt_verify = promptrepo.get_prompt("verify_action")
 
@@ -60,6 +62,9 @@ class Executor:
         if len(messages) == 0:
             logging.error("No messages to send in response")
             return False, []
+
+        self._log_browser_state(action_uuid, "before")
+        logged_after = False
 
         for _ in range(config.ACTION_MAX_TRIES):
             response = self._client.chat.completions.create(
@@ -115,6 +120,10 @@ class Executor:
                 messages.append(response_message)  # type: ignore
             messages.append({"role": "user", "content": prompt_verify.prompt_text})
 
+            if not logged_after:
+                self._log_browser_state(action_uuid, "after")
+                logged_after = True
+
         return True, tool_calls_all
 
     def replicate_tool_calls(self, tool_calls: list):
@@ -146,3 +155,17 @@ class Executor:
             raise ValueError(f"Unknown function {tool_call.function.name}")
         time.sleep(1)
         return {"role": "tool", "content": "OK", "tool_call_id": tool_call.id}
+
+    def _log_action(self, action_uuid: str, action: webstate.Action):
+        with open(config.ACTION_NAMES_PATH, "a") as f:
+            f.write(f"{action_uuid}\t{action.description}\n")
+
+    def _log_browser_state(self, action_uuid: str, phase: str):
+        page_html = html.get_full_html(self._page)
+        screenshot_bytes = self._page.screenshot()
+
+        with open(f"{config.ACTIONS_HTMLS_PATH}/{action_uuid}_{phase}.html", "w") as f:
+            f.write(page_html)
+
+        with open(f"{config.ACTIONS_SCREENSHOTS_PATH}/{action_uuid}_{phase}.png", "wb") as f:
+            f.write(screenshot_bytes)
