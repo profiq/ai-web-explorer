@@ -97,6 +97,14 @@ class Prompt:
             f.write(json.dumps(log_record) + "\n")
 
     def get_last_price(self) -> float:
+        if self.model == "gpt-4o":
+            unit_price_input = 5.0
+            unit_price_output = 15.0
+        else:
+            unit_price_input = 0.15
+            unit_price_output = 0.60
+
+
         if not hasattr(self, "_last_completion"):
             raise ValueError("No last completion to get price from")
 
@@ -106,8 +114,8 @@ class Prompt:
         input_tokens = self._last_completion.usage.prompt_tokens
         output_tokens = self._last_completion.usage.completion_tokens
 
-        input_price = input_tokens * 5.0 / 1_000_000
-        output_price = output_tokens * 15.0 / 1_000_000
+        input_price = input_tokens * unit_price_input / 1_000_000
+        output_price = output_tokens * unit_price_output / 1_000_000
 
         return input_price + output_price
 

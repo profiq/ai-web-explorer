@@ -141,7 +141,7 @@ is_loading:
 verify_action_images:
     prompt: |
         You are an expert in verifying actions on web pages. You can determine if a given action
-        was successful or not from the screenhot of the web page before and after the action.
+        was successful or not from the screenshot of the web page before and after the action.
 
         You know that showing an error message if the user input is invalid is also a success.
         The same is true for asking the user to perform some intermediate steps.
@@ -151,6 +151,37 @@ verify_action_images:
         ----- ACTION DESCRIPTION -----
         {action}
         ----- ACTION DESCRIPTION -----
+
+        I've also given you the screenshot of the web page before and after the action.
+
+        If the action is finished successfully, simply say 'success'
+        If the action is failed say 'failure'
+
+verify_action_html:
+    prompt: |
+        You are an expert in verifying actions on web pages. You can determine if a given action
+        was successful or not from the HTML of the web page before and after the action.
+
+        You know that showing an error message if the user input is invalid is also a success.
+        The same is true for asking the user to perform some intermediate steps.
+
+        Here is the description of the action:
+
+        ----- ACTION DESCRIPTION -----
+        {action}
+        ----- ACTION DESCRIPTION -----
+
+        Here is the HTML of the web page before the action:
+
+        ----- HTML START -----
+        {html_before}
+        ----- HTML END -----
+
+        Here is the HTML of the web page after the action:
+
+        ----- HTML START -----
+        {html_after}
+        ----- HTML END -----
 
         I've also given you the screenshot of the web page before and after the action.
 
