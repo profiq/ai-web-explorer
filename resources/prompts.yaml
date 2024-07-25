@@ -325,9 +325,23 @@ login:
 
 verify_action:
     prompt: |
-        If the action is not finished or you registered failure, continue calling more tools.
+        You are an expert in verifying actions on web pages. You can determine if a given action
+        was successful or not from the screenshot of the web page before and after the action.
+
+        You know that showing an error message if the user input is invalid is also a success.
+        The same is true for asking the user to perform some intermediate steps.
+
+        And here is the description of the action:
+
+        ----- ACTION DESCRIPTION -----
+        {action}
+        ----- ACTION DESCRIPTION -----
+
+        I've also given you the screenshot of the web page before and after the action.
+
         If the action is finished successfully, simply say 'success'
-        If the action is failing and you cannot continue, say 'failure'
+        If the action is failed say 'failure'
+
 is_loading:
     prompt: |
         Answer with 'yes' if the following screenhot shows a loading page, e.g. 

@@ -10,7 +10,7 @@ from . import webstate
 from . import promptrepo
 from . import html
 from . import config
-import uuid
+
 
 class Executor:
 
@@ -34,8 +34,6 @@ class Executor:
             self._login_prompt = ""
 
     def execute(self, action: webstate.Action) -> tuple[bool, list]:
-        action_uuid = str(uuid.uuid4())
-        self._log_action(action_uuid, action)
         prompt = promptrepo.get_prompt("execute_action")
         prompt_verify = promptrepo.get_prompt("verify_action")
 
@@ -63,10 +61,10 @@ class Executor:
             logging.error("No messages to send in response")
             return False, []
 
-        self._log_browser_state(action_uuid, "before")
-        logged_after = False
+        screenshot_before = self._page.screenshot()
 
         for _ in range(config.ACTION_MAX_TRIES):
+
             response = self._client.chat.completions.create(
                 model=prompt.model,
                 messages=messages,
@@ -80,18 +78,7 @@ class Executor:
             messages.append(response.message)  # type: ignore
 
             if not response.message.tool_calls or len(response.message.tool_calls) == 0:
-                if (
-                    response.message.content
-                    and "success" in response.message.content.lower()
-                ):
-                    logging.info("Action completed successfully")
-                elif (
-                    response.message.content
-                    and "failure" in response.message.content.lower()
-                ):
-                    logging.info("Action failed")
-                else:
-                    logging.error("No tool calls in response when executing action")
+                logging.error("No tool calls in response when executing action")
                 break
 
             tool_calls = response.message.tool_calls
@@ -118,13 +105,35 @@ class Executor:
                         "tool_call_id": tool_call.id,
                     }
                 messages.append(response_message)  # type: ignore
-            messages.append({"role": "user", "content": prompt_verify.prompt_text})
 
-            if not logged_after:
-                self._log_browser_state(action_uuid, "after")
-                logged_after = True
+            screenshot_after = self._page.screenshot()
 
-        return True, tool_calls_all
+            if screenshot_before == screenshot_after:
+                messages.append(
+                    {"role": "user", "content": "No change detected. Maybe try again?"}
+                )
+                continue
+
+            response = prompt_verify.execute_prompt(
+                self._client,
+                image_bytes=[screenshot_before, screenshot_after],
+                action=action.description,
+            )
+
+            if (
+                response.message.content
+                and "success" in response.message.content.lower()
+            ):
+                return True, tool_calls_all
+
+            messages.append(
+                {
+                    "role": "user",
+                    "content": "Automated verification said that the action failed. Please try something else",
+                }
+            )
+
+        return False, tool_calls_all
 
     def replicate_tool_calls(self, tool_calls: list):
         for tool_call in tool_calls:
@@ -155,17 +164,3 @@ class Executor:
             raise ValueError(f"Unknown function {tool_call.function.name}")
         time.sleep(1)
         return {"role": "tool", "content": "OK", "tool_call_id": tool_call.id}
-
-    def _log_action(self, action_uuid: str, action: webstate.Action):
-        with open(config.ACTION_NAMES_PATH, "a") as f:
-            f.write(f"{action_uuid}\t{action.description}\n")
-
-    def _log_browser_state(self, action_uuid: str, phase: str):
-        page_html = html.get_full_html(self._page)
-        screenshot_bytes = self._page.screenshot()
-
-        with open(f"{config.ACTIONS_HTMLS_PATH}/{action_uuid}_{phase}.html", "w") as f:
-            f.write(page_html)
-
-        with open(f"{config.ACTIONS_SCREENSHOTS_PATH}/{action_uuid}_{phase}.png", "wb") as f:
-            f.write(screenshot_bytes)
