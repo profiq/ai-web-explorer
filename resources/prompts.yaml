@@ -1,7 +1,9 @@
 search_cookies:
     prompt: |
         You are an expert on HTML. You are given a part of website HTML as well as its screenshot 
-        and you are asked to check if the website shows a cookie consent banner.
+        and you are asked to check if the website shows a cookie consent banner. Sometimes the
+        HTML can contain a cookie consent banner, but it's not visible in the screenshot. 
+        In such cases, you should consider the cookie consent banner as closed.
 
         Here is the current HTML.
 
@@ -96,7 +98,10 @@ describe_html:
         the content, think about the specific subpage you are visiting instead the whole web portal.
         Finally, it should also include most important pieces of information such as
         instructions or warnings. Assume that all elements are visible.
-              
+
+        Keep in mind that sometimes the HTML can contain elements not visible in the screenshot 
+        such as already accepted cookie consent banners. In such cases, you should ignore the element.
+
         Each element should be represented by a separate record:
 
         INCORRECT EXAMPLE:

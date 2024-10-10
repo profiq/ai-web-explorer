@@ -178,7 +178,7 @@ class ExploreLoop:
         page.set_viewport_size(
             {"width": config.BROWSER_SIZE[0], "height": config.BROWSER_SIZE[1]}
         )
-        page.goto(url)
+        page.goto(url, wait_until="domcontentloaded")
         time.sleep(5)
         cookies.accept_cookies_if_present(self._openai_client, page)
         return pw, page
